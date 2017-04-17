@@ -9,7 +9,24 @@ if(isset($_SESSION['notification']))
 			swal({
 				type: "success",
 				title: "",
-				text: '<h4>Successfully Updated!</h4>',
+				text: '<h4>School Information has been updated.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'success':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>School Information has been created.</h4>',
 				html: true,
 				timer: 3000,
 				confirmButtonText: "Close",
