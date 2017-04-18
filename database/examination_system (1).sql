@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2017 at 10:23 PM
+-- Generation Time: Apr 18, 2017 at 11:48 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `es_accounts_tbl` (
   `id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -42,8 +43,9 @@ CREATE TABLE `es_accounts_tbl` (
 -- Dumping data for table `es_accounts_tbl`
 --
 
-INSERT INTO `es_accounts_tbl` (`id`, `name`, `email`, `address`, `gender`, `role`, `username`, `password`, `date`) VALUES
-(12, 'John David Lozano', 'lozanojohndavid@gmail.com', 'Quezon CIty', 'Male', 1, 'OES-b694507', '12345', '2017-04-17 20:21:03');
+INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gender`, `role`, `username`, `password`, `date`) VALUES
+(4, 'http://localhost/examination_system/assets/images/male.jpg', 'Administrator', 'admin@gmail.com', 'Quezon City', 'Male', 0, 'OES-b116694', '$2y$10$GyYGQAZ.nzYe2.sd7feXDOKDR6K0UPyY2nWe30mdlYY9nZBjBqCNu', '2017-04-18 12:15:54'),
+(5, 'http://localhost/examination_system/assets/images/male.jpg', 'John David Lozano', 'lozanojohndavid@gmail.com', 'Quezon City', 'Male', 1, 'OES-b116691', '$2y$10$GyYGQAZ.nzYe2.sd7feXDOKDR6K0UPyY2nWe30mdlYY9nZBjBqCNu', '2017-04-18 16:31:01');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,7 @@ CREATE TABLE `es_school_information` (
 --
 
 INSERT INTO `es_school_information` (`id`, `name`, `email`, `address`, `contact`, `slogan`) VALUES
-(19, 'Access Computer College', 'accesscomputercollege@gmail.com', 'Zabarte Rd. Camarin Caloocan', '09226645555', 'asd');
+(19, 'Access Computer College', 'accesscomputercollege@gmail.com', 'Zabarte Rd. Camarin Caloocan', '09226645555', 'asdasdasda');
 
 --
 -- Indexes for dumped tables
@@ -91,7 +93,7 @@ ALTER TABLE `es_school_information`
 -- AUTO_INCREMENT for table `es_accounts_tbl`
 --
 ALTER TABLE `es_accounts_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `es_school_information`
 --

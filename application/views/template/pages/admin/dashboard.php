@@ -11,10 +11,9 @@ endforeach;?>
          <?php 
           $errors = $this->session->flashdata('errors');
           if($errors):
-            echo '<div class="alert alert-danger">'.$errors.'</div>';
+          echo '<div class="alert alert-danger">'.$errors.'</div>';
           endif;
           include 'notification-system.php';
-          
           ?>
             <div class="row top_tiles">
               

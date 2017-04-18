@@ -20,15 +20,15 @@
     <!-- NProgress -->
     <script src="<?php echo $url?>assets/vendors/nprogress/nprogress.js"></script>
 
-    <script src="<?php echo $url?>assets//vendors/fastclick/lib/fastclick.js"></script>
+    <script src="<?php echo $url?>assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="<?php echo $url?>assets//vendors/nprogress/nprogress.js"></script>
+    <script src="<?php echo $url?>assets/vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-progressbar -->
-    <script src="<?php echo $url?>assets//vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="<?php echo $url?>assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
-    <script src="<?php echo $url?>assets//vendors/iCheck/icheck.min.js"></script>
-
-
+    <script src="<?php echo $url?>assets/vendors/iCheck/icheck.min.js"></script>
+    <!-- jQuery custom content scroller -->
+    <script src="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- Parsley -->
     <script src="<?php echo $url?>assets/vendors/parsleyjs/dist/parsley.min.js"></script>
     <!-- Custom Theme Scripts -->

@@ -1,3 +1,6 @@
+<?php 
+if(!isset($data['session_id'])) { redirect('login'); }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Online Examination System</title>
+    <title><?php echo $res['page_title']?></title>
     <!-- Bootstrap -->
     <link href="<?php echo $url?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -22,16 +25,18 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo $url?>assets/build/css/custom.min.css" rel="stylesheet">
     <!-- Select2 -->
-    <link href="<?php echo $url?>assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
   </head>
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title">
-              <a href="#" class="site_title"><span>Examination System</span></a>
+              <a href="#" class="site_title"><span><?php echo $res['title']?></span></a>
             </div>
 
             <div class="clearfix"></div>

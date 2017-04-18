@@ -20,6 +20,14 @@ class model extends CI_Model
 
 	}
 
+	public function UserLogin($username,$password)
+	{
+
+		$this->db->select('password')->from('es_accounts_tbl')->where('username', $username);
+		$hash = $this->db->get()->row('password');
+		return $this->verify($password, $hash);
+
+	}
 
 	public function InsertOrUpdate($data)
 	{
@@ -61,6 +69,29 @@ class model extends CI_Model
 
 		}
 	
+	}
+
+	public function GetId($username) 
+	{
+		
+		$this->db->select('id')->from('es_accounts_tbl')->where('username', $username);
+		return $this->db->get()->row('id');
+		
+	}
+
+	public function GetUserInformation($user_id) 
+	{
+		
+		$this->db->from('es_accounts_tbl')->where('id', $user_id);
+		return $this->db->get()->row();
+		
+	}
+
+
+	private function verify($password, $hash) {
+		
+		return password_verify($password, $hash);
+		
 	}
 
 }

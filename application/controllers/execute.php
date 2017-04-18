@@ -63,7 +63,7 @@ class execute extends CI_Controller
 
 			$data = array('errors'=>validation_errors());
 			$this->session->set_flashdata($data);
-			redirect('dashboard','refresh');
+			redirect('dashboard');
 
 		}
 
@@ -80,10 +80,72 @@ class execute extends CI_Controller
 		if($result)
 		{
 
-			redirect('dashboard','refresh');
+			redirect('dashboard');
 
 		}
 
+
+	}
+
+	public function login()
+	{
+
+				// set validation rules
+		$this->validate('username', 'Username', 'trim|required');
+		$this->validate('password', 'Password', 'trim|required');
+		
+		if ($this->form_validation->run() == false) {
+			
+			// validation not ok, send validation errors to the view
+			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
+			$this->session->set_flashdata($data);
+			redirect('login');
+			
+		} else {
+			
+			// set variables from the form
+			$username = $this->post('username');
+			$password = $this->post('password');
+			
+			$result = $this->model->UserLogin($username, $password);
+
+			if ($result) {
+				
+				$id 	= $this->model->GetId($username);
+				$user 	= $this->model->GetUserInformation($id);
+				$role = $user->role;
+				$newdata = array(
+					        'session_id' => $id,
+					        'image'  	 => $user->image,
+					        'gender' 	 => $user->gender,
+					        'email' 	 => $user->email,
+					        'address' 	 => $user->address,
+					        'date' 		 => $user->date,
+					        'role' 		 => $role,
+					        'name' 		 => $user->name,
+					        'logged_in'  => TRUE,
+					);
+				switch ($role) 
+				{
+					case 0:
+					$this->session->set_userdata($newdata);
+					redirect('dashboard');
+					break;
+
+					case 1:
+					$this->session->set_userdata($newdata);
+					redirect('profile');
+					break;
+				}
+
+			} else {
+				
+			$this->session->set_flashdata('notification', 'login_failed');
+			redirect('login');
+				
+			}
+			
+		}	
 
 	}
 
@@ -107,28 +169,66 @@ class execute extends CI_Controller
 
 			$data = array('errors'=>validation_errors());
 			$this->session->set_flashdata($data);
-			redirect('addstudents','refresh');
+			redirect('addstudents');
 
 		}
 
+		$gender = $this->post('gender');
+
+		switch ($gender) 
+		{
+			
+			case 'Male':
+			$image = base_url().'assets/images/male.jpg';
+			break;
+			
+			case 'Female':
+			$image = base_url().'assets/images/female.jpg';
+			break;
+			
+		}
+
 		$data = array(
+			'image' 	=> $image,
 			'name' 		=> $this->post('name'),
 			'email' 	=> $this->post('email'),
 			'address' 	=> $this->post('address'),
-			'gender' 	=> $this->post('gender'),
+			'gender' 	=> $gender,
 			'role' 		=> 1,
 			'username' 	=> $this->generate_username(),
-			'password'	=> 12345
+			'password'	=> $this->encrypt(12345)
 			);
 
 		$result = $this->model->AddNewStudents($data);
 
 		if($result)
 		{
-			redirect('addstudents','refresh');
+
+			redirect('addstudents');
+
 		}
 
 	}
 
+	public function logout()
+	{
+
+		unset($_SESSION['name'],$_SESSION['session_id'],$_SESSION['logged_in'],$_SESSION['role']);
+		redirect('login');
+
+	}
+	
+
+	private function encrypt($password) 
+	{
+		
+		return password_hash($password, PASSWORD_BCRYPT);
+		
+	}
+
+	
+
+
+	
 
 }

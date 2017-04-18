@@ -1,6 +1,5 @@
 <?php 
 $errors = $this->session->flashdata('errors');
-include 'notification-system.php';
 ?>
    <div class="right_col" role="main">
     <div class="title_left">
