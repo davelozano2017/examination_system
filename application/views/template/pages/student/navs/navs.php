@@ -1,3 +1,7 @@
+<?php 
+if(!isset($data['session_id'])) { redirect('login'); }
+if($data['role'] == 0){redirect('dashboard');}
+?>
   <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">

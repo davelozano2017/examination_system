@@ -1,6 +1,4 @@
-<?php 
-if(!isset($data['session_id'])) { redirect('login'); }
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
