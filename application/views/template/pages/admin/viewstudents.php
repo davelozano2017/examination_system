@@ -49,9 +49,9 @@
                 <div class="col-xs-12 bottom text-center">
                   <div class="col-xs-12 col-sm-12 emphasis">
                     <label class="pull-left"><?php echo $udata['date']?></label>
-                    <button type="button" class="btn btn-primary btn-xs pull-right">
+                      <a href="#" onClick="view_profile('<?php echo$url?>execute/','student_profile/','<?php echo$udata['id']?>')" class="btn btn-dark btn-xs pull-right">
                       <i class="fa fa-eye"> </i> View Profile
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
