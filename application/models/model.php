@@ -39,6 +39,16 @@ class model extends CI_Model
 
 	}
 
+	public function SchoolLogo($image,$id)
+	{
+
+
+		$result = $this->db->where(['id'=>$id])->set('image',$image)->update('es_school_information');
+		$this->session->set_flashdata('notification','updated');
+		return $result;
+
+	}
+
 	public function InsertOrUpdate($data)
 	{
 
@@ -77,6 +87,18 @@ class model extends CI_Model
 		return $result;
 
 	}
+
+	public function MyAccountUpdatePassword($data,$id)
+	{
+
+		
+		$result = $this->db->where(['id'=>$id])->update('es_accounts_tbl',$data);
+		$this->session->set_flashdata('notification','myaccount_updated');
+		return $result;
+
+	}
+
+
 	public function AddNewStudents($data)
 	{	
 
@@ -111,6 +133,14 @@ class model extends CI_Model
 		$this->db->from('es_accounts_tbl')->where('id', $user_id);
 		return $this->db->get()->row();
 		
+	}
+
+	public function GetAllUsers()
+	{
+
+		$result = $this->db->where(['role'=>1])->get('es_accounts_tbl');
+		return $result->result();
+
 	}
 
 

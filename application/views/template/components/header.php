@@ -27,6 +27,16 @@
     <!-- jQuery custom content scroller -->
     <link href="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
   </head>
+<!-- 
+  <style type="text/css">
+
+  .truncate{
+  width:45%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style> -->
 
   <body class="nav-md">
     <div class="container body">

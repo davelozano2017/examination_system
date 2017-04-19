@@ -3,7 +3,8 @@ foreach ($result as $r):
   $data = array(
     'id' => $r->id,'name'=> $r->name,
     'email' => $r->email,'address' => $r->address,
-    'contact' => $r->contact,'slogan' => $r->slogan);
+    'contact' => $r->contact,'slogan' => $r->slogan,
+    'image' => $r->image);
 endforeach;
 ?>
 
@@ -78,7 +79,7 @@ endforeach;
                   <label>School Name</label>
                   <input type="hidden" name="id" value="<?php echo@$data['id']?>">
                   <input type="text" class="form-control " name="name" 
-                  value="<?php echo@$data['name']?>" required>
+                  value="<?php echo$data['name']?>" required>
                 </div>
               </div>
               
@@ -139,15 +140,19 @@ endforeach;
 
             <div class="x_content">
               <!-- start -->
-              <img src="" class="img-responsive">
+              <div class="form-group"> 
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                  <img src="<?php echo$data['image']?>" class="img-responsive col-md-12 col-xs-12 img-circle profile_img">
+                </div>
+              </div>
               <!-- end -->
 
-               <form method="POST" data-parsley-validate class="form-horizontal form-label-left input_mask">
+               <form method="POST" enctype="multipart/form-data" 
+               action="<?php echo$url?>execute/SchoolLogoUpdate/<?php echo$data['id']?>"  data-parsley-validate class="form-horizontal form-label-left input_mask">
               
               <div class="form-group"> 
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                  <label>Upload School Logo</label>
-                  <input type="file" class="form-control " name="image" required>
+                  <input type="file" class="form-control " name="userfile" required>
                 </div>
               </div>
               
@@ -156,7 +161,7 @@ endforeach;
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
+                <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-arrow-up"></i> Upload</button>
               </div>
             </div>
                      

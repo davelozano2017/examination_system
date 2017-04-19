@@ -92,7 +92,6 @@ class execute extends CI_Controller
 			'normal' => 'trim|required|xss_clean',
 			'email' => 'trim|required|valid_email|xss_clean',
 			'name' => 'trim|required|regex_match[/^([a-zA-Z]|\s)+$/]|xss_clean',
-			'password' => 'trim|required|xss_clean|matches[password]'
 
 			);
 
@@ -100,8 +99,6 @@ class execute extends CI_Controller
 		$this->validate('address','Address',$data['normal']);
 		$this->validate('gender','Gender',$data['normal']);
 		$this->validate('email','Email',$data['email']);
-		$this->validate('password','Password',$data['normal'].'|min_length[6]');
-		$this->validate('cpassword','Confirm Password',$data['password']);
 
 		if($this->form_validation->run() == FALSE)
 		{
@@ -117,11 +114,45 @@ class execute extends CI_Controller
 			'name' 		=> $this->post('name'),
 			'address' 	=> $this->post('address'),
 			'gender' 	=> $this->post('gender'), 
-			'email' 	=> $this->post('email'),
-			'password' 	=> $this->encrypt($this->post('password'))
+			'email' 	=> $this->post('email')
 			);
 
 		$result = $this->model->MyAccountUpdate($data,$id);
+		if($result)
+		{
+
+			redirect('myaccount');
+
+		}
+
+	}
+
+	public function updateinfopassword($id)
+	{
+
+		$data = array(
+			'normal' => 'trim|required|xss_clean',
+			'password' => 'trim|required|xss_clean|matches[password]'
+			);
+
+		$this->validate('password','Password',$data['normal'].'|min_length[6]');
+		$this->validate('cpassword','Confirm Password',$data['password']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
+			$this->session->set_flashdata($data);
+			redirect('myaccount');
+
+		}
+		
+
+		$data = array(
+			'password' 	=> $this->encrypt($this->post('password'))
+			);
+
+		$result = $this->model->MyAccountUpdatePassword($data,$id);
 		if($result)
 		{
 
@@ -159,6 +190,39 @@ class execute extends CI_Controller
 			{
 
 				redirect('myaccount');
+
+			}
+		}
+	}
+
+	public function SchoolLogoUpdate($id)
+	{
+		$config['upload_path'] = './assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('userfile'))
+		{
+
+
+			$errors = array('errors' => $this->upload->display_errors());
+			$this->session->set_flashdata($errors);
+			redirect('dashboard');
+
+		} else {
+			
+			$upload_data = $this->upload->data(); 
+			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
+			$result = $this->model->SchoolLogo($image,$id);
+
+			if($result)
+			{
+
+				redirect('dashboard');
 
 			}
 		}

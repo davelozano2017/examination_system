@@ -81,69 +81,100 @@ endforeach;
       <div class="col-md-7 col-xs-12">
         <div class="x_panel">
           <div class="x_content">
-            <div class="x_title">
-              <h2><i class="fa fa-pencil"></i> User Information</h2>
-            <div class="clearfix"></div>
-            </div>
+
             <!-- start -->
-            <form method="POST" 
-            action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
+                  <li role="presentation" class="active truncate "><a  href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
+                  <i class="fa fa-pencil "></i> User Information</a>
+                  </li>
+                  <li role="presentation" class="truncate" ><a style="text-overflow: ellipsis !important;" href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
+                  <i class="fa fa-lock"></i> Change Passwor</a>
+                  </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                    <form method="POST" 
+                    action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+                    
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label>Address</label>
+                        <input type="text" class="form-control" name="address" value="<?php echo$udata['address']?>" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label>Gender</label>
+                        <select class="form-control" name="gender" required>
+                          <option value="<?php echo$data['gender']?>"><?php echo$udata['gender']?></option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" value="<?php echo$udata['email']?>" required>
+                      </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
+                      </div>
+                    </div>
+                             
+                    </form>
+                  </div>
+                  
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                    <form method="POST" 
+                    action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label>Confirm New Password</label>
+                        <input type="password" class="form-control" data-parsley-equalto="#password" name="cpassword" required>
+                      </div>
+                    </div>
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
+                      </div>
+                    </div>
+                             
+                    </form>
+
+                  </div>
+
+
+                </div>
+              </div>
+
             
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                <label>Name</label>
-                <input type="text" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                <label>Address</label>
-                <input type="text" class="form-control" name="address" value="<?php echo$udata['address']?>" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                <label>Gender</label>
-                <select class="form-control" name="gender" required>
-                  <option value="<?php echo$data['gender']?>"><?php echo$udata['gender']?></option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                <label>Email</label>
-                <input type="email" class="form-control" name="email" value="<?php echo$udata['email']?>" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                <label>New Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                <label>Confirm New Password</label>
-                <input type="password" class="form-control" data-parsley-equalto="#password" name="cpassword" required>
-              </div>
-            </div>
-
-
-            <div class="ln_solid"></div>
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
-              </div>
-            </div>
-                     
-            </form>
+            
 
             <!-- end -->
 
