@@ -4,7 +4,8 @@ foreach ($result as $r):
     'id' => $r->id,'name'=> $r->name,
     'email' => $r->email,'address' => $r->address,
     'contact' => $r->contact,'slogan' => $r->slogan);
-endforeach;?>
+endforeach;
+?>
 
         <div class="right_col" role="main">
           <div class="">

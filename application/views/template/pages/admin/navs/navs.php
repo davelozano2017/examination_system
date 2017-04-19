@@ -1,15 +1,23 @@
 <?php 
 if(!isset($data['session_id'])) { redirect('login'); }
 if($data['role'] == 1){redirect('profile');}
+foreach ($admin_data as $r):
+  $udata = array(
+    'id'     => $r->id, 'image'     => $r->image,
+    'email'  => $r->email,'address' => $r->address,
+    'gender' => $r->gender,'name'   => $r->name
+    );
+endforeach;
+
 ?>
   <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo $data['image']?>" class="img-circle profile_img">
+                <img src="<?php echo $udata['image']?>" class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Howdy, </span>
-                <h2><?php echo$data['name']?></h2>
+                <span>Howdy,</span>
+                <h2><?php echo$udata['name']?></h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -73,7 +81,7 @@ if($data['role'] == 1){redirect('profile');}
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo $_SESSION['image']?>"><?php echo $data['name']?>
+                    <img src="<?php echo $udata['image']?>"><?php echo $udata['name']?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

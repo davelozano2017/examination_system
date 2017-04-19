@@ -1,6 +1,7 @@
 <?php 
 
 defined('BASEPATH') or exit ('No direct script allowed.');
+date_default_timezone_set('Asia/Manila');
 
 class execute extends CI_Controller 
 {
@@ -13,18 +14,18 @@ class execute extends CI_Controller
 
 	}
 
-	public function generate_username()
-	{
+	// public function generate_username()
+	// {
     
-	    return sprintf( 'OES-%04x'.rand(111,999),
-	        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
-	        mt_rand( 0, 0xffff ),
-	        mt_rand( 0, 0x0C2f ) | 0x4000,
-	        mt_rand( 0, 0x3fff ) | 0x8000,
-	        mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
-	    );
+	//     return sprintf( 'OES-%04x'.rand(111,999),
+	//         mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+	//         mt_rand( 0, 0xffff ),
+	//         mt_rand( 0, 0x0C2f ) | 0x4000,
+	//         mt_rand( 0, 0x3fff ) | 0x8000,
+	//         mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
+	//     );
 
-	}
+	// }
 
 
 	public function validate($a,$b,$c)
@@ -40,8 +41,6 @@ class execute extends CI_Controller
 		return $this->input->post($a);
 
 	}
-
-
 
 	public function InsertUpdate()
 	{	
@@ -84,26 +83,101 @@ class execute extends CI_Controller
 
 		}
 
+	}
 
+	public function updateinfo($id)
+	{
+
+		$data = array(
+			'normal' => 'trim|required|xss_clean',
+			'email' => 'trim|required|valid_email|xss_clean',
+			'name' => 'trim|required|regex_match[/^([a-zA-Z]|\s)+$/]|xss_clean',
+			'password' => 'trim|required|xss_clean|matches[password]'
+
+			);
+
+		$this->validate('name','Full Name',$data['normal']);
+		$this->validate('address','Address',$data['normal']);
+		$this->validate('gender','Gender',$data['normal']);
+		$this->validate('email','Email',$data['email']);
+		$this->validate('password','Password',$data['normal'].'|min_length[6]');
+		$this->validate('cpassword','Confirm Password',$data['password']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
+			$this->session->set_flashdata($data);
+			redirect('myaccount');
+
+		}
+		
+
+		$data = array(
+			'name' 		=> $this->post('name'),
+			'address' 	=> $this->post('address'),
+			'gender' 	=> $this->post('gender'), 
+			'email' 	=> $this->post('email'),
+			'password' 	=> $this->encrypt($this->post('password'))
+			);
+
+		$result = $this->model->MyAccountUpdate($data,$id);
+		if($result)
+		{
+
+			redirect('myaccount');
+
+		}
+
+	}
+
+	public function adminprofileupload($id)
+	{
+		$config['upload_path'] = './assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('userfile'))
+		{
+
+
+			$errors = array('errors' => $this->upload->display_errors());
+			$this->session->set_flashdata($errors);
+			redirect('myaccount');
+
+		} else {
+			
+			$upload_data = $this->upload->data(); 
+			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
+			$result = $this->model->UploadAdminProfile($image,$id);
+
+			if($result)
+			{
+
+				redirect('myaccount');
+
+			}
+		}
 	}
 
 	public function login()
 	{
 
-				// set validation rules
 		$this->validate('username', 'Username', 'trim|required');
 		$this->validate('password', 'Password', 'trim|required');
 		
 		if ($this->form_validation->run() == false) {
 			
-			// validation not ok, send validation errors to the view
 			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
 			$this->session->set_flashdata($data);
 			redirect('login');
 			
 		} else {
 			
-			// set variables from the form
 			$username = $this->post('username');
 			$password = $this->post('password');
 			
@@ -113,18 +187,8 @@ class execute extends CI_Controller
 				
 				$id 	= $this->model->GetId($username);
 				$user 	= $this->model->GetUserInformation($id);
-				$role = $user->role;
-				$newdata = array(
-					        'session_id' => $id,
-					        'image'  	 => $user->image,
-					        'gender' 	 => $user->gender,
-					        'email' 	 => $user->email,
-					        'address' 	 => $user->address,
-					        'date' 		 => $user->date,
-					        'role' 		 => $role,
-					        'name' 		 => $user->name,
-					        'logged_in'  => TRUE,
-					);
+				$role 	= $user->role;
+				$newdata = array('session_id' => $id,'role' => $role,'logged_in' => TRUE);
 				switch ($role) 
 				{
 					case 0:
@@ -188,6 +252,8 @@ class execute extends CI_Controller
 			
 		}
 
+		$regdate = date('jS \ F Y h:i:s A');
+		$username = 'ES-'.rand(1111111,9999999);
 		$data = array(
 			'image' 	=> $image,
 			'name' 		=> $this->post('name'),
@@ -195,8 +261,9 @@ class execute extends CI_Controller
 			'address' 	=> $this->post('address'),
 			'gender' 	=> $gender,
 			'role' 		=> 1,
-			'username' 	=> $this->generate_username(),
-			'password'	=> $this->encrypt(12345)
+			'username' 	=> $username,
+			'password'	=> $this->encrypt(12345),
+			'date' 		=> $regdate
 			);
 
 		$result = $this->model->AddNewStudents($data);

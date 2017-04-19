@@ -16,6 +16,7 @@ class addstudents extends CI_Controller
 			'title'			=>'Examination System',
 			'greetings'		=>'Howdy,'
 			);
+		$data['admin_data'] = $this->model->GetAdminInformation($_SESSION['session_id']);
 		$data['data'] = $this->session->userdata();
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs');

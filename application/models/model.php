@@ -12,6 +12,16 @@ class model extends CI_Model
 
 	}
 
+	public function UploadAdminProfile($image,$id)
+	{
+
+
+		$result = $this->db->where(['id'=>$id])->set('image',$image)->update('es_accounts_tbl');
+		$this->session->set_flashdata('notification','myaccount_updated');
+		return $result;
+	
+	}
+
 	public function GetSchoolInformation()
 	{
 
@@ -36,8 +46,7 @@ class model extends CI_Model
 		if($check->num_rows() > 0)
 		{
 
-			$this->db->where(['id' => $data['id']]);
-			$result = $this->db->update('es_school_information',$data);
+			$result = $this->db->where(['id' => $data['id']])->update('es_school_information',$data);
 			$this->session->set_flashdata('notification','updated');
 			return $result;
 
@@ -51,6 +60,23 @@ class model extends CI_Model
 
 	}
 
+	public function GetAdminInformation($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->get('es_accounts_tbl');
+		return $result->result();
+
+	}
+
+	public function MyAccountUpdate($data,$id)
+	{
+
+		
+		$result = $this->db->where(['id'=>$id])->update('es_accounts_tbl',$data);
+		$this->session->set_flashdata('notification','myaccount_updated');
+		return $result;
+
+	}
 	public function AddNewStudents($data)
 	{	
 

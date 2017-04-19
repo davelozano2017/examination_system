@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2017 at 11:48 PM
+-- Generation Time: Apr 19, 2017 at 02:57 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -36,7 +36,7 @@ CREATE TABLE `es_accounts_tbl` (
   `role` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -44,8 +44,7 @@ CREATE TABLE `es_accounts_tbl` (
 --
 
 INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gender`, `role`, `username`, `password`, `date`) VALUES
-(4, 'http://localhost/examination_system/assets/images/male.jpg', 'Administrator', 'admin@gmail.com', 'Quezon City', 'Male', 0, 'OES-b116694', '$2y$10$GyYGQAZ.nzYe2.sd7feXDOKDR6K0UPyY2nWe30mdlYY9nZBjBqCNu', '2017-04-18 12:15:54'),
-(5, 'http://localhost/examination_system/assets/images/male.jpg', 'John David Lozano', 'lozanojohndavid@gmail.com', 'Quezon City', 'Male', 1, 'OES-b116691', '$2y$10$GyYGQAZ.nzYe2.sd7feXDOKDR6K0UPyY2nWe30mdlYY9nZBjBqCNu', '2017-04-18 16:31:01');
+(6, 'http://localhost/examination_system/assets/uploads/10949719_823337744409879_7506382810893741841_n.jpg', 'Administrator', 'admin@gmail.com', 'Holy Spirit Quezon City', 'Male', 0, 'ES-3470594', '$2y$10$w1MBwQoLPMTtBfuARbxrVOsinWw1ZLJ/c.PV9x2zJeeX1/.0g.EkS', '19th  April 2017 04:40:44 PM');
 
 -- --------------------------------------------------------
 
@@ -93,7 +92,7 @@ ALTER TABLE `es_school_information`
 -- AUTO_INCREMENT for table `es_accounts_tbl`
 --
 ALTER TABLE `es_accounts_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `es_school_information`
 --

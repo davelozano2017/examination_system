@@ -20,6 +20,23 @@ if(isset($_SESSION['notification']))
 			<?php
 		break;
 
+		case 'myaccount_updated':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>Account has been updated.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+		
 		case 'success':
 			?>
 			<script type="text/javascript">

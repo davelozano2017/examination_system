@@ -21,8 +21,9 @@ class myaccount extends CI_Controller
 			);
 		$data['url'] = base_url();
 		$data['data'] = $this->session->userdata();
+		$data['admin_data'] = $this->model->GetAdminInformation($_SESSION['session_id']);
 		$this->load->view('template/components/header',$data);
-		$this->load->view('template/pages/admin/navs/navs');
+		$this->load->view('template/pages/admin/navs/navs',$data);
 		$this->load->view('template/pages/admin/myaccount',$data);
 		$this->load->view('template/components/footer',$data);
 
