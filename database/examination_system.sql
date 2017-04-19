@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2017 at 02:57 PM
+-- Generation Time: Apr 19, 2017 at 11:32 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -44,7 +44,13 @@ CREATE TABLE `es_accounts_tbl` (
 --
 
 INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gender`, `role`, `username`, `password`, `date`) VALUES
-(6, 'http://localhost/examination_system/assets/uploads/10949719_823337744409879_7506382810893741841_n.jpg', 'Administrator', 'admin@gmail.com', 'Holy Spirit Quezon City', 'Male', 0, 'ES-3470594', '$2y$10$w1MBwQoLPMTtBfuARbxrVOsinWw1ZLJ/c.PV9x2zJeeX1/.0g.EkS', '19th  April 2017 04:40:44 PM');
+(6, 'http://localhost/examination_system/assets/uploads/oficcial-512.png', 'Administrator', 'admin@noreply.com', 'Holy Spirit Quezon City', 'Male', 0, 'Administrator', '$2y$10$t6dhw0uuqAuzB3UCgAUZHuvvRQWSeZ1Tqbz5EnwhrADIib8cUw0am', '19th  April 2017 04:40:44 PM'),
+(7, 'http://localhost/examination_system/assets/uploads/10949719_823337744409879_7506382810893741841_n.jpg', 'John David Lozano', 'lozanojohndavid@gmail.com', 'Holy Spirit Quezon City', 'Male', 1, 'davelozano06142016', '$2y$10$t6dhw0uuqAuzB3UCgAUZHuvvRQWSeZ1Tqbz5EnwhrADIib8cUw0am', '19th  April 2017 04:40:44 PM'),
+(8, 'http://localhost/examination_system/assets/images/female.jpg', 'Jeddahlyn Cabuga', 'cabugajeddahlyn@gmail.com', 'Maligaya Park Quezon City', 'Female', 1, 'ES-1687825', '$2y$10$8vJyTk43ls/1eyIA5lbLG.9P91MHeB0YJi6eEpHBcDsI8HZw6OVma', '20th  April 2017 05:14:24 AM'),
+(9, 'http://localhost/examination_system/assets/images/male.jpg', 'Sajer Broncano', 'sajerbroncano@gmail.com', 'Caloocan City', 'Male', 1, 'ES-9821777', '$2y$10$66eoC2pbvNIAj/lWMuH5pe8ZRmu/19S5fXoGoHHVQfLpYYprlpmue', '20th  April 2017 05:15:32 AM'),
+(10, 'http://localhost/examination_system/assets/images/male.jpg', 'Jade Batal', 'jadebatal@gmail.com', 'Kiko Caloocan City', 'Male', 1, 'ES-3304850', '$2y$10$wHHoJ/jv3gh4hDqZCRKNMez36MAnkJfrxzWUCd2z8tZ2oTrKe8/Xq', '20th  April 2017 05:15:57 AM'),
+(11, 'http://localhost/examination_system/assets/images/male.jpg', 'John Paul Bobila', 'johnpaulbobila@gmail.com', 'Caloocan City', 'Male', 1, 'ES-3716362', '$2y$10$T9CYCb9yRRXJpnZz.mrso.uMbRi399KkVClfjWhncIsBZONPKS63C', '20th  April 2017 05:16:36 AM'),
+(12, 'http://localhost/examination_system/assets/images/male.jpg', 'Shinjie Calica', 'shinjiecalica@gmail.com', 'Caloocan City', 'Male', 1, 'ES-7891167', '$2y$10$Aq.kkHknCa19KJG8otxOLete23Yog3nOeD5fiiOYDl3/58TyOAxE2', '20th  April 2017 05:29:15 AM');
 
 -- --------------------------------------------------------
 
@@ -54,6 +60,7 @@ INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gende
 
 CREATE TABLE `es_school_information` (
   `id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -65,8 +72,8 @@ CREATE TABLE `es_school_information` (
 -- Dumping data for table `es_school_information`
 --
 
-INSERT INTO `es_school_information` (`id`, `name`, `email`, `address`, `contact`, `slogan`) VALUES
-(19, 'Access Computer College', 'accesscomputercollege@gmail.com', 'Zabarte Rd. Camarin Caloocan', '09226645555', 'asdasdasda');
+INSERT INTO `es_school_information` (`id`, `image`, `name`, `email`, `address`, `contact`, `slogan`) VALUES
+(19, 'http://localhost/examination_system/assets/uploads/logo.png', 'Access Computer College', 'accesscomputercollege@gmail.com', 'Zabarte Rd. Camarin Caloocan', '09226645555', 'asdasdasda');
 
 --
 -- Indexes for dumped tables
@@ -92,12 +99,12 @@ ALTER TABLE `es_school_information`
 -- AUTO_INCREMENT for table `es_accounts_tbl`
 --
 ALTER TABLE `es_accounts_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `es_school_information`
 --
 ALTER TABLE `es_school_information`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
