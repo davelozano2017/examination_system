@@ -20,6 +20,40 @@ if(isset($_SESSION['notification']))
 			<?php
 		break;
 
+		case 'smtpsuccess':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>SMTP Credentials has been saved.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'smtpupdated':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>SMTP Credentials has been updated.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
 		case 'student_successfully_deleted':
 			?>
 			<script type="text/javascript">

@@ -86,10 +86,39 @@ class model extends CI_Model
 
 	}
 
+	public function ConfigInsertUpdate($data)
+	{
+
+		$check = $this->db->get('es_mail_credentials');
+		if($check->num_rows() > 0)
+		{
+
+			$result = $this->db->where(['id' => $data['id']])->update('es_mail_credentials',$data);
+			$this->session->set_flashdata('notification','smtpupdated');
+			return $result;
+
+		} else {
+
+			$result = $this->db->insert('es_mail_credentials',$data);
+			$this->session->set_flashdata('notification','smtpsuccess');
+			return $result;
+		
+		}
+
+	}
+
 	public function GetAdminInformation($id)
 	{
 
 		$result = $this->db->where(['id'=>$id])->get('es_accounts_tbl');
+		return $result->result();
+
+	}
+
+	public function GetMailCredentials()
+	{
+
+		$result = $this->db->get('es_mail_credentials');
 		return $result->result();
 
 	}

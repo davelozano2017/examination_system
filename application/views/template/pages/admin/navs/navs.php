@@ -44,26 +44,22 @@ endforeach;
                       <li><a href="<?php echo$url?>modifyquestions">Modify Questions</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-envelope"></i> Email <span class="fa fa-chevron-down"></span></a>
+
+                  <li><a><i class="fa fa-gears"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo$url?>emailconfiguration">Configuration</a></li>
+                        <li><a href="<?php echo$url?>configuration">Email Configuration</a>
+                        <li><a>Database<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="<?php echo$url?>backupdb">Back Up</a></li>
+                            <li><a href="<?php echo$url?>restoredb">Restore</a></li>
+                          </ul>
+                        </li>
                     </ul>
-                  </li>
-                  </ul>
+                  </li>   
 
-                  <h3>system</h3>
-                <ul class="nav side-menu">
-
-                  <li><a><i class="fa fa-database"></i> Database <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo$url?>backupdb">Back Up</a></li>
-                      <li><a href="<?php echo$url?>restoredb">Restore</a></li>
-                    </ul>
-                  </li>
-
-                 </ul>
+              </ul>
+                
               </div>
-
             </div>
             <!-- /sidebar menu -->
 

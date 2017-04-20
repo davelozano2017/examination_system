@@ -35,6 +35,8 @@ class execute extends CI_Controller
 
 	}
 
+
+
 	public function post($a)
 	{
 
@@ -83,6 +85,47 @@ class execute extends CI_Controller
 
 		}
 
+	}
+
+	public function configuration()
+	{
+
+
+		$data = array(
+			'normal' => 'trim|required|xss_clean',
+			'email' => 'trim|required|valid_email|xss_clean',
+			);
+
+		$this->validate('hostname','SMTP Hostname',$data['normal']);
+		$this->validate('username','SMTP Username',$data['email']);
+		$this->validate('password','SMTP Password',$data['normal']);
+		$this->validate('port','SMTP Port',$data['normal']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('configuration');
+
+		}
+
+		$data = array(
+			'id' 		=> $this->post('id'),
+			'hostname' 	=> $this->post('hostname'),
+			'username' 	=> $this->post('username'),
+			'password' 	=> $this->post('password'),
+			'port' 		=> $this->post('port')
+			);
+
+		$result = $this->model->ConfigInsertUpdate($data);
+		if($result)
+		{
+
+			redirect('configuration');
+
+		}
+		
 	}
 
 

@@ -23,7 +23,7 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo $url?>assets/build/css/custom.min.css" rel="stylesheet">
     <!-- Select2 -->
-    <link href="<?php echo $url?>vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="<?php echo $url?>assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 
@@ -31,7 +31,6 @@
     <link href="<?php echo base_url();?>assets/vendors/animate.css/animate.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url();?>assets/build/css/custom.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/build/css/stylecustom.css" rel="stylesheet">
   </head>
 <!-- 
   <style type="text/css">

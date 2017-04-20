@@ -30,7 +30,7 @@
     <!-- jQuery custom content scroller -->
     <script src="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- View Student -->
-    <script type="text/javascript" src="<?php echo$url?>assets/js/view_estudent.js"></script>
+    <script src="<?php echo$url?>assets/js/view_estudent.js"></script>
     <!-- Parsley -->
     <script src="<?php echo $url?>assets/vendors/parsleyjs/dist/parsley.min.js"></script>
     <!-- Custom Theme Scripts -->

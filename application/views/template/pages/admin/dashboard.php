@@ -1,5 +1,4 @@
 <?php 
-
 foreach ($result as $r):
   $data = array(
     'id' => $r->id,'name'=> $r->name,
