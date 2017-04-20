@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2017 at 09:21 PM
+-- Generation Time: Apr 21, 2017 at 12:01 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -55,6 +55,27 @@ INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gende
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `es_mail_credentials`
+--
+
+CREATE TABLE `es_mail_credentials` (
+  `id` int(11) NOT NULL,
+  `hostname` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `port` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `es_mail_credentials`
+--
+
+INSERT INTO `es_mail_credentials` (`id`, `hostname`, `username`, `password`, `port`) VALUES
+(1, 'smtp.gmail.com', 'infinixcherrymobile@gmail.com', '12345123', '465');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `es_school_information`
 --
 
@@ -86,6 +107,12 @@ ALTER TABLE `es_accounts_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `es_mail_credentials`
+--
+ALTER TABLE `es_mail_credentials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `es_school_information`
 --
 ALTER TABLE `es_school_information`
@@ -99,7 +126,12 @@ ALTER TABLE `es_school_information`
 -- AUTO_INCREMENT for table `es_accounts_tbl`
 --
 ALTER TABLE `es_accounts_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `es_mail_credentials`
+--
+ALTER TABLE `es_mail_credentials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `es_school_information`
 --
