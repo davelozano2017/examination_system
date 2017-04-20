@@ -1,18 +1,18 @@
 <?php 
 $errors = $this->session->flashdata('errors');
 include 'notification-system.php';
-foreach ($admin_data as $r):
+foreach ($student_info as $r):
   $udata = array(
-    'id'     => $r->id, 'image'     => $r->image,
-    'email'  => $r->email,'address' => $r->address,
-    'gender' => $r->gender,'name'   => $r->name,
-    'date'   => $r->date
+    'id'     => $r->id,     'image'   => $r->image,
+    'email'  => $r->email,  'address' => $r->address,
+    'gender' => $r->gender, 'name'    => $r->name,
+    'date'   => $r->date,   'gender'    => $r->gender
     );
 endforeach;
 ?>
    <div class="right_col" role="main">
     <div class="title_left">
-      <h3><i class="fa fa-pencil"></i> My Account</h3>
+      <h3><i class="fa fa-user"></i> Student Profile</h3>
     </div>
 
     <div class="row">
@@ -54,7 +54,7 @@ endforeach;
             </ul>
             
             <form method="POST" enctype="multipart/form-data" 
-            action="<?php echo$url?>execute/adminprofileupload/<?php echo$udata['id']?>"
+            action="<?php echo$url?>execute/studentprofileupload/<?php echo$udata['id']?>"
             data-parsley-validate class="form-horizontal form-label-left input_mask">
               
               <div class="form-group"> 
@@ -88,14 +88,11 @@ endforeach;
                   <li role="presentation" class="active truncate "><a  href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
                   <i class="fa fa-pencil "></i> User Information</a>
                   </li>
-                  <li role="presentation" class="truncate" ><a style="text-overflow: ellipsis !important;" href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
-                  <i class="fa fa-lock"></i> Change Passwor</a>
-                  </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                     <form method="POST" 
-                    action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+                    action="<?php echo$url?>execute/studentupdateinfo/<?php echo$udata['id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
                     
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -132,42 +129,24 @@ endforeach;
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12">
-                        <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
+                      
+                      <a href="#" onClick="delete_student('<?php echo$url?>execute/DeleteStudent/','<?php echo$udata['id']?>')" 
+                      class="btn btn-danger ">
+                      <i class="fa fa-trash"></i> Delete 
+                      </a>
+
+                      <button type="submit" class="btn btn-dark pull-right ">
+                      <i class="fa fa-check-circle"></i> Save 
+                      </button>
+
+                        
                       </div>
                     </div>
                              
                     </form>
                   </div>
                   
-                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                    <form method="POST" 
-                    action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>New Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Confirm New Password</label>
-                        <input type="password" class="form-control" data-parsley-equalto="#password" name="cpassword" required>
-                      </div>
-                    </div>
-
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
-                      </div>
-                    </div>
-                             
-                    </form>
-
-                  </div>
+                  
 
 
                 </div>

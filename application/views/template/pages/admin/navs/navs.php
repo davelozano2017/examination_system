@@ -31,22 +31,22 @@ endforeach;
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   
-                  <li><a href="dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                  <li><a href="<?php echo$url?>dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                   <li><a href="#"><i class="fa fa-user"></i> Students <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="addstudents">Add New Students</a></li>
-                      <li><a href="viewstudents">View Students</a></li>
+                      <li><a href="<?php echo$url?>addstudents">Add New Students</a></li>
+                      <li><a href="<?php echo$url?>viewstudents">View Students</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-file-text"></i> Examination <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="result">Results</a></li>
-                      <li><a href="modifyquestions">Modify Questions</a></li>
+                      <li><a href="<?php echo$url?>result">Results</a></li>
+                      <li><a href="<?php echo$url?>modifyquestions">Modify Questions</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-envelope"></i> Email <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="emailconfiguration">Configuration</a></li>
+                      <li><a href="<?php echo$url?>emailconfiguration">Configuration</a></li>
                     </ul>
                   </li>
                   </ul>
@@ -56,8 +56,8 @@ endforeach;
 
                   <li><a><i class="fa fa-database"></i> Database <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="backupdb">Back Up</a></li>
-                      <li><a href="restoredb">Restore</a></li>
+                      <li><a href="<?php echo$url?>backupdb">Back Up</a></li>
+                      <li><a href="<?php echo$url?>restoredb">Restore</a></li>
                     </ul>
                   </li>
 

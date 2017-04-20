@@ -12,6 +12,22 @@ class model extends CI_Model
 
 	}
 
+	public function CountRegisteredUser()
+	{
+
+		return $this->db->where('role', 1)->count_all_results('es_accounts_tbl');
+
+	}
+
+	public function FetchRegisteredUser()
+	{
+
+		$result = $this->db->where('role',1)->get('es_accounts_tbl');
+		return $result->result();
+
+	}
+
+
 	public function UploadAdminProfile($image,$id)
 	{
 
@@ -78,7 +94,15 @@ class model extends CI_Model
 
 	}
 
-	public function MyAccountUpdate($data,$id)
+	public function GetStudentInfo($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->get('es_accounts_tbl');
+		return $result->result();
+
+	}
+
+	public function UpdateAccount($data,$id)
 	{
 
 		
@@ -87,6 +111,18 @@ class model extends CI_Model
 		return $result;
 
 	}
+
+	public function DeleteAccount($id)
+	{
+
+		
+		$result = $this->db->where(['id'=>$id])->delete('es_accounts_tbl');
+		$this->session->set_flashdata('notification','student_successfully_deleted');
+		return $result;
+
+	}
+
+	
 
 	public function MyAccountUpdatePassword($data,$id)
 	{

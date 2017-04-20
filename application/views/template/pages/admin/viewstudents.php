@@ -1,3 +1,8 @@
+<?php 
+$errors = $this->session->flashdata('errors');
+include 'notification-system.php'; 
+?>
+
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -21,7 +26,7 @@
                       <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
                       <div class="clearfix"></div>
             <?php 
-            foreach ($user as $r):
+            foreach ($results as $r):
               $udata = array(
                 'id'     => $r->id, 'image'     => $r->image,
                 'email'  => $r->email,'address' => $r->address,
@@ -49,7 +54,7 @@
                 <div class="col-xs-12 bottom text-center">
                   <div class="col-xs-12 col-sm-12 emphasis">
                     <label class="pull-left"><?php echo $udata['date']?></label>
-                      <a href="#" onClick="view_profile('<?php echo$url?>execute/','student_profile/','<?php echo$udata['id']?>')" class="btn btn-dark btn-xs pull-right">
+                      <a href="#" onClick="view_profile('<?php echo$url?>view_student/','profile/','<?php echo$udata['id']?>')" class="btn btn-dark btn-xs pull-right">
                       <i class="fa fa-eye"> </i> View Profile
                     </a>
                   </div>
@@ -58,9 +63,11 @@
             </div>
 
             <?php endforeach;?>
-            
                       
-
+            <div class="col-md-12 col-xs-12">
+             <!-- Show pagination links -->
+             
+            </div>
                     </div>
                   </div>
                 </div>

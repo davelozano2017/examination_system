@@ -85,6 +85,7 @@ class execute extends CI_Controller
 
 	}
 
+
 	public function updateinfo($id)
 	{
 
@@ -117,11 +118,66 @@ class execute extends CI_Controller
 			'email' 	=> $this->post('email')
 			);
 
-		$result = $this->model->MyAccountUpdate($data,$id);
+		$result = $this->model->UpdateAccount($data,$id);
 		if($result)
 		{
 
 			redirect('myaccount');
+
+		}
+
+	}
+
+	public function studentupdateinfo($id)
+	{
+
+		$data = array(
+			'normal' => 'trim|required|xss_clean',
+			'email' => 'trim|required|valid_email|xss_clean',
+			'name' => 'trim|required|regex_match[/^([a-zA-Z]|\s)+$/]|xss_clean',
+
+			);
+
+		$this->validate('name','Full Name',$data['normal']);
+		$this->validate('address','Address',$data['normal']);
+		$this->validate('gender','Gender',$data['normal']);
+		$this->validate('email','Email',$data['email']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
+			$this->session->set_flashdata($data);
+			redirect('view_student/profile/'.$id);
+
+		}
+		
+
+		$data = array(
+			'name' 		=> $this->post('name'),
+			'address' 	=> $this->post('address'),
+			'gender' 	=> $this->post('gender'), 
+			'email' 	=> $this->post('email')
+			);
+
+		$result = $this->model->UpdateAccount($data,$id);
+		if($result)
+		{
+
+			redirect('viewstudents');
+
+		}
+
+	}
+
+	public function DeleteStudent($id)
+	{
+
+		$result = $this->model->DeleteAccount($id);
+		if($result)
+		{
+
+			redirect('viewstudents');
 
 		}
 
@@ -184,12 +240,45 @@ class execute extends CI_Controller
 			
 			$upload_data = $this->upload->data(); 
 			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
-			$result = $this->model->UploadAdminProfile($image,$id);
+			$result = $this->model->UploadProfile($image,$id);
 
 			if($result)
 			{
 
 				redirect('myaccount');
+
+			}
+		}
+	}
+
+	public function studentprofileupload($id)
+	{
+		$config['upload_path'] = './assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('userfile'))
+		{
+
+
+			$errors = array('errors' => $this->upload->display_errors());
+			$this->session->set_flashdata($errors);
+			redirect('view_student/profile/'.$id);
+
+		} else {
+			
+			$upload_data = $this->upload->data(); 
+			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
+			$result = $this->model->UploadProfile($image,$id);
+
+			if($result)
+			{
+
+				redirect('viewstudents');
 
 			}
 		}
@@ -316,7 +405,7 @@ class execute extends CI_Controller
 			
 		}
 
-		$regdate = date('jS \ F Y h:i:s A');
+		$regdate = date('F j, \ Y h:i A');
 		$username = 'ES-'.rand(1111111,9999999);
 		$data = array(
 			'image' 	=> $image,
