@@ -85,7 +85,7 @@ endforeach;
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="myaccount"><i class="fa fa-pencil pull-right"></i> My Account</a></li>
+                    <li><a href="<?php echo $url?>myaccount"><i class="fa fa-pencil pull-right"></i> My Account</a></li>
                     <li><a href="<?php echo$url?>execute/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>

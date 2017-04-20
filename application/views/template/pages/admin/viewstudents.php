@@ -54,7 +54,7 @@ include 'notification-system.php';
                 <div class="col-xs-12 bottom text-center">
                   <div class="col-xs-12 col-sm-12 emphasis">
                     <label class="pull-left"><?php echo $udata['date']?></label>
-                      <a href="#" onClick="view_profile('<?php echo$url?>view_student/','profile/','<?php echo$udata['id']?>')" class="btn btn-dark btn-xs pull-right">
+                      <a href="#" onClick="view_profile('<?php echo$url?>view_student/','profile/','<?php echo$udata['id']?>')" class="animated fadeInDown btn btn-dark btn-xs pull-right">
                       <i class="fa fa-eye"> </i> View Profile
                     </a>
                   </div>
