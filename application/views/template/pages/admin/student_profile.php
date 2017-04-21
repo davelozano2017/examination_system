@@ -6,7 +6,8 @@ foreach ($student_info as $r):
     'id'     => $r->id,     'image'   => $r->image,
     'email'  => $r->email,  'address' => $r->address,
     'gender' => $r->gender, 'name'    => $r->name,
-    'date'   => $r->date,   'gender'    => $r->gender
+    'date'   => $r->date,   'gender'  => $r->gender,
+    'username' => $r->username,
     );
 endforeach;
 ?>
@@ -51,6 +52,16 @@ endforeach;
                 <span class="text-danger">Membership:</span>
                 <span class="pull-right text-primary"><?php echo$udata['date']?></span>
               </ul>
+
+              <ul class="list-inline count2">
+                <span class="text-danger">Username:</span>
+                <a data-toggle="tooltip" data-placement="top" 
+                    title="copy"  href="#" onclick="copyToClipboard('#p2')" 
+                class="pull-right"><i class="fa fa-copy fa-fw"></i></a>
+                <span id="p2" class="pull-right text-primary"><?php echo$udata['username']?></span>
+
+
+              </ul>
             </ul>
             
             <form method="POST" enctype="multipart/form-data" 
@@ -66,6 +77,7 @@ endforeach;
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12">
+                <a href="<?php echo$url?>viewstudents" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
                 <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-arrow-up"></i> Upload</button>
               </div>
             </div>
@@ -153,7 +165,6 @@ endforeach;
               </div>
 
             
-            
 
             <!-- end -->
 
@@ -167,3 +178,4 @@ endforeach;
         </div>
       </div>
     </div>   
+

@@ -6,7 +6,6 @@ date_default_timezone_set('Asia/Manila');
 class execute extends CI_Controller 
 {
 
-
 	public function __construct()
 	{
 
@@ -82,6 +81,19 @@ class execute extends CI_Controller
 		{
 
 			redirect('dashboard');
+
+		}
+
+	}
+
+	public function delete_all()
+	{
+
+		$result = $this->model->delete_all();
+		if($result)
+		{
+
+			redirect('viewstudents');
 
 		}
 
@@ -488,10 +500,5 @@ class execute extends CI_Controller
 		return password_hash($password, PASSWORD_BCRYPT);
 		
 	}
-
-	
-
-
-	
 
 }

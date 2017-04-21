@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2017 at 12:01 AM
+-- Generation Time: Apr 21, 2017 at 09:49 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -45,12 +45,12 @@ CREATE TABLE `es_accounts_tbl` (
 
 INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gender`, `role`, `username`, `password`, `date`) VALUES
 (6, 'http://localhost/examination_system/assets/uploads/oficcial-512.png', 'Administrator', 'admin@noreply.com', 'Holy Spirit Quezon City', 'Male', 0, 'Administrator', '$2y$10$t6dhw0uuqAuzB3UCgAUZHuvvRQWSeZ1Tqbz5EnwhrADIib8cUw0am', '19th  April 2017 04:40:44 PM'),
-(7, 'http://localhost/examination_system/assets/uploads/10949719_823337744409879_7506382810893741841_n.jpg', 'John David Lozano', 'lozanojohndavid@gmail.com', 'Holy Spirit Quezon City', 'Male', 1, 'davelozano06142016', '$2y$10$t6dhw0uuqAuzB3UCgAUZHuvvRQWSeZ1Tqbz5EnwhrADIib8cUw0am', '19th  April 2017 04:40:44 PM'),
-(8, 'http://localhost/examination_system/assets/uploads/mahal.png', 'Jeddahlyn Cabuga', 'cabugajeddahlyn@gmail.com', 'Maligaya Park Quezon City', 'Female', 1, 'ES-1687825', '$2y$10$8vJyTk43ls/1eyIA5lbLG.9P91MHeB0YJi6eEpHBcDsI8HZw6OVma', '20th  April 2017 05:14:24 AM'),
-(9, 'http://localhost/examination_system/assets/uploads/sajer.jpg', 'Sajer Broncano', 'sajerbroncano@gmail.com', 'Caloocan City', 'Male', 1, 'ES-9821777', '$2y$10$66eoC2pbvNIAj/lWMuH5pe8ZRmu/19S5fXoGoHHVQfLpYYprlpmue', '20th  April 2017 05:15:32 AM'),
-(10, 'http://localhost/examination_system/assets/uploads/jade.png', 'Jade Batal', 'jadebatal@gmail.com', 'Kiko Caloocan City', 'Male', 1, 'ES-3304850', '$2y$10$wHHoJ/jv3gh4hDqZCRKNMez36MAnkJfrxzWUCd2z8tZ2oTrKe8/Xq', '20th  April 2017 05:15:57 AM'),
-(11, 'http://localhost/examination_system/assets/uploads/paul.png', 'John Paul Bobila', 'johnpaulbobila@gmail.com', 'Caloocan City', 'Male', 1, 'ES-3716362', '$2y$10$T9CYCb9yRRXJpnZz.mrso.uMbRi399KkVClfjWhncIsBZONPKS63C', '20th  April 2017 05:16:36 AM'),
-(12, 'http://localhost/examination_system/assets/uploads/shin.png', 'Shinjie Calica', 'shinjiecalica@gmail.com', 'Caloocan City', 'Male', 1, 'ES-7891167', '$2y$10$Aq.kkHknCa19KJG8otxOLete23Yog3nOeD5fiiOYDl3/58TyOAxE2', '20th  April 2017 05:29:15 AM');
+(21, 'http://localhost/examination_system/assets/uploads/10949719_823337744409879_7506382810893741841_n1.jpg', 'John David Lozano', 'lozanojohndavid@gmail.com', 'Quezon City', 'Male', 1, 'ES-4477810', '$2y$10$G.i4Pq68sIkVLZfaIM7vhOkFYF5yLRd35Y7QRqeFn7GJ1oGItImI.', 'April 21,  2017 03:38 PM'),
+(22, 'http://localhost/examination_system/assets/uploads/mahal.png', 'Jeddahlyn Cabuga', 'cabugajeddahlyn@gmail.com', 'Quezon City', 'Female', 1, 'ES-6569010', '$2y$10$hvROveTLLjZzE8Z2AdrBYuDgPyPR4y71pqMD2k3m3W4b57ur4Si9u', 'April 21,  2017 03:45 PM'),
+(23, 'http://localhost/examination_system/assets/uploads/sajer.jpg', 'Sajer Broncano', 'sajerbroncano@gmail.com', 'Bulacan City', 'Male', 1, 'ES-9370930', '$2y$10$aod4PqTmjc0yxWqL7xfxxeIZx660IQx18G2F1TiBEROqC.TRXrZeW', 'April 21,  2017 03:45 PM'),
+(24, 'http://localhost/examination_system/assets/uploads/jade.png', 'Jade Batal', 'jadebatal@gmail.com', 'Caloocan City', 'Male', 1, 'ES-5752495', '$2y$10$QBymd9HS/RRa3MpFbtA4L.Ns94vs8PAhIl1k6dLcbNHQnVMZoe18y', 'April 21,  2017 03:45 PM'),
+(25, 'http://localhost/examination_system/assets/uploads/paul.png', 'John Paul Bobila', 'johnpaulbobila@gmail.com', 'Caloocan City', 'Male', 1, 'ES-7315266', '$2y$10$VIpe5qobxmjFf4zAuKUW/uc8trm67AIqQGl3oAvVvXJ93I4ZJPMyS', 'April 21,  2017 03:45 PM'),
+(26, 'http://localhost/examination_system/assets/uploads/shin.png', 'Shinjie Calica', 'shinjiecalica@gmail.com', 'Caloocan City', 'Male', 1, 'ES-5296223', '$2y$10$yoDx3/tD90ZE508Ee2eKeuqWed9T7WjsIyj74w/rtdowXLi5w2F1S', 'April 21,  2017 03:46 PM');
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,7 @@ ALTER TABLE `es_school_information`
 -- AUTO_INCREMENT for table `es_accounts_tbl`
 --
 ALTER TABLE `es_accounts_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `es_mail_credentials`
 --

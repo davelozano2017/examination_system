@@ -37,7 +37,7 @@
     <script src="<?php echo $url?>assets/build/js/custom.min.js"></script>
     <!-- Select2 -->
     <script src="<?php echo $url?>assets/vendors/select2/dist/js/select2.full.min.js"></script>
-    <!-- Select2 -->
+
      <!-- Select2 -->
     <script>
       $(document).ready(function() {

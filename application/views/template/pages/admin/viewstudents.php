@@ -18,7 +18,11 @@ include 'notification-system.php';
               <div class="col-md-12">
                 <div class="x_panel">
                  <div class="x_title">
-                    <h2><i class="fa fa-users"></i> List of Students</h2>
+                    <h2><i class="fa fa-users"></i> List of Students </h2>
+                    <a href="#" onClick="delete_all('<?php echo$url?>execute/delete_all')" 
+                    data-toggle="tooltip" data-placement="top" 
+                    title="Delete All" class="btn btn-danger pull-right animated fadeInDown">
+                    <i class="fa fa-trash"></i></a>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -26,7 +30,9 @@ include 'notification-system.php';
                       <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
                       <div class="clearfix"></div>
             <?php 
-            foreach ($results as $r):
+           
+            if($results == TRUE) {
+                foreach ($results as $r):
               $udata = array(
                 'id'     => $r->id, 'image'     => $r->image,
                 'email'  => $r->email,'address' => $r->address,
@@ -34,8 +40,7 @@ include 'notification-system.php';
                 'date'   => $r->date
                 );
             ?>
-
-            <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+            <div class="col-md-4 col-sm-6 col-xs-12 profile_details">
               <div class="well profile_view">
                 <div class="col-sm-12">
                   <h4 class="brief"><i><?php echo $udata['name']?></i></h4>
@@ -61,8 +66,15 @@ include 'notification-system.php';
                 </div>
               </div>
             </div>
-
-            <?php endforeach;?>
+            <?php
+            endforeach;
+            } else{ 
+            echo '
+            <div class="alert alert-info">
+              <i class="fa fa-exclamation-circle"></i>
+              <strong>No Record Found.</strong>
+            </div>';
+            } ?>
                       
             <div class="col-md-12 col-xs-12">
              <!-- Show pagination links -->

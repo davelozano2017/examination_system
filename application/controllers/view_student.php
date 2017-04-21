@@ -16,8 +16,8 @@ class view_student extends CI_Controller
 		
 		$data['res'] = array(
 			'page_title' 	=> 'Online Examination System',
-			'title'			=>'Examination System',
-			'greetings'		=>'Howdy,'
+			'title'			=> 'Examination System',
+			'greetings'		=> 'Howdy,'
 			);
 		$data['count'] = $this->model->CountRegisteredUser();
 		$data['data'] = $this->session->userdata();

@@ -22,13 +22,22 @@ class model extends CI_Model
 	public function FetchRegisteredUser()
 	{
 
-		$result = $this->db->where('role',1)->get('es_accounts_tbl');
-		return $result->result();
+		$check = $this->db->get('es_school_information');
+		if($check->num_rows() > 0)
+		{
+
+			$result = $this->db->where('role',1)->get('es_accounts_tbl');
+			return $result->result();
+
+		} else {
+
+			return TRUE;
+		}
 
 	}
 
 
-	public function UploadAdminProfile($image,$id)
+	public function UploadProfile($image,$id)
 	{
 
 
@@ -41,8 +50,18 @@ class model extends CI_Model
 	public function GetSchoolInformation()
 	{
 
+
 		$result = $this->db->get('es_school_information');
 		return $result->result();
+
+	}
+
+	public function delete_all()
+	{
+
+		$result = $this->db->where('role',1)->delete('es_accounts_tbl');
+		$this->session->set_flashdata('notification','deleted');
+		return $result;
 
 	}
 

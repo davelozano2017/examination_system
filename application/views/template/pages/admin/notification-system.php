@@ -2,7 +2,9 @@
 if(isset($_SESSION['notification']))
 {
 	switch ($_SESSION['notification']) {
-		
+		case 'a':
+		echo $message = '<div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> No record found.</div>';
+		break;
 		case 'updated':
 			?>
 			<script type="text/javascript">
@@ -10,6 +12,23 @@ if(isset($_SESSION['notification']))
 				type: "success",
 				title: "",
 				text: '<h4>School Information has been updated.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'deleted':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>All records has been deleted.</h4>',
 				html: true,
 				timer: 3000,
 				confirmButtonText: "Close",

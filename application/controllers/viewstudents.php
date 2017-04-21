@@ -14,7 +14,11 @@ class viewstudents extends CI_Controller
 	public function index()
 	{
 		
-
+		$data['res'] = array(
+			'page_title' 	=> 'Online Examination System',
+			'title'			=> 'Examination System',
+			'greetings'		=> 'Howdy,'
+			);
         $data["results"] 	= $this->model->FetchRegisteredUser();
 		$data['url'] 		= base_url();
 		$data['data'] 		= $this->session->userdata();
