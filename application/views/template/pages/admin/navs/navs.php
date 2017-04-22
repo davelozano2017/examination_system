@@ -45,9 +45,8 @@ endforeach;
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-gears"></i> Settings <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-gear"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="<?php echo$url?>configuration">Email Configuration</a>
                         <li><a>Database<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <li><a href="<?php echo$url?>backupdb">Back Up</a></li>

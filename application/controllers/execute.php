@@ -99,47 +99,6 @@ class execute extends CI_Controller
 
 	}
 
-	public function configuration()
-	{
-
-
-		$data = array(
-			'normal' => 'trim|required|xss_clean',
-			'email' => 'trim|required|valid_email|xss_clean',
-			);
-
-		$this->validate('hostname','SMTP Hostname',$data['normal']);
-		$this->validate('username','SMTP Username',$data['email']);
-		$this->validate('password','SMTP Password',$data['normal']);
-		$this->validate('port','SMTP Port',$data['normal']);
-
-		if($this->form_validation->run() == FALSE)
-		{
-
-			$data = array('errors'=>validation_errors());
-			$this->session->set_flashdata($data);
-			redirect('configuration');
-
-		}
-
-		$data = array(
-			'id' 		=> $this->post('id'),
-			'hostname' 	=> $this->post('hostname'),
-			'username' 	=> $this->post('username'),
-			'password' 	=> $this->post('password'),
-			'port' 		=> $this->post('port')
-			);
-
-		$result = $this->model->ConfigInsertUpdate($data);
-		if($result)
-		{
-
-			redirect('configuration');
-
-		}
-		
-	}
-
 
 	public function updateinfo($id)
 	{
@@ -357,7 +316,7 @@ class execute extends CI_Controller
 
 			$errors = array('errors' => $this->upload->display_errors());
 			$this->session->set_flashdata($errors);
-			redirect('view_student/profile/'.$id);
+			redirect('profile');
 
 		} else {
 			
@@ -368,12 +327,13 @@ class execute extends CI_Controller
 			if($result)
 			{
 
-				redirect('viewstudents');
+				redirect('profile');
 
 			}
 		}
 	}
 
+	
 	public function SchoolLogoUpdate($id)
 	{
 		$config['upload_path'] = './assets/uploads/';
@@ -517,12 +477,45 @@ class execute extends CI_Controller
 		{
 
 			$this->load->library('email');
-	        $subject = 'Hello '.$name;
-	        $message = '<p>Your username is '.$username.'</p>';
+	        $subject = 'Online Examination';
+
+	        $message = '
+	        	
+	        	<div style="max-width:92%;border-left:solid 1px #313d49;border-right:solid 1px #313d49;border-top:solid 1px #313d49;border-bottom:solid 1px #313d49;background-color:#f5f5f5;padding:10px;text-align:center">
+
+	        		<h3 style="color:#000">ONLINE EXAMINATION SYSTEM</h3>
+
+	        	</div>
+
+	        	<div style="max-width:92%;background-color:#ffffff;border-left:1px solid #313d49;border-right:solid 1px #313d49;padding:10px;">
+
+	        		<h4>Hello '.$name.',</h4>
+
+	        		<h4>Please be active on this email to be updated to your upcoming online examination.</h4>
+	        		<h4>Please login with this credentials</h4>
+	        		<a href="http://localhost/examination_system/login" 
+	        		style="float:right;background:#313d49;text-decoration:none;padding:10px;color:#fff;
+	        		font-weight:bolder">
+	        		CLICK ME TO LOGIN</a>
+	        		<h4>Username: <i>'.$username.'</i></h4>
+	        		<h4>Password: <i>12345</i></h4>
+
+	        		<h5 style="color:#ff0000;font-weight:bolder">Note: <i>If you have any questions or issues, you may email us @(email ng websitemo).</i></h5>
+	        	</div>
+
+	        	<div style="width:92%;background-color:#313d49;border-left:1px solid #313d49;border-right:solid 1px #313d49;padding:10px;text-align:center">
+
+	        		<h4 style="color:#fff">All Rights Reserved @ '.date('Y').'</h4>
+
+	        	</div>
+
+
+	        ';
+
 	        $body = $message;
 	        $result = $this->email
-	                ->from('infinixcherrymobile@gmail.com')
 	                ->to($email)
+	                ->from('a@yahoo.com')
 	                ->subject($subject)
 	                ->message($body)
 	                ->send();

@@ -3,10 +3,10 @@ $errors = $this->session->flashdata('errors');
 include 'notification-system.php';
 foreach ($user_data as $r):
   $udata = array(
-    'id'     => $r->id, 'image'     => $r->image,
-    'email'  => $r->email,'address' => $r->address,
-    'gender' => $r->gender,'name'   => $r->name,
-    'date'   => $r->date
+    'id'     => $r->id,     'image'   => $r->image,
+    'email'  => $r->email,  'address' => $r->address,
+    'gender' => $r->gender, 'name'    => $r->name,
+    'date'   => $r->date,   'role'    => $r->role
     );
 endforeach;
 ?>
@@ -54,7 +54,7 @@ endforeach;
             </ul>
             
             <form method="POST" enctype="multipart/form-data" 
-            action="<?php echo$url?>execute/adminprofileupload/<?php echo$udata['id']?>"
+            action="<?php echo$url?>execute/studentprofileupload/<?php echo$udata['id']?>"
             data-parsley-validate class="form-horizontal form-label-left input_mask">
               
               <div class="form-group"> 

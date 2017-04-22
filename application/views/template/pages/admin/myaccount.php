@@ -3,10 +3,10 @@ $errors = $this->session->flashdata('errors');
 include 'notification-system.php';
 foreach ($admin_data as $r):
   $udata = array(
-    'id'     => $r->id, 'image'     => $r->image,
-    'email'  => $r->email,'address' => $r->address,
-    'gender' => $r->gender,'name'   => $r->name,
-    'date'   => $r->date
+    'id'     => $r->id,     'image'   => $r->image,
+    'email'  => $r->email,  'address' => $r->address,
+    'gender' => $r->gender, 'name'    => $r->name,
+    'date'   => $r->date ,  'role'    => $r->role
     );
 endforeach;
 ?>
@@ -61,8 +61,6 @@ endforeach;
                   <input type="file" class="form-control " name="userfile" size="20"  required>
               </div>
               
-              
-
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12">
