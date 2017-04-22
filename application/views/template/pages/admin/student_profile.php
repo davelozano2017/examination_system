@@ -63,26 +63,11 @@ endforeach;
 
               </ul>
             </ul>
-            
-            <form method="POST" enctype="multipart/form-data" 
-            action="<?php echo$url?>execute/studentprofileupload/<?php echo$udata['id']?>"
-            data-parsley-validate class="form-horizontal form-label-left input_mask">
-              
-              <div class="form-group"> 
-                  <input type="file" class="form-control " name="userfile" size="20"  required>
-              </div>
-              
-              
 
             <div class="ln_solid"></div>
             <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <a href="<?php echo$url?>viewstudents" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
-                <button type="submit" class="btn btn-dark pull-right"><i class="fa fa-arrow-up"></i> Upload</button>
-              </div>
+                <a href="<?php echo$url?>viewstudents" class="btn btn-primary pull-right"><i class="fa fa-arrow-left"></i> Back</a>
             </div>
-                     
-            </form>
 
             <!-- end -->
 
@@ -123,7 +108,7 @@ endforeach;
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label>Gender</label>
-                        <select class="form-control" name="gender" required>
+                        <select class="select2 form-control" name="gender" required style="width:100%">
                           <option value="<?php echo$udata['gender']?>"><?php echo$udata['gender']?></option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>

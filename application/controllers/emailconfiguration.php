@@ -14,7 +14,7 @@ class emailconfiguration extends CI_Controller
 			'greetings'		=>'Howdy,'
 			);
 		$data['credentials'] = $this->model->GetMailCredentials();
-		$data['admin_data'] = $this->model->GetAdminInformation($_SESSION['session_id']);
+		$data['admin_data'] = $this->model->GetInformation($_SESSION['session_id']);
 		$data['data'] = $this->session->userdata();
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs');

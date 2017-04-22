@@ -19,41 +19,50 @@ endforeach;
           ?>
             <div class="row top_tiles">
               
-              <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-user"></i></div>
-                  <div class="count"><?php echo $count;?></div>
-                  <p><strong class="text-primary">Registered Students</strong></p>
-                  <p><a href="#"> Read More <i class="fa fa-external-link"></i> </a></p>
+              <a href="<?php echo$url?>viewstudents"> 
+                <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-user"></i></div>
+                    <div class="count"><?php echo $count;?></div>
+                    <p><strong class="text-primary">Registered Students</strong></p>
+                    <p></p>
+                  </div>
                 </div>
-              </div>
+              </a>
 
-              <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-check"></i></div>
-                  <div class="count">0</div>
-                  <p><strong class="text-primary">Students Attended</strong></p>
-                  <p><a href="#"> Read More <i class="fa fa-external-link"></i> </a></p>
+              <a href="<?php echo$url?>"> 
+                <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-check"></i></div>
+                    <div class="count">0</div>
+                    <p><strong class="text-primary">Students Attended</strong></p>
+                    <p></p>
+                  </div>
                 </div>
-              </div>
+              </a>
 
-              <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-thumbs-o-up"></i></div>
-                  <div class="count">0</div>
-                  <p><strong class="text-primary">Passing Students</strong></p>
-                  <p><a href="#"> Read More <i class="fa fa-external-link"></i> </a></p>
+              <a href="<?php echo$url?>"> 
+                <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-thumbs-o-up"></i></div>
+                    <div class="count">0</div>
+                    <p><strong class="text-primary">Passing Students</strong></p>
+                    <p></p>
+                  </div>
                 </div>
-              </div>
+              </a>
               
-              <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-thumbs-o-down"></i></div>
-                  <div class="count">0</div>
-                  <p><strong class="text-primary">Failed Students</strong></p>
-                  <p><a href="#"> Read More <i class="fa fa-external-link"></i> </a></p>
+              <a href="<?php echo$url?>"> 
+                <div class="animated fadeInDown col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-thumbs-o-down"></i></div>
+                    <div class="count">0</div>
+                    <p><strong class="text-primary">Failed Students</strong></p>
+                    <p><a href="#"> </a></p>
+                  </div>
                 </div>
-              </div>
+              </a>
+              
             </div>
           </div>
 

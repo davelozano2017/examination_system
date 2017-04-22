@@ -273,6 +273,41 @@ class execute extends CI_Controller
 
 	}
 
+	public function updatestudentpassword($id)
+	{
+
+		$data = array(
+			'normal' => 'trim|required|xss_clean',
+			'password' => 'trim|required|xss_clean|matches[password]'
+			);
+
+		$this->validate('password','Password',$data['normal'].'|min_length[6]');
+		$this->validate('cpassword','Confirm Password',$data['password']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
+			$this->session->set_flashdata($data);
+			redirect('profile');
+
+		}
+		
+
+		$data = array(
+			'password' 	=> $this->encrypt($this->post('password'))
+			);
+
+		$result = $this->model->MyAccountUpdatePassword($data,$id);
+		if($result)
+		{
+
+			redirect('profile');
+
+		}
+
+	}
+
 	public function adminprofileupload($id)
 	{
 		$config['upload_path'] = './assets/uploads/';
@@ -462,10 +497,12 @@ class execute extends CI_Controller
 
 		$regdate = date('F j, \ Y h:i A');
 		$username = 'ES-'.rand(1111111,9999999);
+		$name = $this->post('name');
+		$email = $this->post('email');
 		$data = array(
 			'image' 	=> $image,
-			'name' 		=> $this->post('name'),
-			'email' 	=> $this->post('email'),
+			'name' 		=> $name,
+			'email' 	=> $email,
 			'address' 	=> $this->post('address'),
 			'gender' 	=> $gender,
 			'role' 		=> 1,
@@ -479,7 +516,18 @@ class execute extends CI_Controller
 		if($result)
 		{
 
+			$this->load->library('email');
+	        $subject = 'Hello '.$name;
+	        $message = '<p>Your username is '.$username.'</p>';
+	        $body = $message;
+	        $result = $this->email
+	                ->from('infinixcherrymobile@gmail.com')
+	                ->to($email)
+	                ->subject($subject)
+	                ->message($body)
+	                ->send();
 			redirect('addstudents');
+	        exit;
 
 		}
 

@@ -27,9 +27,9 @@
     <link href="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 
     <!-- Animate.css -->
-    <link href="<?php echo base_url();?>assets/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/vendors/animate.css/animate.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="<?php echo base_url();?>assets/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/build/css/custom.min.css" rel="stylesheet">
   </head>
 <!-- 
   <style type="text/css">

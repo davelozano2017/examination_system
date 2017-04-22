@@ -126,7 +126,7 @@ class model extends CI_Model
 
 	}
 
-	public function GetAdminInformation($id)
+	public function GetInformation($id)
 	{
 
 		$result = $this->db->where(['id'=>$id])->get('es_accounts_tbl');

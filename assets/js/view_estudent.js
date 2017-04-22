@@ -59,4 +59,13 @@ function copyToClipboard(element) {
   $temp.val($(element).text()).select();
   document.execCommand("copy");
   $temp.remove();
+  swal({
+  title: "",
+  html:true,
+  type:'success',
+  text: "<h4>Username has been copied</h4>",
+  timer: 2000,
+  showConfirmButton: false
+  });
+
 }

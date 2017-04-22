@@ -20,6 +20,7 @@ class profile extends CI_Controller
 			'greetings'		=>	'Howdy,'
 			);
 		$data['url'] = base_url();
+		$data['user_data'] = $this->model->GetInformation($_SESSION['session_id']);
 		$data['data'] = $this->session->userdata();
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/student/navs/navs');
