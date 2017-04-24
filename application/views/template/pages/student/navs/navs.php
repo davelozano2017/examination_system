@@ -33,7 +33,7 @@ endforeach;
                   
                   <li><a href="#"><i class="fa fa-file-text "></i> Examination <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo$url?>addstudents">Begin Assestment</a></li>
+                      <li><a href="<?php echo$url?>assestment">Begin Assestment</a></li>
                     </ul>
                   </li>
 

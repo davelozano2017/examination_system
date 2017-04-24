@@ -76,10 +76,7 @@ include 'notification-system.php';
             </div>';
             } ?>
                       
-            <div class="col-md-12 col-xs-12">
-             <!-- Show pagination links -->
-             
-            </div>
+            
                     </div>
                   </div>
                 </div>
