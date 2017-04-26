@@ -17,7 +17,6 @@
     <!-- sweet alert -->
     <link rel="stylesheet" type="text/css" href="<?php echo$url?>assets/sweetalert/dist/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="<?php echo$url?>assets/sweetalert/themes/twitter/twitter.css">
-      <!-- sweet alert -->
     <script type="text/javascript" src="<?php echo$url?>assets/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom Theme Style -->
     <link href="<?php echo $url?>assets/build/css/custom.min.css" rel="stylesheet">
@@ -30,6 +29,15 @@
     <link href="<?php echo$url?>assets/vendors/animate.css/animate.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo$url?>assets/build/css/custom.min.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="<?php echo$url?>assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+
   </head>
 <!-- 
   <style type="text/css">

@@ -73,6 +73,24 @@ if(isset($_SESSION['notification']))
 			<?php
 		break;
 
+		case 'success_add_question':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>New question has been added.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+
 		case 'student_successfully_deleted':
 			?>
 			<script type="text/javascript">

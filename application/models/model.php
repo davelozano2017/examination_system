@@ -121,6 +121,14 @@ class model extends CI_Model
 
 	}
 
+	public function GetQuestions()
+	{
+
+		$result = $this->db->get('es_questions_tbl');
+		return $result->result();
+
+	}
+
 	public function GetStudentInfo($id)
 	{
 
@@ -180,6 +188,15 @@ class model extends CI_Model
 
 		}
 	
+	}
+
+	public function AddNewQuestions($data)
+	{
+
+		$result = $this->db->insert('es_questions_tbl',$data);
+		$this->session->set_flashdata('notification','success_add_question');
+		return $result;
+
 	}
 
 	public function GetId($username) 

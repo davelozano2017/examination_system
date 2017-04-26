@@ -416,6 +416,46 @@ class execute extends CI_Controller
 
 	}
 
+	public function add_question() 
+	{
+
+		$data = array('normal' => 'trim|required|xss_clean');
+		$this->validate('question','Question',$data['normal']);
+		$this->validate('answer','Answer',$data['normal']);
+		$this->validate('choices_a','Choices A',$data['normal']);
+		$this->validate('choices_b','Choices B',$data['normal']);
+		$this->validate('choices_c','Choices C',$data['normal']);
+		$this->validate('choices_d','Choices D',$data['normal']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('questions');
+
+		}
+
+		$data = array(
+			'question' 	=> $this->post('question'),
+			'answer' 	=> $this->post('answer'),
+			'choices_a' => $this->post('choices_a'),
+			'choices_b' => $this->post('choices_b'),
+			'choices_c' => $this->post('choices_c'),
+			'choices_d' => $this->post('choices_d')
+			);
+
+		$result = $this->model->AddNewQuestions($data);
+
+		if($result) 
+		{
+
+			redirect('questions');
+
+		}
+
+	}
+
 	public function add_student()
 	{
 
