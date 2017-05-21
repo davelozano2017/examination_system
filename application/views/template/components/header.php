@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <style type="text/css">.flat{border-radius: 0 !important}</style>
+    <link rel="icon" type="text/css" href="<?php echo$url?>assets/uploads/logo.png">
     <title><?php echo $res['page_title']?></title>
     <!-- Bootstrap -->
     <link href="<?php echo $url?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +30,6 @@
     <link href="<?php echo$url?>assets/vendors/animate.css/animate.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo$url?>assets/build/css/custom.min.css" rel="stylesheet">
-
     <!-- Datatables -->
     <link href="<?php echo$url?>assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo$url?>assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
 }
 </style> -->
 
-  <body class="nav-md">
+  <body class="nav-md" ng-app="app" >
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">

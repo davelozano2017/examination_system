@@ -1,9 +1,12 @@
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
-            Online Examination System V. 0.1
-          </div>
+        <div class="pull-right">
+            <label>Developed By  <a target="_blank" href="https://www.facebook.com/bm.aishie"> John David Lozano</a></label>
+        </div>
+          <label>Online Examination System</label>
+
+          
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
@@ -30,7 +33,7 @@
     <!-- jQuery custom content scroller -->
     <script src="<?php echo $url?>assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- View Student -->
-    <script src="<?php echo$url?>assets/js/view_estudent.js"></script>
+    <script src="<?php echo$url?>assets/js/execute.js"></script>
     <!-- Parsley -->
     <script src="<?php echo $url?>assets/vendors/parsleyjs/dist/parsley.min.js"></script>
     <!-- Custom Theme Scripts -->
@@ -50,11 +53,14 @@
     <script src="<?php echo$url?>assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo$url?>assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="<?php echo$url?>assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="<?php echo$url?>assets/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="<?php echo$url?>assets/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="<?php echo$url?>assets/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="<?php echo$url?>assets/angular/1.4.8.angular.min.js"></script>
+    <script src="<?php echo$url?>assets/angular/1.4.2.angular.min.js"></script>
+    <script src="<?php echo$url?>assets/functions/execute.js"></script>
+
      <!-- Select2 -->
     <script>
+    addstudent();
+    changeadminprofile();
       $(document).ready(function() {
         $(".select2").select2({
           placeholder: "Select a gender",
@@ -64,5 +70,24 @@
     </script>
     <!-- /Select2 -->
 
+    <script type="text/javascript">
+    var app = angular.module('app', ['ngMessages']);
+    $(document).keyup(function(){
+        var x = $("#option_a").val();
+        $("#answer").val(x);
+        $("#ans").val(x);
+    });
+
+      $(document).ready(function(){
+            $('#userfile').change(function(){
+                var x = $('#userfile').val();
+                $('#fullpath').val(x);
+                $('#upl').attr('disabled',false);
+            });
+        });
+  
+
+
+    </script>
     </body>
 </html>

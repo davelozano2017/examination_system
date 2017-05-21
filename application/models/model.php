@@ -43,6 +43,7 @@ class model extends CI_Model
 
 		$result = $this->db->where(['id'=>$id])->set('image',$image)->update('es_accounts_tbl');
 		$this->session->set_flashdata('notification','myaccount_updated');
+		echo 'ok';
 		return $result;
 	
 	}
@@ -60,6 +61,33 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where('role',1)->delete('es_accounts_tbl');
+		$this->session->set_flashdata('notification','deleted');
+		return $result;
+
+	}
+
+	public function CategoryDelete($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->delete('es_category_tbl');
+		$this->session->set_flashdata('notification','deleted');
+		return $result;
+
+	}
+
+	public function QuestionsDelete($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->delete('es_questions_tbl');
+		$this->session->set_flashdata('notification','deleted');
+		return $result;
+
+	}
+
+	public function InstructionsDelete($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->delete('es_instructions_tbl');
 		$this->session->set_flashdata('notification','deleted');
 		return $result;
 
@@ -113,6 +141,30 @@ class model extends CI_Model
 
 	}
 
+	public function GetQuestionsById($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->get('es_questions_tbl');
+		return $result->result();
+
+	}
+
+	public function GetCategoryById($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->get('es_category_tbl');
+		return $result->result();
+
+	}
+
+	public function GetInstructionsById($id)
+	{
+
+		$result = $this->db->where(['id'=>$id])->get('es_instructions_tbl');
+		return $result->result();
+
+	}
+
 	public function GetMailCredentials()
 	{
 
@@ -121,10 +173,34 @@ class model extends CI_Model
 
 	}
 
-	public function GetQuestions()
+	public function GetAllQuestions()
 	{
 
-		$result = $this->db->get('es_questions_tbl');
+		$result = $this->db->order_by('id','RANDOM')->get('es_questions_tbl',20);
+		return $result->result();
+
+	}
+
+	public function GetAllInformation()
+	{
+
+		$result = $this->db->get('es_school_information');
+		return $result->result();
+
+	}
+
+	public function GetAllCategory()
+	{
+
+		$result = $this->db->get('es_category_tbl');
+		return $result->result();
+
+	}
+
+	public function GetAllInstructions()
+	{
+
+		$result = $this->db->get('es_instructions_tbl');
 		return $result->result();
 
 	}
@@ -177,8 +253,7 @@ class model extends CI_Model
 		if($check->num_rows() > 0)
 		{
 
-			$this->session->set_flashdata('notification','duplicated_email_student');
-			return $check;
+			echo 'error';
 
 		} else {
 
@@ -190,11 +265,56 @@ class model extends CI_Model
 	
 	}
 
+	public function UpdateQuestions($data)
+	{
+
+		$result = $this->db->where(['id'=>$data['id']])->update('es_questions_tbl',$data);
+		$this->session->set_flashdata('notification','success_update_question');
+		return $result;
+
+	}
+
+	public function UpdateCategory($data)
+	{
+
+		$result = $this->db->where(['id'=>$data['id']])->update('es_category_tbl',$data);
+		$this->session->set_flashdata('notification','success_update_category');
+		return $result;
+
+	}
+
+	public function UpdateInstructions($data)
+	{
+
+		$result = $this->db->where(['id'=>$data['id']])->update('es_instructions_tbl',$data);
+		$this->session->set_flashdata('notification','success_update_instructions');
+		return $result;
+
+	}
+
 	public function AddNewQuestions($data)
 	{
 
 		$result = $this->db->insert('es_questions_tbl',$data);
 		$this->session->set_flashdata('notification','success_add_question');
+		return $result;
+
+	}
+
+	public function AddNewInstructions($data)
+	{
+
+		$result = $this->db->insert('es_instructions_tbl',$data);
+		$this->session->set_flashdata('notification','success_add_instructions');
+		return $result;
+
+	}
+
+	public function AddNewCategory($data)
+	{
+
+		$result = $this->db->insert('es_category_tbl',$data);
+		$this->session->set_flashdata('notification','success_add_category');
 		return $result;
 
 	}

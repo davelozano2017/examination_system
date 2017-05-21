@@ -66,7 +66,7 @@ endforeach;
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" class="animated fadeInDown btn btn-dark pull-right"><i class="fa fa-arrow-up"></i> Upload</button>
+                <button type="submit" class="animated fadeInDown btn btn-dark pull-right flat"><i class="fa fa-arrow-up"></i> Upload</button>
               </div>
             </div>
                      
@@ -137,7 +137,7 @@ endforeach;
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12">
-                        <button type="submit" class="animated fadeInDown btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
+                        <button type="submit" class="animated fadeInDown btn btn-dark pull-right flat"><i class="fa fa-check-circle"></i> Save Changes</button>
                       </div>
                     </div>
                              

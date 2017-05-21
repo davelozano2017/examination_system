@@ -13,7 +13,7 @@ class costum_404 extends CI_Controller
 
     	$data['res'] = array(
 			'page_title' 	=> 'Online Examination System',
-			'message'		=> 'EoW pFv3!! YhvN6 P463 Nv4H H!nH4H4N4pFk MhV3 4y H!nDk!3 Mh4Th46pFv4N.<br> Hv3 hV3 hV3.</h1>'
+			'message'		=> 'EoW pFv3!! YhvN6 P463 Nv4H H!nH4H4N4pFk MhV3 4y H!nDk!3 Mh4Th46pFv4N.<br> Hv3 hV3 hV3.'
 			);
         $this->output->set_status_header('404'); 
         $data['url'] = base_url();

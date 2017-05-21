@@ -66,7 +66,7 @@ endforeach;
 
             <div class="ln_solid"></div>
             <div class="form-group">
-                <a href="<?php echo$url?>viewstudents" class="btn btn-primary pull-right"><i class="fa fa-arrow-left"></i> Back</a>
+                <a href="<?php echo$url?>viewstudents" class="btn btn-primary pull-right flat"><i class="fa fa-arrow-left"></i> Back</a>
             </div>
 
             <!-- end -->
@@ -82,33 +82,32 @@ endforeach;
             <!-- start -->
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
-                  <li role="presentation" class="active truncate "><a  href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
+                  <li role="presentation" class="active"><a  href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
                   <i class="fa fa-pencil "></i> User Information</a>
                   </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                    <form method="POST" 
-                    action="<?php echo$url?>execute/studentupdateinfo/<?php echo$udata['id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+                    <form method="POST" data-parsley-validate class="form-horizontal form-label-left input_mask">
                     
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
+                        <input type="text" id="name" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="address" value="<?php echo$udata['address']?>" required>
+                        <input type="text" id="address" class="form-control" name="address" value="<?php echo$udata['address']?>" required>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label>Gender</label>
-                        <select class="select2 form-control" name="gender" required style="width:100%">
+                        <select class="select2 form-control" id="gender" name="gender" required style="width:100%">
                           <option value="<?php echo$udata['gender']?>"><?php echo$udata['gender']?></option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
@@ -119,7 +118,7 @@ endforeach;
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" value="<?php echo$udata['email']?>" required>
+                        <input type="email" id="email" class="form-control" name="email" value="<?php echo$udata['email']?>" required>
                       </div>
                     </div>
 
@@ -127,40 +126,56 @@ endforeach;
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12">
                       
-                      <a href="#" onClick="delete_student('<?php echo$url?>execute/DeleteStudent/','<?php echo$udata['id']?>')" 
-                      class="btn btn-danger ">
+                      <a href="#" onClick="delete_student('<?= site_url('execute/DeleteStudent/'.$udata['id'].'')?>')" 
+                      class="btn btn-danger flat ">
                       <i class="fa fa-trash"></i> Delete 
                       </a>
 
-                      <button type="submit" class="btn btn-dark pull-right ">
-                      <i class="fa fa-check-circle"></i> Save 
-                      </button>
-
-                        
+                      <a href="#" id="save" onclick="submit()" class="btn btn-dark pull-right flat">
+                      <i class="fa fa-check-circle"></i> Save Changes
+                      </a>
                       </div>
                     </div>
-                             
                     </form>
                   </div>
-                  
-                  
-
-
                 </div>
               </div>
 
-            
-
             <!-- end -->
-
-            
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
     </div>   
 
+
+<script type="text/javascript">
+  function submit()
+  {
+
+    var name    = $("#name").val();
+    var address = $("#address").val();
+    var gender  = $("#gender").val();
+    var email   = $("#email").val();
+    var url     = 'execute/studentupdateinfo/<?php echo$udata['id']?>';
+    $.ajax({
+      type: 'POST',
+      url: url,
+      cache: false,
+      data: {
+        name:name,address:address,gender:gender,email:email
+      },
+      success:function()
+      {
+       swal({
+        type: "success",
+        title: "",
+        html: true,
+        text: '<h4>School Information has been updated.</h4>'
+       });
+      }
+    });
+
+  }
+</script>

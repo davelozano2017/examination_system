@@ -25,33 +25,50 @@ include 'notification-system.php';
             echo '<div class="alert alert-danger">'.$errors.'</div>';
             endif;
             ?>
-            <form method="POST" action="<?php echo$url?>execute/add_student" data-parsley-validate class="form-horizontal form-label-left input_mask">
+            <form method="POST" name="student" class="form-horizontal" novalidate>
               
               <div class="form-group"> 
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                  <label>Student Name</label>
-                  <input type="text" class="form-control " name="name"  required>
+                  <label>Student Name 
+                  <b ng-messages="student.name.$error" ng-if="student.name.$dirty">
+                    <strong ng-message="required" class="label label-danger" >name is required.</strong>
+                  </b>
+                  </label>
+                  <input type="text" class="form-control" name="name" id="name" ng-model="name" required >
                 </div>              
               </div>
               
               <div class="form-group">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                  <label>Student Email</label>
-                  <input type="email" class="form-control" name="email" required>
+                  <label>Student Email
+                  <b ng-messages="student.email.$error" ng-if="student.email.$dirty">
+                    <strong ng-message="pattern" class="label label-danger" >Please enter a valid email address.</strong>
+                    <strong ng-message="required" class="label label-danger" >Email Address is required.</strong>
+                  </b>
+                  </label>
+                  <input type="email" class="form-control" name="email" id="email" ng-model="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                  <label>Student Address</label>
-                  <input type="text" class="form-control" name="address" required>
+                  <label>Student Address
+                  <b ng-messages="student.address.$error" ng-if="student.address.$dirty">
+                    <strong ng-message="required" class="label label-danger" >Address is required.</strong>
+                  </b>
+                  </label>
+                  <input type="text" class="form-control" name="address" id="address" ng-model="address" required >
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                  <label>Student Gender</label>
-                  <select class="form-control" name="gender" style="width:100%" required>
+                  <label>Student Gender
+                  <b ng-messages="student.gender.$error" ng-if="student.gender.$dirty">
+                    <strong ng-message="required" class="label label-danger" >Gender is required.</strong>
+                  </b>
+                  </label>
+                  <select class="form-control select2" name="gender" style="width:100%" id="gender" ng-model="gender" required>
                     <option value=""></option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -59,13 +76,10 @@ include 'notification-system.php';
                 </div>
               </div>
 
-              
-
-
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                <button type="submit" class="animated fadeInDown btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Submit</button>
+                <button type="submit" id="addstudent" ng-disabled="!student.$valid"  class="btn btn-dark pull-right flat"><i class="fa fa-check-circle"></i> Submit</button>
               </div>
             </div>
                      
@@ -75,12 +89,8 @@ include 'notification-system.php';
           </div>
         </div>
         
-
-
         </div>
-
-     
-
         </div>
       </div>
     </div>   
+

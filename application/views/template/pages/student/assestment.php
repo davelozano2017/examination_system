@@ -30,6 +30,25 @@ endforeach;
 
             <!-- start -->
 
+            <div class="alert alert-info flat">
+              <div class="form-group">
+                <h4>Examination Rules!</h4>
+                <ul>
+                  <?php foreach($instructions as $r): echo '<li>'.$r->instructions.'</li>'; endforeach;?>
+                </ul>
+              </div>
+
+              <div class="form-group">
+                <h4>Possible Questions!</h4>
+                <ul>
+                  <?php foreach($category as $r): echo '<li>'.$r->category.'</li>'; endforeach;?>
+                </ul>
+              </div>
+
+                <p>Please click the button below to begin your assestment.</p>
+            </div>
+            <a href="#" onClick="start('<?php echo$url?>exam/begin/')" class="btn btn-dark flat">Begin</a>
+
             <!-- end -->
 
             
@@ -42,3 +61,24 @@ endforeach;
         </div>
       </div>
     </div>   
+
+
+<script type="text/javascript">
+  function start($url)
+  {
+    var url = $url;
+    swal({
+    title: "",
+    text: "<h4>Are you sure you want to start your assestment?</h4>",
+    type: "warning",
+    html:true,
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes",
+    closeOnConfirm: false
+  },
+    function(){
+      location.href = url;
+    });
+  }
+</script>

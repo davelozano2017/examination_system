@@ -1,17 +1,18 @@
 <?php 
 defined('BASEPATH') or exit ('No direct script allowed.');
 
-class assestment extends CI_Controller
+class exam extends CI_Controller
 {
 
 	public function __construct()
 	{
 
 		parent::__construct();
-		if(isset($_SESSION['active'])): redirect('exam/begin'); endif;
+		$_SESSION['active'] = 'Active';
+
 	}
 
-	public function index()
+	public function begin()
 	{
 		
 		$data['res'] = array(
@@ -23,10 +24,12 @@ class assestment extends CI_Controller
 		$data['user_data'] 	  = $this->model->GetInformation($_SESSION['session_id']);
 		$data['data']		  = $this->session->userdata();
 		$data['category'] 	  = $this->model->GetAllCategory();
+		$data['information']  = $this->model->GetAllInformation();
+		$data['questions']    = $this->model->GetAllQuestions();
 		$data['instructions'] = $this->model->GetAllInstructions();
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/student/navs/navs');
-		$this->load->view('template/pages/student/assestment',$data);
+		$this->load->view('template/pages/student/begin',$data);
 		$this->load->view('template/components/footer',$data);
 
 	}

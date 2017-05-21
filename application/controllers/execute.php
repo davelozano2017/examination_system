@@ -35,7 +35,6 @@ class execute extends CI_Controller
 	}
 
 
-
 	public function post($a)
 	{
 
@@ -56,7 +55,6 @@ class execute extends CI_Controller
 		$this->validate('email','School Email',$data['email']);
 		$this->validate('address','School Address',$data['normal']);
 		$this->validate('contact','School Contact Number',$data['number']);
-		$this->validate('slogan','School Slogan',$data['normal']);
 
 		if($this->form_validation->run() == FALSE)
 		{
@@ -72,8 +70,7 @@ class execute extends CI_Controller
 			'name' 		=> $this->post('name'),
 			'email' 	=> $this->post('email'),
 			'address' 	=> $this->post('address'),
-			'contact' 	=> $this->post('contact'), 
-			'slogan' 	=> $this->post('slogan') 
+			'contact' 	=> $this->post('contact')
 			);
 
 		$result = $this->model->InsertOrUpdate($data);
@@ -94,6 +91,45 @@ class execute extends CI_Controller
 		{
 
 			redirect('viewstudents');
+
+		}
+
+	}
+
+	public function cat_delete($id)
+	{
+
+		$result = $this->model->CategoryDelete($id);
+		if($result)
+		{
+
+			redirect('view_category');
+
+		}
+
+	}
+
+	public function que_delete($id)
+	{
+
+		$result = $this->model->QuestionsDelete($id);
+		if($result)
+		{
+
+			redirect('view_questions');
+
+		}
+
+	}
+
+	public function ins_delete($id)
+	{
+
+		$result = $this->model->InstructionsDelete($id);
+		if($result)
+		{
+
+			redirect('view_instructions');
 
 		}
 
@@ -178,7 +214,7 @@ class execute extends CI_Controller
 		if($result)
 		{
 
-			redirect('viewstudents');
+			redirect('view_student/profile/'.$id);
 
 		}
 
@@ -271,7 +307,7 @@ class execute extends CI_Controller
 	{
 		$config['upload_path'] = './assets/uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
+		$config['max_size']	= '1000';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 
@@ -338,7 +374,7 @@ class execute extends CI_Controller
 	{
 		$config['upload_path'] = './assets/uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
+		$config['max_size']	= '1000';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 
@@ -370,79 +406,78 @@ class execute extends CI_Controller
 	public function login()
 	{
 
-		$this->validate('username', 'Username', 'trim|required');
-		$this->validate('password', 'Password', 'trim|required');
+		$username = $this->post('username');
+		$password = $this->post('password');
 		
-		if ($this->form_validation->run() == false) {
+		$result = $this->model->UserLogin($username, $password);
+
+		if ($result) {
 			
-			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
-			$this->session->set_flashdata($data);
-			redirect('login');
-			
+			$id 	= $this->model->GetId($username);
+			$user 	= $this->model->GetUserInformation($id);
+			$role 	= $user->role;
+			$newdata = array('session_id' => $id,'role' => $role,'logged_in' => TRUE);
+			switch ($role) 
+			{
+				case 0:
+				$this->session->set_userdata($newdata);
+				echo 'admin';
+				break;
+
+				case 1:
+				$this->session->set_userdata($newdata);
+				echo 'student';
+				break;
+			}
+
 		} else {
 			
-			$username = $this->post('username');
-			$password = $this->post('password');
+		echo 'error';
 			
-			$result = $this->model->UserLogin($username, $password);
-
-			if ($result) {
-				
-				$id 	= $this->model->GetId($username);
-				$user 	= $this->model->GetUserInformation($id);
-				$role 	= $user->role;
-				$newdata = array('session_id' => $id,'role' => $role,'logged_in' => TRUE);
-				switch ($role) 
-				{
-					case 0:
-					$this->session->set_userdata($newdata);
-					redirect('dashboard');
-					break;
-
-					case 1:
-					$this->session->set_userdata($newdata);
-					redirect('profile');
-					break;
-				}
-
-			} else {
-				
-			$this->session->set_flashdata('notification', 'login_failed');
-			redirect('login');
-				
-			}
-			
-		}	
+		}
 
 	}
+
+	public function finish()
+	{
+
+		$ans = $this->post('answer');
+		$cor = $this->post('correct_answer');
+	
+		echo count($ans);		
+
+	}
+
 
 	public function add_question() 
 	{
 
 		$data = array('normal' => 'trim|required|xss_clean');
 		$this->validate('question','Question',$data['normal']);
+		$this->validate('category','category',$data['normal']);
 		$this->validate('answer','Answer',$data['normal']);
-		$this->validate('choices_a','Choices A',$data['normal']);
-		$this->validate('choices_b','Choices B',$data['normal']);
-		$this->validate('choices_c','Choices C',$data['normal']);
-		$this->validate('choices_d','Choices D',$data['normal']);
+		$this->validate('option_a','Choices A',$data['normal']);
+		$this->validate('option_b','Choices B',$data['normal']);
+		$this->validate('option_c','Choices C',$data['normal']);
+		$this->validate('option_d','Choices D',$data['normal']);
 
 		if($this->form_validation->run() == FALSE)
 		{
 
 			$data = array('errors'=>validation_errors());
 			$this->session->set_flashdata($data);
-			redirect('questions');
+			redirect('view_questions');
 
 		}
 
 		$data = array(
 			'question' 	=> $this->post('question'),
+			'category' 	=> $this->post('category'),
 			'answer' 	=> $this->post('answer'),
-			'choices_a' => $this->post('choices_a'),
-			'choices_b' => $this->post('choices_b'),
-			'choices_c' => $this->post('choices_c'),
-			'choices_d' => $this->post('choices_d')
+			'option_a' 	=> $this->post('option_a'),
+			'option_b' 	=> $this->post('option_b'),
+			'option_c' 	=> $this->post('option_c'),
+			'option_d' 	=> $this->post('option_d')
 			);
 
 		$result = $this->model->AddNewQuestions($data);
@@ -450,11 +485,63 @@ class execute extends CI_Controller
 		if($result) 
 		{
 
-			redirect('questions');
+			redirect('view_questions');
 
 		}
 
 	}
+
+	public function add_category() 
+	{
+
+		$this->validate('category','Category','trim|required|xss_clean');
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('view_category');
+
+		}
+
+		$data = array('category' => $this->post('category'));
+		$result = $this->model->AddNewCategory($data);
+
+		if($result) 
+		{
+
+			redirect('view_category');
+
+		}
+
+	}
+
+	public function add_instructions() 
+	{
+
+		$this->validate('instructions','Instructions','trim|required|xss_clean');
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('view_instructions');
+
+		}
+
+		$data = array('instructions' => $this->post('instructions'));
+		$result = $this->model->AddNewInstructions($data);
+
+		if($result) 
+		{
+
+			redirect('view_instructions');
+
+		}
+
+	}
+
+
 
 	public function add_student()
 	{
@@ -474,7 +561,7 @@ class execute extends CI_Controller
 		if($this->form_validation->run() == FALSE)
 		{
 
-			$data = array('errors'=>validation_errors());
+			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
 			$this->session->set_flashdata($data);
 			redirect('addstudents');
 
@@ -516,9 +603,7 @@ class execute extends CI_Controller
 		if($result)
 		{
 
-			$this->load->library('email');
 	        $subject = 'Online Examination';
-
 	        $message = '
 	        	
 	        	<div style="max-width:92%;border-left:solid 1px #313d49;border-right:solid 1px #313d49;border-top:solid 1px #313d49;border-bottom:solid 1px #313d49;background-color:#f5f5f5;padding:10px;text-align:center">
@@ -553,16 +638,110 @@ class execute extends CI_Controller
 	        ';
 
 	        $body = $message;
-	        $result = $this->email
-	                ->to($email)
-	                ->from('a@yahoo.com')
-	                ->subject($subject)
-	                ->message($body)
-	                ->send();
-			redirect('addstudents');
+	        $this->email->to($email)->from('a@yahoo.com')->subject($subject)->message($body)->send();
 	        exit;
 
 		}
+
+	}
+
+	public function modify_question()
+	{
+
+
+		$data = array('normal' => 'trim|required|xss_clean');
+		$this->validate('question','Question',$data['normal']);
+		$this->validate('category','category',$data['normal']);
+		$this->validate('answer','Answer',$data['normal']);
+		$this->validate('option_a','Choices A',$data['normal']);
+		$this->validate('option_b','Choices B',$data['normal']);
+		$this->validate('option_c','Choices C',$data['normal']);
+		$this->validate('option_d','Choices D',$data['normal']);
+
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('question/modify/'.$id);
+
+		}
+
+		$data = array(
+			'id' 		=> $this->post('id'),
+			'category' 	=> $this->post('category'),
+			'question' 	=> $this->post('question'),
+			'answer' 	=> $this->post('answer'),
+			'option_a' 	=> $this->post('option_a'),
+			'option_b' 	=> $this->post('option_b'),
+			'option_c' 	=> $this->post('option_c'),
+			'option_d' 	=> $this->post('option_d')
+			);
+
+		$result = $this->model->UpdateQuestions($data);
+
+		if($result) 
+		{
+
+			redirect('question/modify/'.$data['id']);
+
+		}
+
+
+	}
+
+
+	public function modify_category()
+	{
+
+		$this->validate('category','category','trim|required|xss_clean');
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('category/modify/'.$id);
+
+		}
+
+		$data = array('id' 	=> $this->post('id'),'category' => $this->post('category'));
+
+		$result = $this->model->UpdateCategory($data);
+
+		if($result) 
+		{
+
+			redirect('category/modify/'.$data['id']);
+
+		}
+
+
+	}
+
+	public function modify_instructions()
+	{
+
+		$this->validate('instructions','instructions','trim|required|xss_clean');
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$data = array('errors'=>validation_errors());
+			$this->session->set_flashdata($data);
+			redirect('instructions/modify/'.$id);
+
+		}
+
+		$data = array('id' 	=> $this->post('id'),'instructions' => $this->post('instructions'));
+
+		$result = $this->model->UpdateInstructions($data);
+
+		if($result) 
+		{
+
+			redirect('instructions/modify/'.$data['id']);
+
+		}
+
 
 	}
 

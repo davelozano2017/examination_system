@@ -28,7 +28,7 @@ if(isset($_SESSION['notification']))
 			swal({
 				type: "success",
 				title: "",
-				text: '<h4>All records has been deleted.</h4>',
+				text: '<h4>Successfully deleted.</h4>',
 				html: true,
 				timer: 3000,
 				confirmButtonText: "Close",
@@ -80,6 +80,91 @@ if(isset($_SESSION['notification']))
 				type: "success",
 				title: "",
 				text: '<h4>New question has been added.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'success_add_category':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>New category has been added.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'success_add_instructions':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>New instruction has been added.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'success_update_question':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>Question has been updated.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'success_update_category':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>Category has been updated.</h4>',
+				html: true,
+				timer: 3000,
+				confirmButtonText: "Close",
+				confirmButtonColor: "#336699",
+				showConfirmButton: true
+				});
+			</script>
+			<?php
+		break;
+
+		case 'success_update_instructions':
+			?>
+			<script type="text/javascript">
+			swal({
+				type: "success",
+				title: "",
+				text: '<h4>Instruction has been updated.</h4>',
 				html: true,
 				timer: 3000,
 				confirmButtonText: "Close",

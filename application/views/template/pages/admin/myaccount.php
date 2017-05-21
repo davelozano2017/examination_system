@@ -1,5 +1,6 @@
 <?php 
 $errors = $this->session->flashdata('errors');
+$path = 'template/pages/admin/myaccount-form';
 include 'notification-system.php';
 foreach ($admin_data as $r):
   $udata = array(
@@ -52,19 +53,21 @@ endforeach;
                 <span class="pull-right text-primary"><?php echo$udata['date']?></span>
               </ul>
             </ul>
-            
-            <form method="POST" enctype="multipart/form-data" 
-            action="<?php echo$url?>execute/adminprofileupload/<?php echo$udata['id']?>"
-            data-parsley-validate class="form-horizontal form-label-left input_mask">
+            <!--  -->
+            <form method="POST" name="upload" action="<?= site_url('execute/adminprofileupload/'.$udata['id'].'')?> " enctype="multipart/form-data"  class="form-horizontal" novalidate>
               
               <div class="form-group"> 
-                  <input type="file" class="form-control " name="userfile" size="20"  required>
+                <b ng-messages="upload.userfile.$error" ng-if="upload.userfile.$dirty">
+                  <strong ng-message="required" class="label label-danger" >name is required.</strong>
+                </b>
+                  <input type="hidden" class="form-control" id="fullpath" name="userfile" ng-model="userfile" required>
+                  <input type="file" class="form-control" id="userfile" name="userfile"  size="20" required>
               </div>
               
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" class="animated fadeInDown btn btn-dark pull-right"><i class="fa fa-arrow-up"></i> Upload</button>
+                <button type="submit" ng-disabled="!upload.$valid" id="upl" class="btn btn-dark pull-right flat"><i class="fa fa-arrow-up"></i> Upload</button>
               </div>
             </div>
                      
@@ -92,97 +95,24 @@ endforeach;
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                    <form method="POST" 
-                    action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
-                    
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Address</label>
-                        <input type="text" class="form-control" name="address" value="<?php echo$udata['address']?>" required>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Gender</label>
-                        <select class="form-control" name="gender" required>
-                          <option value="<?php echo$udata['gender']?>"><?php echo$udata['gender']?></option>
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Email</label>
-                        <input type="email" class="form-control" name="email" value="<?php echo$udata['email']?>" required>
-                      </div>
-                    </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <button type="submit" class="animated fadeInDown btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
-                      </div>
-                    </div>
-                             
-                    </form>
+                  <?php $this->load->view($path.'info') ?>
                   </div>
                   
                   <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                    <form method="POST" 
-                    action="<?php echo$url?>execute/updateinfo/<?php echo$data['session_id']?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>New Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Confirm New Password</label>
-                        <input type="password" class="form-control" data-parsley-equalto="#password" name="cpassword" required>
-                      </div>
-                    </div>
-
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <button type="submit" class="animated fadeInDown btn btn-dark pull-right"><i class="fa fa-check-circle"></i> Save Changes</button>
-                      </div>
-                    </div>
-                             
-                    </form>
+                  <?php 
+                  $this->load->view($path.'password');
+                   ?>
 
                   </div>
 
 
                 </div>
               </div>
-
-            
-            
-
             <!-- end -->
-
-            
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
     </div>   
+

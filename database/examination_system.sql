@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 08:39 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- Generation Time: May 09, 2017 at 12:04 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -55,6 +55,107 @@ INSERT INTO `es_accounts_tbl` (`id`, `image`, `name`, `email`, `address`, `gende
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `es_category_tbl`
+--
+
+CREATE TABLE `es_category_tbl` (
+  `id` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `es_category_tbl`
+--
+
+INSERT INTO `es_category_tbl` (`id`, `category`) VALUES
+(5, 'PC hardware and software'),
+(6, 'Logic Gates'),
+(7, 'PC Networking');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `es_instructions_tbl`
+--
+
+CREATE TABLE `es_instructions_tbl` (
+  `id` int(11) NOT NULL,
+  `instructions` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `es_instructions_tbl`
+--
+
+INSERT INTO `es_instructions_tbl` (`id`, `instructions`) VALUES
+(5, 'The examination contains 20 questions.'),
+(7, 'Please choose your answer carefully.'),
+(8, '50% is the passing rate. Below that you have failed the exam.'),
+(9, 'If you are going to logout your account when the assestment is started, then you\'ll automatically fail your exam.'),
+(10, '<strong class=\'text-danger\'>STRICTLY</strong> obey all instructions above.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `es_questions_tbl`
+--
+
+CREATE TABLE `es_questions_tbl` (
+  `id` int(11) NOT NULL,
+  `question` varchar(1000) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `answer` varchar(1000) NOT NULL,
+  `option_a` varchar(1000) NOT NULL,
+  `option_b` varchar(1000) NOT NULL,
+  `option_c` varchar(1000) NOT NULL,
+  `option_d` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `es_questions_tbl`
+--
+
+INSERT INTO `es_questions_tbl` (`id`, `question`, `category`, `answer`, `option_a`, `option_b`, `option_c`, `option_d`) VALUES
+(1, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(2, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(5, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(6, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(7, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(8, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(9, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(10, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(11, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(12, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(13, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(14, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(15, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(16, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(17, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(18, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(19, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(20, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory'),
+(21, 'What is CPU?', 'PC hardware and software', 'Is a main brain of the computer.', 'Is a main brain of the computer.', 'N/a', 'N/a', 'N/a'),
+(22, 'RAM stands for?', 'PC hardware and software', 'Random Access Memory', 'Random Access Memory', 'Random Acces Memory', 'Random Access Memmory', 'Rand0m Access Memory');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `es_results_tbl`
+--
+
+CREATE TABLE `es_results_tbl` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `score` int(11) NOT NULL,
+  `percentage` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `es_school_information`
 --
 
@@ -64,16 +165,15 @@ CREATE TABLE `es_school_information` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `contact` varchar(255) NOT NULL,
-  `slogan` varchar(255) NOT NULL
+  `contact` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `es_school_information`
 --
 
-INSERT INTO `es_school_information` (`id`, `image`, `name`, `email`, `address`, `contact`, `slogan`) VALUES
-(19, 'http://localhost/examination_system/assets/uploads/Our_Lady_of_Fatima_University_logo.jpg', 'Our Lady of Fatima University', 'examination@fatima.edu.ph', 'Lagro Hilltop Quezon City', '09226645555', 'Slogan mo to!');
+INSERT INTO `es_school_information` (`id`, `image`, `name`, `email`, `address`, `contact`) VALUES
+(19, 'http://localhost/examination_system/assets/uploads/logo.png', 'Our Lady of Fatima University', 'examination@fatima.edu.ph', 'Lagro Hilltop Quezon City', '09226645555');
 
 --
 -- Indexes for dumped tables
@@ -83,6 +183,30 @@ INSERT INTO `es_school_information` (`id`, `image`, `name`, `email`, `address`, 
 -- Indexes for table `es_accounts_tbl`
 --
 ALTER TABLE `es_accounts_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `es_category_tbl`
+--
+ALTER TABLE `es_category_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `es_instructions_tbl`
+--
+ALTER TABLE `es_instructions_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `es_questions_tbl`
+--
+ALTER TABLE `es_questions_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `es_results_tbl`
+--
+ALTER TABLE `es_results_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -100,6 +224,26 @@ ALTER TABLE `es_school_information`
 --
 ALTER TABLE `es_accounts_tbl`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+--
+-- AUTO_INCREMENT for table `es_category_tbl`
+--
+ALTER TABLE `es_category_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `es_instructions_tbl`
+--
+ALTER TABLE `es_instructions_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `es_questions_tbl`
+--
+ALTER TABLE `es_questions_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `es_results_tbl`
+--
+ALTER TABLE `es_results_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `es_school_information`
 --
