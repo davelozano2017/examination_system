@@ -59,14 +59,8 @@
     <script src="<?php echo$url?>assets/build/js/overhang.min.js"></script>
     <script src="<?php echo$url?>assets/build/js/jquery-ui.min.js"></script>
     <script src="<?php echo$url?>assets/build/js/custom-file-input.js"></script>
-
-
      <!-- Select2 -->
     <script>
-    addstudent();
-    insertupdate();
-    uploadlogo();
-    // changeadminprofile();
       $(document).ready(function() {
         $(".select2").select2({
           placeholder: "Select a gender",

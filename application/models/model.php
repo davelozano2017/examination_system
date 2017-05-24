@@ -216,7 +216,7 @@ class model extends CI_Model
 
 		
 		$result = $this->db->where(['id'=>$id])->update('es_accounts_tbl',$data);
-		$this->session->set_flashdata('notification','myaccount_updated');
+		echo 'updated';
 		return $result;
 
 	}
@@ -226,7 +226,6 @@ class model extends CI_Model
 
 		
 		$result = $this->db->where(['id'=>$id])->delete('es_accounts_tbl');
-		$this->session->set_flashdata('notification','student_successfully_deleted');
 		return $result;
 
 	}
@@ -256,7 +255,6 @@ class model extends CI_Model
 		} else {
 
 			$result = $this->db->insert('es_accounts_tbl',$data);
-			$this->session->set_flashdata('notification','success_add_student');
 			return $result;
 
 		}

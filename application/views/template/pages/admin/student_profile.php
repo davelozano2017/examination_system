@@ -88,11 +88,12 @@ endforeach;
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                    <form method="POST" data-parsley-validate class="form-horizontal form-label-left input_mask">
+                    <form method="POST" data-parsley-validate class="form-horizontal" novalidate>
                     
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label>Name</label>
+                        <input type="hidden" id="id" class="form-control" name="name" value="<?php echo$udata['id']?>" required>
                         <input type="text" id="name" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
                       </div>
                     </div>
@@ -126,14 +127,15 @@ endforeach;
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12">
                       
-                      <a href="#" onClick="delete_student('<?= site_url('execute/DeleteStudent/'.$udata['id'].'')?>')" 
-                      class="btn btn-danger flat ">
-                      <i class="fa fa-trash"></i> Delete 
-                      </a>
+                  
+                      <button  id="deletestudentprofile" class="btn btn-danger pull-left flat">
+                        <i class="fa fa-trash"></i> Delete
+                      </button>
 
-                      <a href="#" id="save" onclick="submit()" class="btn btn-dark pull-right flat">
-                      <i class="fa fa-check-circle"></i> Save Changes
-                      </a>
+                      <!-- delete_student('<?= site_url('execute/DeleteStudent/'.$udata['id'].'')?>' -->
+                      <button type='submit' id="updatestudentprofile"  class="btn btn-dark pull-right flat">
+                        <i class="fa fa-check-circle"></i> Save Changes
+                      </button>
                       </div>
                     </div>
                     </form>
@@ -149,33 +151,3 @@ endforeach;
       </div>
     </div>   
 
-
-<script type="text/javascript">
-  function submit()
-  {
-
-    var name    = $("#name").val();
-    var address = $("#address").val();
-    var gender  = $("#gender").val();
-    var email   = $("#email").val();
-    var url     = 'execute/studentupdateinfo/<?php echo$udata['id']?>';
-    $.ajax({
-      type: 'POST',
-      url: url,
-      cache: false,
-      data: {
-        name:name,address:address,gender:gender,email:email
-      },
-      success:function()
-      {
-       swal({
-        type: "success",
-        title: "",
-        html: true,
-        text: '<h4>School Information has been updated.</h4>'
-       });
-      }
-    });
-
-  }
-</script>

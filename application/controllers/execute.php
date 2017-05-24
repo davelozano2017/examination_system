@@ -209,8 +209,7 @@ class execute extends CI_Controller
 		if($result)
 		{
 
-			redirect('view_student/profile/'.$id);
-
+			
 		}
 
 	}
