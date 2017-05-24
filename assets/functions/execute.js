@@ -68,14 +68,13 @@ function uploadlogo()
 				$.ajax({
 				url: 'execute/SchoolLogoUpdate/'+id,
 				type: "POST",
-				data:  new FormData(this),
+				data:  new FormData($('#fileUploadForm')[0]),
 				contentType: false,
-				cache: false,
 				processData:false,
 				success: function(response) {
 					switch (response) {
 						case 'success':
-						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> School ."});
+						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> School logo has been updated."});
 						break;
 						default:
 						$("body").overhang({custom: true,textColor: "#fffff",primary: "#ff5d57",message: "Something went wrong."});

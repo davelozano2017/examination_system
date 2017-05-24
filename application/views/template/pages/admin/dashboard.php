@@ -142,7 +142,7 @@ endforeach;
             <div class="x_content">
               <!-- start -->
 
-              <form method="POST" enctype="multipart/form-data"  class="form-horizontal">
+              <form method="POST" enctype="multipart/form-data" id="fileUploadForm" class="form-horizontal">
 <!-- id="uploadlogo" -->
                   <div class="col-md-2"></div>
                   <div class="col-md-8 col-xs-12">

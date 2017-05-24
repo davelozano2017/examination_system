@@ -305,12 +305,11 @@ class execute extends CI_Controller
 		$config['max_size']	= '1000';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
-		$config['overwrite'] = TRUE;    
 		$config['allowed_types'] = '*';
 		$config['encrypt_name']  = true;
 		$config['remove_spaces']  = TRUE;
-
 		$this->load->library('upload', $config);
+		$this->upload->initialize($config); //Make this line must be here.
 		if ( ! $this->upload->do_upload('userfile'))
 		{
 
