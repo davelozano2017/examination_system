@@ -105,9 +105,7 @@ class model extends CI_Model
 	public function SchoolLogo($image,$id)
 	{
 
-
 		$result = $this->db->where(['id'=>$id])->set('image',$image)->update('es_school_information');
-		$this->session->set_flashdata('notification','updated');
 		return $result;
 
 	}
@@ -120,13 +118,13 @@ class model extends CI_Model
 		{
 
 			$result = $this->db->where(['id' => $data['id']])->update('es_school_information',$data);
-			$this->session->set_flashdata('notification','updated');
+			echo 'updated';
 			return $result;
 
 		} else {
 
 			$result = $this->db->insert('es_school_information',$data);
-			$this->session->set_flashdata('notification','success');
+			echo 'success';
 			return $result;
 		
 		}

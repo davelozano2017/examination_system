@@ -80,14 +80,14 @@ endforeach;
             <!-- start -->
 
 
-            <form method="POST" action="<?=site_url('execute/InsertUpdate')?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+            <form method="POST" data-parsley-validate class="form-horizontal">
               
               <div class="form-group"> 
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                   <label>School Name</label>
                   <input type="hidden" name="id" value="<?php echo@$data['id']?>">
                   <input type="text" class="form-control " name="name" 
-                  value="<?php echo $data['name']?>" required>
+                  value="<?php echo @$data['name']?>" required>
                 </div>
               </div>
               
@@ -118,7 +118,7 @@ endforeach;
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                <button type="submit" class="btn btn-dark pull-right animated fadeInDown flat "><i class="fa fa-check-circle"></i> Save Changes</button>
+                <button type="submit" id="insertupdate" class="btn btn-dark pull-right animated fadeInDown flat "><i class="fa fa-check-circle"></i> Save Changes</button>
               </div>
             </div>
                      
@@ -141,32 +141,24 @@ endforeach;
 
             <div class="x_content">
               <!-- start -->
-              <div class="form-group"> 
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                  <img src="<?php echo$data['image']?>" style="width:250px;height:250px;margin:auto" class="img-circle img-responsive">
-                </div>
-              </div>
-              <!-- end -->
 
-               <form method="POST" enctype="multipart/form-data" 
-               action="<?=site_url('execute/SchoolLogoUpdate/'.$data['id'].'')?>"  data-parsley-validate class="form-horizontal form-label-left input_mask">
-              
-              <div class="form-group"> 
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                  <input type="file" class="form-control " name="userfile" required>
-                </div>
-              </div>
-              
-              
+              <form method="POST" enctype="multipart/form-data"  class="form-horizontal">
+<!-- id="uploadlogo" -->
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8 col-xs-12">
+                    
+                  <input type="hidden" name="id" id="logoid" value="<?php echo$data['id']?>">
+                  
+                    <input type="file" style="display:none" name="userfile" id="file-2" class="forn-control schoollogo" />
+                    <label for="file-2" style="border:none;cursor: pointer;">
+                      <img id='preview' src="<?php echo@$data['image']?>" 
+                      style="width:250px;height:250px;margin:auto" 
+                      class="img-circle img-responsive">
+                    </label>
+                  </div>
+                  <div class="col-md-2"></div>
 
-            <div class="ln_solid"></div>
-            <div class="form-group">
-              <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                <button type="submit" class="btn btn-dark pull-right animated fadeInDown flat "><i class="fa fa-arrow-up"></i> Upload</button>
-              </div>
-            </div>
-                     
-            </form>
+              </form>
 
 
             </div>

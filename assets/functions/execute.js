@@ -12,14 +12,10 @@ function addstudent()
 				cache: false,
 				data: data,
 				success:function(response){
-					// $('button').html('Please wait...').attr('disabled',true);
-					// $('button').attr('disabled',true);
-					// $('button').html('<i class="fa fa-check-circle"></i> Submit');
-					// $('button').attr('disabled',true);
 					if (response == 'error') {
-					swal({type: "error",title: "",text: '<h4>Email is already exist.</h4>',html: true,timer: 3000,confirmButtonText: "Close",confirmButtonColor: "#336699",showConfirmButton: true});
+						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#ff5d57",message: "<i class='fa fa-remove'></i> Email is already exist."});
 					} else {
-					swal({type: "success",title: "",text: '<h4>New student has been added.</h4>',html: true,timer: 3000,confirmButtonText: "Close",confirmButtonColor: "#336699",showConfirmButton: true});
+						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> New student has been added."});
 					}
 				}
 			});
@@ -27,6 +23,75 @@ function addstudent()
 	});
 
 }
+
+function insertupdate() {
+
+	$(document).ready(function(){
+		$('#insertupdate').click(function(e){
+			e.preventDefault();
+			var url  = 'execute/InsertUpdate';
+			var data = $('form').serialize();
+			$.ajax({
+				type:'POST',
+				url: url,
+				cache: false,
+				data: data,
+				success:function(response){
+					switch(response)
+					{
+						case 'updated':
+						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#5389ff",message: "<i class='fa fa-check-circle'></i> School information has been updated."});
+						break;
+
+						case 'success':
+						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> School information has been created."});
+						break;
+
+						default:
+						$("body").overhang({custom: true,textColor: "#fffff",primary: "#ff5d57",message: "All fields are required."});
+						break;
+					}
+				}
+			});
+		});
+	});
+
+}
+  
+function uploadlogo() 
+{
+
+	$(document).ready(function (e){
+		$('.schoollogo').on('change',(function(e){
+			var id = $('#logoid').val();
+			e.preventDefault();
+				$.ajax({
+				url: 'execute/SchoolLogoUpdate/'+id,
+				type: "POST",
+				data:  new FormData(this),
+				contentType: false,
+				cache: false,
+				processData:false,
+				success: function(response) {
+					switch (response) {
+						case 'success':
+						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> School ."});
+						break;
+						default:
+						$("body").overhang({custom: true,textColor: "#fffff",primary: "#ff5d57",message: "Something went wrong."});
+						break;
+					};
+				}
+			});
+		}));
+	});
+
+}
+
+
+
+
+
 
 function login() 
 {
@@ -41,15 +106,10 @@ function login()
 				url: url,
 				data: data,
 				success:function(response){
-					// $('button').html('Please wait...').attr('disabled',true);
-					// $('button').attr('disabled',true);
-					// $('button').html('<i class="fa fa-check-circle"></i> Submit');
-					// $('button').attr('disabled',true);
 					switch(response)
 					{
 						case 'error':
-						swal({type: "error",title: "",text: '<h4>Invalid username or password.</h4>',html: true,timer: 3000,confirmButtonText: "Close",confirmButtonColor: "#336699",showConfirmButton: true});
-						// new PNotify({text: 'Invalid username or password.',type: 'error',styling: 'bootstrap3',});
+						$("body").overhang({custom: true,textColor: "#fffff",primary: "#ff5d57",message: "Invalid username or password."});
 						break;
 
 						case 'admin':
@@ -61,8 +121,7 @@ function login()
 						break
 
 						default:
-						swal({type: "error",title: "",text: '<h4>Complete all fields.</h4>',html: true,timer: 3000,confirmButtonText: "Close",confirmButtonColor: "#336699",showConfirmButton: true});
-						// new PNotify({text: 'Complete all fields.',type: 'error',styling: 'bootstrap3',});
+						$("body").overhang({custom: true,textColor: "#fffff",primary: "#336699",accent: "#336699",message: "This is my custom message 😜"});
 						break;
 					}
 				}
@@ -71,3 +130,6 @@ function login()
 	});
 
 }
+
+
+      

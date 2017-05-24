@@ -33,10 +33,8 @@ endif;
     <script type="text/javascript" src="<?php echo$url?>assets/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom Theme Style -->
     <link href="<?php echo $url?>assets/build/css/custom.min.css" rel="stylesheet">
-    <!-- PNotify -->
-    <link href="<?php echo $url?>assets/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-    <link href="<?php echo $url?>assets/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-    <link href="<?php echo $url?>assets/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+    <link href="<?php echo$url?>assets/build/css/overhang.min.css" rel="stylesheet" />
+    <link href="<?php echo$url?>assets/build/css/prism.css" rel="stylesheet" />
   </head>
 
   <body class="login">
@@ -86,10 +84,10 @@ endif;
     <!-- Angular -->
     <script src="<?php echo$url?>assets/angular/1.4.8.angular.min.js"></script>
     <script src="<?php echo$url?>assets/angular/1.4.2.angular.min.js"></script>
-    <!-- PNotify -->
-    <script src="<?php echo$url?>assets/vendors/pnotify/dist/pnotify.js"></script>
-    <script src="<?php echo$url?>assets/vendors/pnotify/dist/pnotify.buttons.js"></script>
-    <script src="<?php echo$url?>assets/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+    <script src="<?php echo$url?>assets/build/js/index.js"></script>
+    <script src="<?php echo$url?>assets/build/js/overhang.min.js"></script>
+    <script src="<?php echo$url?>assets/build/js/jquery-ui.min.js"></script>
+    <script src="<?php echo$url?>assets/build/js/prism.js"></script>
     <script type="text/javascript">
     var app = angular.module('app', ['ngMessages']);
     login()

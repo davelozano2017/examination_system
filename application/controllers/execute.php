@@ -74,12 +74,7 @@ class execute extends CI_Controller
 			);
 
 		$result = $this->model->InsertOrUpdate($data);
-		if($result)
-		{
-
-			redirect('dashboard');
-
-		}
+		
 
 	}
 
@@ -310,9 +305,12 @@ class execute extends CI_Controller
 		$config['max_size']	= '1000';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
+		$config['overwrite'] = TRUE;    
+		$config['allowed_types'] = '*';
+		$config['encrypt_name']  = true;
+		$config['remove_spaces']  = TRUE;
 
 		$this->load->library('upload', $config);
-
 		if ( ! $this->upload->do_upload('userfile'))
 		{
 
@@ -386,20 +384,15 @@ class execute extends CI_Controller
 
 			$errors = array('errors' => $this->upload->display_errors());
 			$this->session->set_flashdata($errors);
-			redirect('dashboard');
+			echo 'error';
 
 		} else {
 			
 			$upload_data = $this->upload->data(); 
 			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
+			echo 'success';
 			$result = $this->model->SchoolLogo($image,$id);
 
-			if($result)
-			{
-
-				redirect('dashboard');
-
-			}
 		}
 	}
 

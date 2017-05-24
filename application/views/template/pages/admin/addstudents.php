@@ -1,7 +1,3 @@
-<?php 
-$errors = $this->session->flashdata('errors');
-include 'notification-system.php';
-?>
    <div class="right_col" role="main">
     <div class="title_left">
       <h3><i class="fa fa-user-plus"></i> New Students</h3>
@@ -20,11 +16,6 @@ include 'notification-system.php';
 
           <div class="x_content">
             <!-- start -->
-
-            <?php if($errors):
-            echo '<div class="alert alert-danger">'.$errors.'</div>';
-            endif;
-            ?>
             <form method="POST" name="student" class="form-horizontal" novalidate>
               
               <div class="form-group"> 

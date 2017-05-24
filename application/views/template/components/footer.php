@@ -56,11 +56,17 @@
     <script src="<?php echo$url?>assets/angular/1.4.8.angular.min.js"></script>
     <script src="<?php echo$url?>assets/angular/1.4.2.angular.min.js"></script>
     <script src="<?php echo$url?>assets/functions/execute.js"></script>
+    <script src="<?php echo$url?>assets/build/js/overhang.min.js"></script>
+    <script src="<?php echo$url?>assets/build/js/jquery-ui.min.js"></script>
+    <script src="<?php echo$url?>assets/build/js/custom-file-input.js"></script>
+
 
      <!-- Select2 -->
     <script>
     addstudent();
-    changeadminprofile();
+    insertupdate();
+    uploadlogo();
+    // changeadminprofile();
       $(document).ready(function() {
         $(".select2").select2({
           placeholder: "Select a gender",
@@ -78,15 +84,11 @@
         $("#ans").val(x);
     });
 
-      $(document).ready(function(){
-            $('#userfile').change(function(){
-                var x = $('#userfile').val();
-                $('#fullpath').val(x);
-                $('#upl').attr('disabled',false);
-            });
+    $(document).ready(function(){
+        $('.schoollogo').change( function(event) {
+            $("#preview").attr('src',URL.createObjectURL(event.target.files[0]));
         });
-  
-
+    });
 
     </script>
     </body>
