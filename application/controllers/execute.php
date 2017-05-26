@@ -164,12 +164,7 @@ class execute extends CI_Controller
 			);
 
 		$result = $this->model->UpdateAccount($data,$id);
-		if($result)
-		{
-
-			redirect('myaccount');
-
-		}
+	
 
 	}
 
@@ -253,12 +248,7 @@ class execute extends CI_Controller
 			);
 
 		$result = $this->model->MyAccountUpdatePassword($data,$id);
-		if($result)
-		{
-
-			redirect('myaccount');
-
-		}
+		
 
 	}
 
@@ -305,11 +295,11 @@ class execute extends CI_Controller
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 		$config['allowed_types'] = '*';
-		$config['encrypt_name']  = true;
+		// $config['encrypt_name']  = false;
 		$config['remove_spaces']  = TRUE;
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config); //Make this line must be here.
-		if ( ! $this->upload->do_upload('userfile'))
+		if ( ! $this->upload->do_upload('adminphoto'))
 		{
 
 
@@ -323,12 +313,6 @@ class execute extends CI_Controller
 			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
 			$result = $this->model->UploadProfile($image,$id);
 
-			if($result)
-			{
-
-				redirect('myaccount');
-
-			}
 		}
 	}
 
@@ -473,13 +457,6 @@ class execute extends CI_Controller
 
 		$result = $this->model->AddNewQuestions($data);
 
-		if($result) 
-		{
-
-			redirect('view_questions');
-
-		}
-
 	}
 
 	public function add_category() 
@@ -498,12 +475,6 @@ class execute extends CI_Controller
 		$data = array('category' => $this->post('category'));
 		$result = $this->model->AddNewCategory($data);
 
-		if($result) 
-		{
-
-			redirect('view_category');
-
-		}
 
 	}
 
@@ -522,13 +493,6 @@ class execute extends CI_Controller
 
 		$data = array('instructions' => $this->post('instructions'));
 		$result = $this->model->AddNewInstructions($data);
-
-		if($result) 
-		{
-
-			redirect('view_instructions');
-
-		}
 
 	}
 
@@ -589,51 +553,64 @@ class execute extends CI_Controller
 			'date' 		=> $regdate
 			);
 
-		$result = $this->model->AddNewStudents($data);
+        $subject = 'Online Examination';
+        $message = '
+        	
+        	<div style="max-width:92%;border-left:solid 1px #313d49;border-right:solid 1px #313d49;border-top:solid 1px #313d49;border-bottom:solid 1px #313d49;background-color:#f5f5f5;padding:10px;text-align:center">
 
-		if($result)
-		{
+        		<h3 style="color:#000">ONLINE EXAMINATION SYSTEM</h3>
 
-	        $subject = 'Online Examination';
-	        $message = '
-	        	
-	        	<div style="max-width:92%;border-left:solid 1px #313d49;border-right:solid 1px #313d49;border-top:solid 1px #313d49;border-bottom:solid 1px #313d49;background-color:#f5f5f5;padding:10px;text-align:center">
+        	</div>
 
-	        		<h3 style="color:#000">ONLINE EXAMINATION SYSTEM</h3>
+        	<div style="max-width:92%;background-color:#ffffff;border-left:1px solid #313d49;border-right:solid 1px #313d49;padding:10px;">
 
-	        	</div>
+        		<h4>Hello '.$name.',</h4>
 
-	        	<div style="max-width:92%;background-color:#ffffff;border-left:1px solid #313d49;border-right:solid 1px #313d49;padding:10px;">
+        		<h4>Please be active on this email to be updated to your upcoming online examination.</h4>
+        		<h4>Please login with this credentials</h4>
+        		<a href="http://localhost/examination_system/login" 
+        		style="float:right;background:#313d49;text-decoration:none;padding:10px;color:#fff;
+        		font-weight:bolder">
+        		CLICK ME TO LOGIN</a>
+        		<h4>Username: <i>'.$username.'</i></h4>
+        		<h4>Password: <i>12345</i></h4>
 
-	        		<h4>Hello '.$name.',</h4>
+        		<h5 style="color:#ff0000;font-weight:bolder">Note: <i>If you have any questions or issues, you may email us @(email ng websitemo).</i></h5>
+        	</div>
 
-	        		<h4>Please be active on this email to be updated to your upcoming online examination.</h4>
-	        		<h4>Please login with this credentials</h4>
-	        		<a href="http://localhost/examination_system/login" 
-	        		style="float:right;background:#313d49;text-decoration:none;padding:10px;color:#fff;
-	        		font-weight:bolder">
-	        		CLICK ME TO LOGIN</a>
-	        		<h4>Username: <i>'.$username.'</i></h4>
-	        		<h4>Password: <i>12345</i></h4>
+        	<div style="width:92%;background-color:#313d49;border-left:1px solid #313d49;border-right:solid 1px #313d49;padding:10px;text-align:center">
 
-	        		<h5 style="color:#ff0000;font-weight:bolder">Note: <i>If you have any questions or issues, you may email us @(email ng websitemo).</i></h5>
-	        	</div>
+        		<h4 style="color:#fff">All Rights Reserved @ '.date('Y').'</h4>
 
-	        	<div style="width:92%;background-color:#313d49;border-left:1px solid #313d49;border-right:solid 1px #313d49;padding:10px;text-align:center">
-
-	        		<h4 style="color:#fff">All Rights Reserved @ '.date('Y').'</h4>
-
-	        	</div>
+        	</div>
 
 
-	        ';
+        ';
 
-	        $body = $message;
-	        $this->email->to($email)->from('a@yahoo.com')->subject($subject)->message($body)->send();
-	        exit;
+        
+        
+		
+			$this->email->to($email)->from('a@yahoo.com')->subject($subject)->message($message);
+			
+			if(!$this->email->send()) {
+				echo 'connection error';
 
+			} else {
+	
+			$result = $this->model->AddNewStudents($data);
+			$response = $this->session->userdata('notif');
+			switch ($response) {
+		
+			case 'duplicated':
+				echo 'duplicated';
+			break;
+
+			case 'success':
+				echo 'success';
+			break;
+
+			}
 		}
-
 	}
 
 	public function modify_question()
@@ -671,14 +648,6 @@ class execute extends CI_Controller
 
 		$result = $this->model->UpdateQuestions($data);
 
-		if($result) 
-		{
-
-			redirect('question/modify/'.$data['id']);
-
-		}
-
-
 	}
 
 
@@ -698,13 +667,6 @@ class execute extends CI_Controller
 		$data = array('id' 	=> $this->post('id'),'category' => $this->post('category'));
 
 		$result = $this->model->UpdateCategory($data);
-
-		if($result) 
-		{
-
-			redirect('category/modify/'.$data['id']);
-
-		}
 
 
 	}
@@ -726,13 +688,6 @@ class execute extends CI_Controller
 
 		$result = $this->model->UpdateInstructions($data);
 
-		if($result) 
-		{
-
-			redirect('instructions/modify/'.$data['id']);
-
-		}
-
 
 	}
 
@@ -750,6 +705,20 @@ class execute extends CI_Controller
 		
 		return password_hash($password, PASSWORD_BCRYPT);
 		
+	}
+
+	public function dbexport() {
+	$this->load->dbutil();
+	$prefs = array(
+	'format' => 'zip',
+	'filename' => 'examination_system.sql'
+	);
+	$backup = $this->dbutil->backup($prefs);
+	$db_name = 'backup-on-'. date("Y-m-d-H-i-s") .'.zip';
+	$save = 'assets/backup/'.$db_name;
+	$this->load->helper('file');
+	write_file($save, $backup);
+	echo'success';
 	}
 
 }

@@ -8,16 +8,13 @@ foreach ($admin_data as $r):
     );
 endforeach; ?>
 <!-- execute/updateinfo/'.$data['session_id'].' -->
-<form method="POST" name="info" class="form-horizontal" novalidate>
+<form method="POST" data-parsley-validate class="form-horizontal">
 
 <div class="form-group">
   <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-    <label>Student Name 
-      <b ng-messages="info.name.$error" ng-if="info.name.$dirty">
-        <strong ng-message="required" class="label label-danger" >name is required.</strong>
-      </b>
-    </label>
-    <input type="text" class="form-control" name="name" id="name" ng-model="name" value="<?php echo$udata['address']?>" required >
+    <label>Name</label>
+    <input type="hidden" class="form-control" name="id" id="id"  value="<?php echo$udata['id']?>" required >
+    <input type="text" class="form-control" name="name" id="name"  value="<?php echo$udata['name']?>" required >
   </div>
 </div>
 
@@ -49,7 +46,7 @@ endforeach; ?>
 <div class="ln_solid"></div>
 <div class="form-group">
   <div class="col-md-12 col-sm-12 col-xs-12">
-    <button type="submit" id="addstudent" ng-disabled="!info.$valid"  class="btn btn-dark pull-right flat"><i class="fa fa-check-circle"></i> Save Changes</button>
+    <button type="submit" id="updateinfo" class="btn btn-dark pull-right flat"><i class="fa fa-check-circle"></i> Save Changes</button>
   </div>
 </div>
          

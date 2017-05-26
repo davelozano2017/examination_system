@@ -1,6 +1,5 @@
 <?php 
 $errors = $this->session->flashdata('errors');
-include 'notification-system.php';
 ?>
    <div class="right_col" role="main">
     <div class="title_left">
@@ -34,26 +33,25 @@ include 'notification-system.php';
                   </div>
                   
                 <br>
-              <form method="POST" action="<?=site_url('execute/add_category')?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
-            
-
+              <form method="POST" name='catform' novalidate class="form-horizontal">
                 <div class="col-md-12 col-xs-12">
-
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                      <label>Category</label>
-                      <input type="text" name="category" class="form-control" required>
+                      <label>Category
+                      <b ng-messages="catform.category.$error" ng-if="catform.category.$dirty">
+                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <input type="text" name="category" class="form-control" ng-model='category' required>
                     </div>
                   </div>
 
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                     <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <div class="modal-footer">
-                        <button type="submit" class="animated fadeInDown btn btn-dark flat">
+                      <div class="modal-footer">
+                        <button type="submit" id='category' ng-disabled='!catform.$valid' class="btn btn-dark flat">
                           <i class="fa fa-check-circle"></i> Submit
                         </button>
-                      </div>
                       </div>
                     </div>
                   </div>
@@ -97,12 +95,3 @@ include 'notification-system.php';
         </div>
       </div>
     </div>   
-    <script type="text/javascript">
-      function modify($url,$id) 
-      {
-        var url = $url;
-        var id = $id;
-        location.href = url + id;
-
-      }
-    </script>

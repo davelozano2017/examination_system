@@ -1,6 +1,5 @@
 <?php 
 $errors = $this->session->flashdata('errors');
-include 'notification-system.php';
 if($errors):
 echo '<div class="alert alert-danger">'.$errors.'</div>';
 endif;
@@ -38,14 +37,18 @@ endif;
                   </div>
                   
                 <br>
-              <form method="POST" action="<?=site_url('execute/add_question')?>" data-parsley-validate class="form-horizontal form-label-left input_mask">
+              <form method="POST" name='que' data-parsley-validate class="form-horizontal" novalidate="">
 
                 <div class="col-md-12 col-xs-12">
 
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                      <label>Question</label>
-                      <textarea class="form-control" name="question" style="resize:none;height:40px" required></textarea>
+                      <label>Question
+                      <b ng-messages="que.question.$error" ng-if="que.question.$dirty">
+                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      </b>
+                    </label>
+                      <textarea class="form-control" name="question" ng-model='question' style="resize:none;height:40px" required></textarea>
                     </div>
                   </div>
 
@@ -65,29 +68,44 @@ endif;
 
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                      <label>Choice A</label>
-                      <textarea class="form-control" name="option_a" id="option_a"  style="resize:none;height:40px" required></textarea>
+                      <label>Choice A
+                      <b ng-messages="que.option_a.$error" ng-if="que.option_a.$dirty">
+                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      </b></label>
+                      <textarea class="form-control" name="option_a" id="option_a" ng-model='option_a' style="resize:none;height:40px" required></textarea>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                      <label>Choice B</label>
-                      <textarea class="form-control" name="option_b" style="resize:none;height:40px" required></textarea>
+                      <label>Choice B
+                      <b ng-messages="que.option_b.$error" ng-if="que.option_b.$dirty">
+                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <textarea class="form-control" name="option_b" ng-model='option_b' style="resize:none;height:40px" required></textarea>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                      <label>Choice C</label>
-                      <textarea class="form-control" name="option_c" style="resize:none;height:40px" required></textarea>
+                      <label>Choice C
+                      <b ng-messages="que.option_c.$error" ng-if="que.option_c.$dirty">
+                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <textarea class="form-control" name="option_c" ng-model='option_c' style="resize:none;height:40px" required></textarea>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                      <label>Choice D</label>
-                      <textarea class="form-control" name="option_d" style="resize:none;height:40px" required></textarea>
+                      <label>Choice D
+                      <b ng-messages="que.option_d.$error" ng-if="que.option_d.$dirty">
+                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <textarea class="form-control" name="option_d" ng-model='option_d' style="resize:none;height:40px" required></textarea>
                     </div>
                   </div>
 
@@ -101,12 +119,10 @@ endif;
 
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                     <div class="form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <div class="modal-footer">
-                        <button type="submit" class="animated fadeInDown btn btn-dark flat">
+                      <div class="modal-footer">
+                        <button type="submit" id='addquestions' ng-disabled='!que.$valid' class="btn btn-dark flat">
                           <i class="fa fa-check-circle"></i> Submit
                         </button>
-                      </div>
                       </div>
                     </div>
                   </div>
@@ -116,35 +132,34 @@ endif;
           </div>
           </form> 
               
-              <div class="col-md-12 col-xs-12 col-sm-12">
-                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Question</th>
-                          <th>Category</th>
-                          <th>Answer</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <?php 
-                      $i = 1;
-                      foreach ($questions as $row) {?>
-                        <tr>
-                          <td><?php echo$i++?></td>
-                          <td><?php echo$row->question?></td>
-                          <td><?php echo$row->category?></td>
-                          <td><?php echo$row->answer?></td>
-                          <td><a onClick="modify('<?php echo$url?>question/modify/','<?php echo $row->id?>')" class="btn btn-dark flat"><i class="fa fa-pencil"></i> Modify</a></td>
-                        </tr>
+            
+          <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Category</th>
+                    <th>Answer</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php 
+                $i = 1;
+                foreach ($questions as $row) {?>
+                  <tr>
+                    <td><?php echo$i++?></td>
+                    <td><?php echo$row->question?></td>
+                    <td><?php echo$row->category?></td>
+                    <td><?php echo$row->answer?></td>
+                    <td><a onClick="modify('<?php echo$url?>question/modify/','<?php echo $row->id?>')" class="btn btn-dark flat"><i class="fa fa-pencil"></i> Modify</a></td>
+                  </tr>
 
-                      <?php } ?>
-                        
-                      </tbody>
-                    </table>
+                <?php } ?>
+                  
+                </tbody>
+              </table>
 
-              </div>
           
 
             <!-- end -->
@@ -154,12 +169,3 @@ endif;
         </div>
       </div>
     </div>   
-    <script type="text/javascript">
-      function modify($url,$id) 
-      {
-        var url = $url;
-        var id = $id;
-        location.href = url + id;
-
-      }
-    </script>

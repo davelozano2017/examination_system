@@ -1,7 +1,6 @@
 <?php 
 $errors = $this->session->flashdata('errors');
 $path = 'template/pages/admin/myaccount-form';
-include 'notification-system.php';
 foreach ($admin_data as $r):
   $udata = array(
     'id'     => $r->id,     'image'   => $r->image,
@@ -27,10 +26,19 @@ endforeach;
       <div class="col-md-5 col-xs-12">
         <div class="x_panel">
           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <img style="width:144px;height:144px;margin:auto" 
-            class="img-responsive img-circle profile_img" src="<?php echo$udata['image']?>">
-                <h3 class="text-center"><?php echo$udata['name']?></h3>
-                <h4 class="text-center"><?php echo$udata['email']?></h4>
+            <form method="POST" enctype="multipart/form-data" id="UploadAdminProfile">
+             
+              <input type="file" style='display:none' class="form-control picture adminphoto" id="adminpicture" name="adminphoto"  size="20" required>
+              <input type="hidden" name="id" id="id" value="<?php echo$udata['id']?>">
+              
+              <label for='adminpicture' style='cursor: pointer;' class='col-md-12 col-lg-12 col-sm-12 col-xs-12'>
+                <img id='preview' style="width:144px;height:144px;margin:auto" 
+                class="img-responsive img-circle profile_img" src="<?php echo$udata['image']?>">
+              </label>
+            </form>          
+                
+          <h3 class="text-center"><?php echo$udata['name']?></h3>
+          <h4 class="text-center"><?php echo$udata['email']?></h4>
 
           </div>
           <div class="x_content">
@@ -53,25 +61,6 @@ endforeach;
                 <span class="pull-right text-primary"><?php echo$udata['date']?></span>
               </ul>
             </ul>
-            <!--  -->
-            <form method="POST" name="upload" action="<?= site_url('execute/adminprofileupload/'.$udata['id'].'')?> " enctype="multipart/form-data"  class="form-horizontal" novalidate>
-              
-              <div class="form-group"> 
-                <b ng-messages="upload.userfile.$error" ng-if="upload.userfile.$dirty">
-                  <strong ng-message="required" class="label label-danger" >name is required.</strong>
-                </b>
-                  <input type="hidden" class="form-control" id="fullpath" name="userfile" ng-model="userfile" required>
-                  <input type="file" class="form-control" id="userfile" name="userfile"  size="20" required>
-              </div>
-              
-            <div class="ln_solid"></div>
-            <div class="form-group">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" ng-disabled="!upload.$valid" id="upl" class="btn btn-dark pull-right flat"><i class="fa fa-arrow-up"></i> Upload</button>
-              </div>
-            </div>
-                     
-            </form>
 
             <!-- end -->
 

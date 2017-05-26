@@ -43,7 +43,7 @@ class model extends CI_Model
 
 		$result = $this->db->where(['id'=>$id])->set('image',$image)->update('es_accounts_tbl');
 		$this->session->set_flashdata('notification','myaccount_updated');
-		echo 'ok';
+		echo 'updated';
 		return $result;
 	
 	}
@@ -70,7 +70,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where(['id'=>$id])->delete('es_category_tbl');
-		$this->session->set_flashdata('notification','deleted');
+		echo 'success';
 		return $result;
 
 	}
@@ -79,7 +79,6 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where(['id'=>$id])->delete('es_questions_tbl');
-		$this->session->set_flashdata('notification','deleted');
 		return $result;
 
 	}
@@ -88,7 +87,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where(['id'=>$id])->delete('es_instructions_tbl');
-		$this->session->set_flashdata('notification','deleted');
+		echo 'success';
 		return $result;
 
 	}
@@ -174,7 +173,7 @@ class model extends CI_Model
 	public function GetAllQuestions()
 	{
 
-		$result = $this->db->order_by('id','RANDOM')->get('es_questions_tbl',20);
+		$result = $this->db->order_by('id','RANDOM')->get('es_questions_tbl');
 		return $result->result();
 
 	}
@@ -237,7 +236,7 @@ class model extends CI_Model
 
 		
 		$result = $this->db->where(['id'=>$id])->update('es_accounts_tbl',$data);
-		$this->session->set_flashdata('notification','myaccount_updated');
+		echo 'updated';
 		return $result;
 
 	}
@@ -250,11 +249,12 @@ class model extends CI_Model
 		if($check->num_rows() > 0)
 		{
 
-			echo 'error';
+			return $this->session->set_userdata('notif','duplicated');
 
 		} else {
 
-			$result = $this->db->insert('es_accounts_tbl',$data);
+			$this->db->insert('es_accounts_tbl',$data);
+			$result = $this->session->set_userdata('notif','success');
 			return $result;
 
 		}
@@ -265,7 +265,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where(['id'=>$data['id']])->update('es_questions_tbl',$data);
-		$this->session->set_flashdata('notification','success_update_question');
+		echo 'updated';
 		return $result;
 
 	}
@@ -274,7 +274,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where(['id'=>$data['id']])->update('es_category_tbl',$data);
-		$this->session->set_flashdata('notification','success_update_category');
+		echo 'success';
 		return $result;
 
 	}
@@ -283,7 +283,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->where(['id'=>$data['id']])->update('es_instructions_tbl',$data);
-		$this->session->set_flashdata('notification','success_update_instructions');
+		echo 'success';
 		return $result;
 
 	}
@@ -292,7 +292,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->insert('es_questions_tbl',$data);
-		$this->session->set_flashdata('notification','success_add_question');
+		echo 'success';
 		return $result;
 
 	}
@@ -301,7 +301,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->insert('es_instructions_tbl',$data);
-		$this->session->set_flashdata('notification','success_add_instructions');
+		echo 'success';
 		return $result;
 
 	}
@@ -310,7 +310,7 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->insert('es_category_tbl',$data);
-		$this->session->set_flashdata('notification','success_add_category');
+		echo 'success';
 		return $result;
 
 	}

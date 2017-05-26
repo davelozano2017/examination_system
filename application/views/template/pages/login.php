@@ -35,6 +35,7 @@ endif;
     <link href="<?php echo $url?>assets/build/css/custom.min.css" rel="stylesheet">
     <link href="<?php echo$url?>assets/build/css/overhang.min.css" rel="stylesheet" />
     <link href="<?php echo$url?>assets/build/css/prism.css" rel="stylesheet" />
+    <link href="<?php echo$url?>assets/build/css/loading.css" rel="stylesheet" />
   </head>
 
   <body class="login">

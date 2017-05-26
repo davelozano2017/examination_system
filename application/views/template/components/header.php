@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">.flat{border-radius: 0 !important}</style>
+    <style type="text/css">.flat{border-radius: 0 !important}#myProgress {width: 100%;background-color: #ddd;}#myBar {width: 1%;height: 30px;background-color: #3498DB;}</style>
     <link rel="icon" type="text/css" href="<?php echo$url?>assets/uploads/logo.png">
     <title><?php echo $res['page_title']?></title>
     <!-- Bootstrap -->
@@ -38,6 +38,7 @@
     <link href="<?php echo$url?>assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo$url?>assets/build/css/overhang.min.css" rel="stylesheet" />
     <link href="<?php echo$url?>assets/build/css/prism.css" rel="stylesheet" />
+    <link href="<?php echo$url?>assets/build/css/loading.css" rel="stylesheet" />
 
   </head>
 <!-- 

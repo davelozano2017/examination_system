@@ -1,6 +1,5 @@
 <?php 
 $errors = $this->session->flashdata('errors');
-include 'notification-system.php';
 foreach ($student_info as $r):
   $udata = array(
     'id'     => $r->id,     'image'   => $r->image,
@@ -132,7 +131,6 @@ endforeach;
                         <i class="fa fa-trash"></i> Delete
                       </button>
 
-                      <!-- delete_student('<?= site_url('execute/DeleteStudent/'.$udata['id'].'')?>' -->
                       <button type='submit' id="updatestudentprofile"  class="btn btn-dark pull-right flat">
                         <i class="fa fa-check-circle"></i> Save Changes
                       </button>

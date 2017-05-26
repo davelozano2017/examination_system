@@ -1,8 +1,6 @@
 <?php 
 $errors = $this->session->flashdata('errors');
-include 'notification-system.php'; 
 ?>
-
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -15,21 +13,23 @@ include 'notification-system.php';
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 col-xs-12">
                 <div class="x_panel">
                  <div class="x_title">
                     <h2><i class="fa fa-users"></i> List of Students </h2>
-                    <a href="#" onClick="delete_all('<?= site_url('execute/delete_all')?>')" 
-                    data-toggle="tooltip" data-placement="top" 
-                    title="Delete All" class="btn btn-danger pull-right animated fadeInDown flat">
-                    <i class="fa fa-trash"></i></a>
+                    <?php if($results == TRUE): ?>
+                      <a href="#" id='deleteall' class="btn btn-danger pull-right animated fadeInDown flat">
+                      <i class="fa fa-trash"></i></a>
+                    <?php endif;?>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <div class="row">
                       <div class="col-md-12 col-sm-12 col-xs-12 text-center"></div>
                       <div class="clearfix"></div>
-            <?php 
+           
+                       
+ <?php 
            
             if($results == TRUE) {
                 foreach ($results as $r):
@@ -75,7 +75,6 @@ include 'notification-system.php';
               <strong>No Record Found.</strong>
             </div>';
             } ?>
-                      
             
                     </div>
                   </div>

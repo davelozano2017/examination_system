@@ -14,7 +14,6 @@ endforeach;
           if($errors):
           echo '<div class="alert alert-danger">'.$errors.'</div>';
           endif;
-          include 'notification-system.php';
           ?>
             <div class="row top_tiles">
               
@@ -132,6 +131,8 @@ endforeach;
 
         </div>
 
+        
+
         <div class="col-md-5 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
@@ -149,7 +150,7 @@ endforeach;
                     
                   <input type="hidden" name="id" id="logoid" value="<?php echo$data['id']?>">
                   
-                    <input type="file" style="display:none" name="userfile" id="file-2" class="forn-control schoollogo" />
+                    <input type="file" style="display:none" name="userfile" id="file-2" class="forn-control picture logo" />
                     <label for="file-2" style="border:none;cursor: pointer;">
                       <img id='preview' src="<?php echo@$data['image']?>" 
                       style="width:250px;height:250px;margin:auto" 

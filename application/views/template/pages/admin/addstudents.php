@@ -23,15 +23,16 @@
                   <label>Student Name 
                   <b ng-messages="student.name.$error" ng-if="student.name.$dirty">
                     <strong ng-message="required" class="label label-danger" >name is required.</strong>
+                    <strong ng-message="pattern" class="label label-danger" >This field only requires alphabets.</strong>
                   </b>
                   </label>
-                  <input type="text" class="form-control" name="name" id="name" ng-model="name" required >
+                  <input type="text" class="form-control" ng-pattern="/^[a-zA-Z ]*$/" name="name" id="name" ng-model="name" required >
                 </div>              
               </div>
               
               <div class="form-group">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                  <label>Student Email
+                  <label>Student Email 
                   <b ng-messages="student.email.$error" ng-if="student.email.$dirty">
                     <strong ng-message="pattern" class="label label-danger" >Please enter a valid email address.</strong>
                     <strong ng-message="required" class="label label-danger" >Email Address is required.</strong>
