@@ -170,14 +170,6 @@ class model extends CI_Model
 
 	}
 
-	public function GetAllQuestions()
-	{
-
-		$result = $this->db->order_by('id','RANDOM')->get('es_questions_tbl');
-		return $result->result();
-
-	}
-
 	public function GetAllInformation()
 	{
 
@@ -189,8 +181,8 @@ class model extends CI_Model
 	public function GetAllCategory()
 	{
 
-		$result = $this->db->get('es_category_tbl');
-		return $result->result();
+			$query = $this->db->get('es_category_tbl');
+			return $query->result_array();
 
 	}
 
@@ -198,10 +190,18 @@ class model extends CI_Model
 	{
 
 		$result = $this->db->get('es_instructions_tbl');
-		return $result->result();
+		return $result->result_array();
 
 	}
 
+	public function GetAllQuestions()
+	{
+
+		$result = $this->db->get('es_questions_tbl');
+		return $result->result_array();
+
+	}
+	
 	public function GetStudentInfo($id)
 	{
 
@@ -338,7 +338,6 @@ class model extends CI_Model
 		return $result->result();
 
 	}
-
 
 	private function verify($password, $hash) {
 		

@@ -35,28 +35,23 @@ endforeach;
 
                   <li><a href="#"><i class="fa fa-user"></i> Students <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo$url?>addstudents">Add New Students</a></li>
-                      <li><a href="<?php echo$url?>viewstudents">View Students</a></li>
+                      <li><a href="<?=site_url('addstudents')?>">Add New Students</a></li>
+                      <li><a href="<?=site_url('viewstudents')?>">View Students</a></li>
                     </ul>
                   </li>
                   
                   <li><a><i class="fa fa-file-text"></i> Examination <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo$url?>result">Results</a></li>
-                      <li><a href="<?php echo$url?>view_questions">Add Questions</a></li>
+                      <li><a href="<?=site_url('result')?>">Results</a></li>
+                      <li><a href="<?=site_url('view_questions')?>">Add Questions</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-gear"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a>Database<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li><a href="<?php echo$url?>backupdb">Back Up</a></li>
-                            <li><a href="<?php echo$url?>restoredb">Restore</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="<?php echo$url?>view_category">Category</a></li>
-                        <li><a href="<?php echo$url?>view_instructions">Instructions</a></li>
+                        <li><a href="<?=site_url('backupdb')?>">Database</a></li>
+                        <li><a href="<?=site_url('view_category')?>">Category</a></li>
+                        <li><a href="<?=site_url('view_instructions')?>">Instructions</a></li>
                     </ul>
 
                   </li>   

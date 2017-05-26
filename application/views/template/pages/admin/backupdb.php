@@ -11,15 +11,11 @@
          
           <div class="x_content">
             <!-- start -->
-
             <div class="row">
-
               <div id="myProgress">
                 <div id="myBar" hidden></div>
               </div>
-              <hr>
-                <button id='start' class='btn btn-success flat'><i class='fa fa-database'></i> Back Up</button> 
-            
+              <hr><button id='start' class='btn btn-success flat'><i class='fa fa-database'></i> Back Up</button> 
             </div>
             <!-- end -->
 

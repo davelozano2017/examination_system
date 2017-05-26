@@ -1,10 +1,3 @@
-<?php 
-$errors = $this->session->flashdata('errors');
-if($errors):
-echo '<div class="alert alert-danger">'.$errors.'</div>';
-endif;
-           
-?>
    <div class="right_col" role="main">
     <div class="title_left">
       <h3><i class="fa fa-eye"></i> View Questions</h3>
@@ -58,7 +51,7 @@ endif;
                       <select class="form-control" name="category" style="width:100%" required>
                         <?php 
                         foreach ($category as $r):
-                          echo '<option value="'.$r->category.'">'.$r->category.'</option>';
+                          echo '<option value="'.$r['category'].'">'.$r['category'].'</option>';
                         endforeach; 
                        ?>                        
                       </select>
@@ -133,7 +126,7 @@ endif;
           </form> 
               
             
-          <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+          <table id="ShowQuestions" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -144,18 +137,6 @@ endif;
                   </tr>
                 </thead>
                 <tbody>
-                <?php 
-                $i = 1;
-                foreach ($questions as $row) {?>
-                  <tr>
-                    <td><?php echo$i++?></td>
-                    <td><?php echo$row->question?></td>
-                    <td><?php echo$row->category?></td>
-                    <td><?php echo$row->answer?></td>
-                    <td><a onClick="modify('<?php echo$url?>question/modify/','<?php echo $row->id?>')" class="btn btn-dark flat"><i class="fa fa-pencil"></i> Modify</a></td>
-                  </tr>
-
-                <?php } ?>
                   
                 </tbody>
               </table>

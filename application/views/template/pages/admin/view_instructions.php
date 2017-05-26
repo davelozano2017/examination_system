@@ -1,6 +1,3 @@
-<?php 
-$errors = $this->session->flashdata('errors');
-?>
    <div class="right_col" role="main">
     <div class="title_left">
       <h3><i class="fa fa-eye"></i> View Instructions</h3>
@@ -21,7 +18,6 @@ $errors = $this->session->flashdata('errors');
             <!-- start -->
             <button type="button" autofocus class="btn btn-dark flat" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-plus-circle"></i> Add Instructions</button>
             <div class="clearfix"></div><hr>
-            <?php if($errors):echo '<div class="alert alert-danger">'.$errors.'</div>';endif; ?>
             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -61,7 +57,7 @@ $errors = $this->session->flashdata('errors');
           </div>
           </form> 
               
-                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <table id="ShowInstructions" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -70,17 +66,7 @@ $errors = $this->session->flashdata('errors');
                         </tr>
                       </thead>
                       <tbody>
-                      <?php 
-                      $i = 1;
-                      foreach ($instructions as $row) {?>
-                        <tr>
-                          <td><?php echo$i++?></td>
-                          <td><?php echo$row->instructions?></td>
-                          <td><a onClick="modify('<?php echo$url?>instructions/modify/','<?php echo $row->id?>')" class="btn btn-dark flat"><i class="fa fa-pencil"></i> Modify</a></td>
-                        </tr>
 
-                      <?php } ?>
-                        
                       </tbody>
                     </table>
 

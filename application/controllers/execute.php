@@ -42,6 +42,56 @@ class execute extends CI_Controller
 
 	}
 
+	public function GetCategory() 
+	{
+
+		$result = array('data'=>array());
+		$data 	= $this->model->GetAllCategory();
+		$i = 1;
+		foreach ($data as $key => $value) 
+		{	
+			$id = $value['id'];
+			$button = "<a class='btn btn-dark flat' href='http://localhost/examination_system/category/modify/$id'><i class='fa fa-pencil'></i> Modify</a>";
+			$result['data'][$key] = array($i++,$value['category'],$button);
+		}
+		echo json_encode($result);
+	}
+
+	public function GetInstructions() 
+	{
+
+		$result = array('data'=>array());
+		$data 	= $this->model->GetAllInstructions();
+		$i = 1;
+		foreach ($data as $key => $value) 
+		{	
+			$id = $value['id'];
+			$button = "<a class='btn btn-dark flat' href='http://localhost/examination_system/instructions/modify/$id'><i class='fa fa-pencil'></i> Modify</a>";
+			$result['data'][$key] = array($i++,$value['instructions'],$button);
+		}
+		echo json_encode($result);
+	}
+
+	public function GetQuestions() 
+	{
+
+		$result = array('data'=>array());
+		$data 	= $this->model->GetAllQuestions();
+		$i = 1;
+		foreach ($data as $key => $value) 
+		{	
+			$id = $value['id'];
+			$button = "<a class='btn btn-dark flat' href='http://localhost/examination_system/question/modify/$id'><i class='fa fa-pencil'></i> Modify</a>";
+			$result['data'][$key] = array(
+				$i++,
+				$value['question'],
+				$value['category'],
+				$value['answer'],
+				$button);
+		}
+		echo json_encode($result);
+	}
+
 	public function InsertUpdate()
 	{	
 		$data = array(
@@ -703,22 +753,24 @@ class execute extends CI_Controller
 	private function encrypt($password) 
 	{
 		
-		return password_hash($password, PASSWORD_BCRYPT);
+		return password_hash($password, PASSWORD_DEFAULT);
 		
 	}
 
-	public function dbexport() {
-	$this->load->dbutil();
-	$prefs = array(
-	'format' => 'zip',
-	'filename' => 'examination_system.sql'
-	);
-	$backup = $this->dbutil->backup($prefs);
-	$db_name = 'backup-on-'. date("Y-m-d-H-i-s") .'.zip';
-	$save = 'assets/backup/'.$db_name;
-	$this->load->helper('file');
-	write_file($save, $backup);
-	echo'success';
-	}
+	public function dbexport() 
+	{
+		
+		$this->load->dbutil();
+		$prefs = array(
+		'format' => 'zip',
+		'filename' => 'examination_system.sql'
+		);
+		$backup = $this->dbutil->backup($prefs);
+		$db_name = 'backup-on-'. date("Y-m-d-H-i-s") .'.zip';
+		$save = 'assets/backup/'.$db_name;
+		$this->load->helper('file');
+		write_file($save, $backup);
+		echo'success';
+		}
 
 }

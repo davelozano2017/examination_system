@@ -19,11 +19,8 @@ class view_instructions extends CI_Controller
 			'title'			=> 'Examination System',
 			'greetings'		=> 'Howdy,'
 			);
-        $data["results"] 	= $this->model->FetchRegisteredUser();
 		$data['url'] 		= base_url();
 		$data['data'] 		= $this->session->userdata();
-		$data['user'] 		= $this->model->GetAllUsers();
-		$data['instructions'] 	= $this->model->GetAllInstructions();
 		$data['admin_data'] = $this->model->GetInformation($_SESSION['session_id']);
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs',$data);

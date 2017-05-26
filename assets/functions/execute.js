@@ -62,6 +62,7 @@ function addnewquestions()
 					switch(response) {
 
 						case 'success':
+						$('#ShowQuestions').DataTable().ajax.reload(null,false);
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> New question has been added."});
 						$('#addquestions').html('<i class="fa fa-check-circle"></i> Submit').attr('disabled',false);
 						break;
@@ -206,6 +207,7 @@ function updatestudentprofile()
 			e.preventDefault();
 			var id = $('#id').val();
 			var data = $('form').serialize();
+			$('#deletestudentprofile').html('<i class="fa fa-trash"></i> Delete').attr('disabled',false);
 			$('#updatestudentprofile').html('<i class="ld ld-ring ld-cycle"></i> Please wait...').attr('disabled',true);
 			var url  = 'http://localhost/examination_system/execute/studentupdateinfo/'+id;
 			$.ajax({
@@ -217,6 +219,7 @@ function updatestudentprofile()
 					switch(response)
 					{
 						case 'updated':
+						$('#deletestudentprofile').html('<i class="fa fa-trash"></i> Delete').attr('disabled',false);
 						$('#updatestudentprofile').html('<i class="fa fa-check-circle"></i> Save Changes').attr('disabled',false);
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#5389ff",message: "<i class='fa fa-check-circle'></i> Student information has been updated."});
 						break;
@@ -442,7 +445,9 @@ function addcategory() {
 					{
 						case 'success':
 						$('#category').html('<i class="fa fa-check-circle"></i> Submit').attr('disabled',false);
+						$('#ShowCategory').DataTable().ajax.reload(null,false);
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> New category has been added."});
+						
 						break;
 
 
@@ -475,6 +480,7 @@ function addinstruction() {
 					switch(response)
 					{
 						case 'success':
+						$('#ShowInstructions').DataTable().ajax.reload(null,false);
 						$('#instruction').html('<i class="fa fa-check-circle"></i> Submit').attr('disabled',false);
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> New instruction has been added."});
 						break;
@@ -511,6 +517,7 @@ function modifycategory() {
 					{
 						case 'success':
 						$('#modifycategory').html('<i class="fa fa-check-circle"></i> Save Changes').attr('disabled',false);
+						$('#catdelete').html('<i class="fa fa-trash"></i> Delete').attr('disabled',false);
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> Category has been changed."});
 						break;
 
@@ -567,6 +574,7 @@ function modifyinstruction() {
 					{
 						case 'success':
 						$('#modifyinstruction').html('<i class="fa fa-check-circle"></i> Save Changes').attr('disabled',false);
+						$('#insdelete').html('<i class="fa fa-trash"></i> Delete').attr('disabled',false);
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> Instruction has been changed."});
 						break;
 

@@ -67,6 +67,25 @@
           allowClear: true
         });
       });
+
+
+      $(document).ready(function(){
+        $('#ShowCategory').dataTable({
+            'ajax':'execute/GetCategory',
+        });
+      });
+
+      $(document).ready(function(){
+        $('#ShowInstructions').dataTable({
+            'ajax':'execute/GetInstructions',
+        });
+      });
+
+      $(document).ready(function(){
+        $('#ShowQuestions').dataTable({
+            'ajax':'execute/GetQuestions',
+        });
+      });
     </script>
     <!-- /Select2 -->
 
@@ -109,7 +128,6 @@
                   if(width == 100) { 
                         $.ajax({
                             type:'GET',
-                            cache: false,
                             url: url,
                             cache: false,
                             data: {},
