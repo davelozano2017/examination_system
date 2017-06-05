@@ -771,6 +771,6 @@ class execute extends CI_Controller
 		$this->load->helper('file');
 		write_file($save, $backup);
 		echo'success';
-		}
+	}
 
 }

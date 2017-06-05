@@ -59,7 +59,7 @@ $errors = $this->session->flashdata('errors');
                 <div class="col-xs-12 bottom text-center">
                   <div class="col-xs-12 col-sm-12 emphasis">
                     <label class="pull-left"><?php echo $udata['date']?></label>
-                      <a href="#" onClick="view_profile('<?php echo$url?>view_student/','profile/','<?php echo$udata['id']?>')" class="animated fadeInDown btn btn-dark btn-xs pull-right flat">
+                      <a href="#" onClick="modify('<?php echo$url?>view_student/profile/','<?php echo$udata['id']?>')" class="animated fadeInDown btn btn-dark btn-xs pull-right flat">
                       <i class="fa fa-eye"> </i> View Profile
                     </a>
                   </div>
