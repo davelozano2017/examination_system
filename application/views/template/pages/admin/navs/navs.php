@@ -42,7 +42,8 @@ endforeach;
                   
                   <li><a><i class="fa fa-file-text"></i> Examination <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?=site_url('result')?>">Results</a></li>
+                      <li><a href="<?=site_url('results')?>">Results</a></li>
+                      <li><a href="<?=site_url('reports')?>">Reports</a></li>
                       <li><a href="<?=site_url('view_questions')?>">Add Questions</a></li>
                     </ul>
                   </li>

@@ -1,5 +1,4 @@
 <?php 
-$errors = $this->session->flashdata('errors');
 foreach ($questions as $r):
   $udata = array(
     'id'        => $r->id,        'option_c'    => $r->option_c,
@@ -27,54 +26,74 @@ endforeach;
           <div class="x_content">
             <!-- start -->
             <!-- action="<?=site_url('execute/modify_question')?>" -->
-            <form method="POST" data-parsley-validate class="form-horizontal">
+            <form method="POST" name="modify" class="form-horizontal" novalidate>
               
                 <div class="form-group">
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label>Question</label>
-                    <textarea class="form-control" name="question" style="resize:none;height:60px" required><?php echo $udata['question']?></textarea>
+                    <label>Question
+                    <b ng-messages="modify.question.$error" ng-if="modify.question.$dirty">
+                      <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                    </b>
+                    </label>
+                    <textarea class="form-control" ng-model="modifyquestion" name="question" style="resize:none;height:60px" required></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label>Category</label>
-                    <select class="form-control" name="category" style="width:100%" required>
-                        <option value="<?php echo $udata['category']?>"><?php echo $udata['category']?></option>';
-                      <?php 
-                      foreach ($category as $r):
-                        echo '<option value="'.$r->category.'">'.$r->category.'</option>';
-                      endforeach; 
-                     ?>                        
+                    <label>Category
+                    <b ng-messages="modify.category.$error" ng-if="modify.category.$dirty">
+                      <strong ng-message="required" class="label label-danger flat" >This field required.</strong>
+                    </b>
+                    </label>
+                    <select class="form-control category" ng-model="modifycategory" name="category" style="width:100%" required>
+                    <option value="<?php echo $udata['category']?>"><?php echo $udata['category']?></option>
+                    <?php foreach ($category as $r) { echo '<option value="'.$r['category'].'">'.$r['category'].'</option>'; }?>                     
                     </select>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label>Choice A</label>
-                    <textarea class="form-control" name="option_a" id="option_a"  style="resize:none;height:60px" required><?php echo $udata['option_a']?></textarea>
+                    <label>Choice A
+                    <b ng-messages="modify.option_a.$error" ng-if="modify.option_a.$dirty">
+                      <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                    </b>
+                    </label>
+                    <textarea class="form-control" ng-model="modifyoption_a" name="option_a" id="option_a"  style="resize:none;height:60px" required></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label>Choice B</label>
-                    <textarea class="form-control" name="option_b" style="resize:none;height:60px" required><?php echo $udata['option_b']?></textarea>
+                    <label>Choice B
+                    <b ng-messages="modify.option_b.$error" ng-if="modify.option_b.$dirty">
+                      <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                    </b>
+                    </label>
+                    <textarea class="form-control" ng-model="modifyoption_b" name="option_b" style="resize:none;height:60px" required></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label>Choice C</label>
-                    <textarea class="form-control" name="option_c" style="resize:none;height:60px" required><?php echo $udata['option_c']?></textarea>
+                    <label>Choice C
+                    <b ng-messages="modify.option_c.$error" ng-if="modify.option_c.$dirty">
+                      <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                    </b>
+                    </label>
+                    <textarea class="form-control" ng-model="modifyoption_c" name="option_c" style="resize:none;height:60px" required></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label>Choice D</label>
-                    <textarea class="form-control" name="option_d" style="resize:none;height:60px" required><?php echo $udata['option_d']?></textarea>
+                    <label>Choice D
+                    <b ng-messages="modify.option_d.$error" ng-if="modify.option_d.$dirty">
+                      <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                    </b>
+                    </label>
+                    <textarea class="form-control" ng-model="modifyoption_d" name="option_d" style="resize:none;height:60px" required></textarea>
                   </div>
                 </div>
 
@@ -83,7 +102,7 @@ endforeach;
                     <label>Answer</label>
                     <input type="hidden" name="id" id="id" value="<?php echo $udata['id']?>">
                     <input type="hidden" name="answer"  value="<?php echo $udata['answer']?>" id="answer">
-                    <textarea class="form-control" id="ans" style="resize:none;height:60px" disabled><?php echo $udata['answer']?></textarea>
+                    <textarea class="form-control" ng-model="modifyanswer" id="ans" style="resize:none;height:60px" disabled></textarea>
                   </div>
                 </div>
 
@@ -91,13 +110,13 @@ endforeach;
                   <div class="col-md-12 col-sm-12 col-xs-12 ">
                     <div class="ln_solid"></div>
                     <div class="btn-group pull-right">
-                      <a href="<?= site_url('view_questions')?>" class="animated fadeInDown btn btn-primary flat">
+                      <a href="<?= site_url('view_questions')?>" class="btn btn-primary flat">
                       <i class="fa fa-arrow-left"></i> Back</a>
                       
-                      <button type="submit" id="deletequestion" class="animated fadeInDown btn btn-danger flat">
+                      <button type="submit" id="deletequestion" class="btn btn-danger flat">
                       <i class="fa fa-trash"></i> Delete</button>
                       
-                      <button type="submit" id="updatequestion" class="animated fadeInDown btn btn-dark flat">
+                      <button type="submit" id="updatequestion" ng-disabled="!modify.$valid" class="btn btn-dark flat">
                       <i class="fa fa-check-circle"></i> Save Changes</button>
                     </div>
                   </div>
@@ -115,3 +134,17 @@ endforeach;
       </div>
     </div>   
 
+
+<?php $this->load->view('template/components/footer');?>
+ <script type="text/javascript">
+   var app = angular.module('app', ['ngMessages']);
+    app.controller('myCtrl',function($scope){
+      $scope.modifyquestion = '<?php echo$udata['question']?>';
+      $scope.modifycategory = '<?php echo$udata['category']?>';
+      $scope.modifyoption_a = '<?php echo$udata['option_a']?>';
+      $scope.modifyoption_b = '<?php echo$udata['option_b']?>';
+      $scope.modifyoption_c = '<?php echo$udata['option_c']?>';
+      $scope.modifyoption_d = '<?php echo$udata['option_d']?>';
+      $scope.modifyanswer   = '<?php echo$udata['answer']?>';
+    });
+</script>

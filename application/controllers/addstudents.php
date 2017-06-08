@@ -17,7 +17,6 @@ class addstudents extends CI_Controller
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs');
 		$this->load->view('template/pages/admin/addstudents',$data);
-		$this->load->view('template/components/footer',$data);
 
 	}
 

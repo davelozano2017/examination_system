@@ -38,7 +38,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Question
                       <b ng-messages="que.question.$error" ng-if="que.question.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b>
                     </label>
                       <textarea class="form-control" name="question" ng-model='question' style="resize:none;height:40px" required></textarea>
@@ -63,7 +63,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Choice A
                       <b ng-messages="que.option_a.$error" ng-if="que.option_a.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b></label>
                       <textarea class="form-control" name="option_a" id="option_a" ng-model='option_a' style="resize:none;height:40px" required></textarea>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Choice B
                       <b ng-messages="que.option_b.$error" ng-if="que.option_b.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b>
                       </label>
                       <textarea class="form-control" name="option_b" ng-model='option_b' style="resize:none;height:40px" required></textarea>
@@ -84,7 +84,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Choice C
                       <b ng-messages="que.option_c.$error" ng-if="que.option_c.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b>
                       </label>
                       <textarea class="form-control" name="option_c" ng-model='option_c' style="resize:none;height:40px" required></textarea>
@@ -95,7 +95,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Choice D
                       <b ng-messages="que.option_d.$error" ng-if="que.option_d.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b>
                       </label>
                       <textarea class="form-control" name="option_d" ng-model='option_d' style="resize:none;height:40px" required></textarea>
@@ -150,3 +150,14 @@
         </div>
       </div>
     </div>   
+
+
+
+<?php $this->load->view('template/components/footer');?>
+<!-- angluar -->
+<script src="<?php echo base_url()?>assets/angular/1.4.8.angular.min.js"></script>
+<script src="<?php echo base_url()?>assets/angular/1.4.2.angular.min.js"></script>
+ <script type="text/javascript">
+   var app = angular.module('app', ['ngMessages']);
+   app.controller('myCtrl',function($scope){});
+</script>

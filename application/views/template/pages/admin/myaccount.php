@@ -1,6 +1,4 @@
 <?php 
-$errors = $this->session->flashdata('errors');
-$path = 'template/pages/admin/myaccount-form';
 foreach ($admin_data as $r):
   $udata = array(
     'id'     => $r->id,     'image'   => $r->image,
@@ -84,13 +82,107 @@ endforeach;
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                  <?php $this->load->view($path.'info') ?>
+                  <!-- execute/updateinfo/'.$data['session_id'].' -->
+                  <form method="POST" name="myaccount" class="form-horizontal" novalidate>
+
+                  <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                      <label>Name
+                      <b ng-messages="myaccount.name.$error" ng-if="myaccount.name.$dirty">
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <input type="hidden" class="form-control" name="id" id="id"  value="<?php echo$udata['id']?>" required >
+                      <input type="text" class="form-control" name="name" ng-model="adminname" id="name" required >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                      <label>Address
+                      <b ng-messages="myaccount.address.$error" ng-if="myaccount.address.$dirty">
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <input type="text" class="form-control" name="address" ng-model="adminaddress" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                      <label>Gender
+                      <b ng-messages="myaccount.gender.$error" ng-if="myaccount.gender.$dirty">
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <select class="form-control select2" ng-model="admingender" name="gender" required>
+                        <option value="<?php echo$udata['gender']?>"><?php echo$udata['gender']?></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                      <label>Email
+                      <b ng-messages="myaccount.email.$error" ng-if="myaccount.email.$dirty">
+                        <strong ng-message="pattern" class="label label-danger flat" >Please enter a valid email address.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                      </b>
+                      </label>
+                      <input type="email" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"  name="email" ng-model="adminemail" required>
+                    </div>
+                  </div>
+
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <button type="submit" id="updateinfo" ng-disabled="!myaccount.$valid" class="btn btn-dark pull-right flat"><i class="fa fa-check-circle"></i> Save Changes</button>
+                    </div>
+                  </div>
+                           
+                  </form>
+
+
                   </div>
                   
                   <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                  <?php 
-                  $this->load->view($path.'password');
-                   ?>
+                      <form method="POST" name='pwd' class="form-horizontal" movalidate>
+                          <input type="hidden" class="form-control" id="id" value="<?php echo$data['session_id']?>" required>
+                      <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                          <label>New Password 
+                          <b ng-messages="pwd.password.$error" ng-if="pwd.password.$dirty">
+                            <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                            <strong ng-message="minlength" class="label label-danger flat" >Password is too short.</strong>
+                          </b>
+                          </label>
+                          <input type="password" class="form-control" id="password" ng-minlength=6 ng-model="password" name="password" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                          <label>Confirm New Password
+                          <b ng-messages="pwd.cpassword.$error" ng-if="pwd.cpassword.$dirty">
+                            <strong ng-show="cpassword !== password" class="label label-danger flat" >Password not matched.</strong>
+                            <strong ng-message="required" class="label label-danger flat" >name is required.</strong>
+                          </b>
+                         </label>
+                          <input type="password" class="form-control" ng-model="cpassword" name="cpassword" required>
+                        </div>
+                      </div>
+
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <button type="submit" id="updatepassword" ng-disabled="!pwd.$valid" class="btn btn-dark pull-right flat"><i class="fa fa-check-circle"></i> Save Changes</button>
+                        </div>
+                      </div>
+                               
+                      </form>
 
                   </div>
 
@@ -105,3 +197,14 @@ endforeach;
       </div>
     </div>   
 
+<?php $this->load->view('template/components/footer');?>
+<script type="text/javascript">
+//School information
+   var app = angular.module('app', ['ngMessages']);
+   app.controller('myCtrl',function($scope){
+      $scope.adminname     = '<?php echo$udata['name']?>';
+      $scope.adminemail    = '<?php echo$udata['email']?>';
+      $scope.adminaddress  = '<?php echo$udata['address']?>';
+      $scope.admingender   = '<?php echo$udata['gender']?>';
+    });
+</script>

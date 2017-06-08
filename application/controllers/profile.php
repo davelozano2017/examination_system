@@ -26,7 +26,6 @@ class profile extends CI_Controller
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/student/navs/navs');
 		$this->load->view('template/pages/student/profile',$data);
-		$this->load->view('template/components/footer',$data);
 
 	}
 	

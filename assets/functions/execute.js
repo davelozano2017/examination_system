@@ -1,3 +1,16 @@
+
+function showallstudents() {
+  var url = 'http://localhost/examination_system/showallstudents';
+  $.ajax({
+    type:'POST',
+    url : url,
+    cache:false,
+    success:function(data) {
+      $('div#showallstudents').html(data);
+    }
+  });
+}
+
 function addstudent()
 {
 
@@ -26,6 +39,7 @@ function addstudent()
 						break;
 
 						case 'success':
+						showallstudents();
 						$("body").overhang({custom: true,html: true,textColor: "#fffff",primary: "#0da65a",message: "<i class='fa fa-check-circle'></i> New student has been added."});
 						$('#addstudent').html('<i class="fa fa-check-circle"></i> Submit').attr('disabled',false);
 						break;
@@ -85,22 +99,22 @@ function addnewquestions()
 function deleteallrecord() {
 
 	$(document).ready(function(){
-		$('#deleteall').click(function(e){
-			e.preventDefault();
-			var url = 'execute/delete_all';
-			$("body").overhang({type: "confirm",primary: "#5389ff",accent: "#5389ff",yesColor: "#3498DB",message: "Do you want to delete all records?",
-			  callback: function (value) {
-			    var response = value ? "yes" : "no";
-			    if(response == 'yes') { 
-			    	location.href = url; 
-			    };
-			  }
-			});
-		})
-	})
+	    $('#deleteall').click(function(e){
+	      e.preventDefault();
+	      var url = 'execute/delete_all';
+	      $("body").overhang({type: "confirm",primary: "#5389ff",accent: "#5389ff",yesColor: "#3498DB",message: "Do you want to delete all records?",
+	        callback: function (value) {
+	          var response = value ? "yes" : "no";
+	          if(response == 'yes') { 
+	            location.href = url; 
+	          };
+	        }
+	      });
+	    });
+	  });	
 		
-
 }
+
 function insertupdate() {
 
 	$(document).ready(function(){
@@ -607,16 +621,10 @@ function modifyinstruction() {
 		  }
 		});
 	});
-
-
 }
 
 
 
-
-
-
-      
 addstudent();
 modifyquestion();
 insertupdate();

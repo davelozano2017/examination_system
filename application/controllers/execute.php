@@ -305,35 +305,10 @@ class execute extends CI_Controller
 	public function updatestudentpassword($id)
 	{
 
-		$data = array(
-			'normal' => 'trim|required|xss_clean',
-			'password' => 'trim|required|xss_clean|matches[password]'
-			);
 
-		$this->validate('password','Password',$data['normal'].'|min_length[6]');
-		$this->validate('cpassword','Confirm Password',$data['password']);
-
-		if($this->form_validation->run() == FALSE)
-		{
-
-			$data = array('errors'=>validation_errors(' <i class="fa fa-remove"></i> '));
-			$this->session->set_flashdata($data);
-			redirect('profile');
-
-		}
-		
-
-		$data = array(
-			'password' 	=> $this->encrypt($this->post('password'))
-			);
-
+		$data = array('password' => $this->encrypt($this->post('password')));
 		$result = $this->model->MyAccountUpdatePassword($data,$id);
-		if($result)
-		{
-
-			redirect('profile');
-
-		}
+		
 
 	}
 
@@ -465,11 +440,44 @@ class execute extends CI_Controller
 
 	public function finish()
 	{
-
-		$ans = $this->post('answer');
-		$cor = $this->post('correct_answer');
-	
-		echo count($ans);		
+		$code = rand(111111,999999);
+		$_SESSION['code'] = $code;
+		$result = $this->model->GetQuestionByAnswer();
+		foreach ($result as $key => $value) {
+			$data['correct'] = $value['answer'];
+			$data['answer'] = $this->post('answer')[$key];
+				if($data['answer'] != $data['correct']) {
+					$status = 'wrong';
+				} elseif($data['answer'] == $data['correct']) {
+					$status = 'correct';
+				}
+			$data = array('status' => $status,'code'=> $_SESSION['code']);
+			$result = $this->model->CalculateResult($data);
+		} if($result) {
+			$squery = $this->model->CountScore($_SESSION['code']);
+			$score 	= $_SESSION['score'];
+			$percentage = $score / 20 * 50 + 50;
+			if($percentage < 75) {
+				$stats = 'Failed';
+			} else {
+				$stats = 'Passed';
+			}
+			$date = date('F j, \ Y h:i A');
+			$user 	= $this->model->GetUserInformation($_SESSION['session_id']);
+			$name 	= $user->name;
+			$email 	= $user->email;
+			$result_data = array(
+				'name'=>$name, 'email'=>$email,
+				'score'=>$score,'percentage'=>$percentage,
+				'status' => $stats,'date'=>$date);
+			$query = $this->model->ExaminationResult($result_data);
+			if($query) {
+				$this->model->DeleteTempTable($_SESSION['code']);
+				unset($_SESSION['active'],$_SESSION['score'],$_SESSION['code']);
+				$_SESSION['done'] = 'Active';
+				redirect('done');
+			}
+		}
 
 	}
 
@@ -744,8 +752,19 @@ class execute extends CI_Controller
 	public function logout()
 	{
 
-		unset($_SESSION['name'],$_SESSION['session_id'],$_SESSION['logged_in'],$_SESSION['role']);
-		redirect('login');
+		if(isset($_SESSION['role']) == 1 && isset($_SESSION['active'])) {
+			$user 	= $this->model->GetUserInformation($_SESSION['session_id']);
+			$name 	= $user->name;
+			$email 	= $user->email;
+			$result_data = array('name'=>$name, 'email'=>$email,'score'=>0,'percentage'=>0,'status' => 'Failed');
+			$query = $this->model->ExaminationResult($result_data);
+			unset($_SESSION['name'],$_SESSION['session_id'],$_SESSION['logged_in'],$_SESSION['role'],$_SESSION['done'],$_SESSION['active']);
+			redirect('login');
+		} else {
+			unset($_SESSION['name'],$_SESSION['session_id'],$_SESSION['logged_in'],$_SESSION['role'],$_SESSION['done']);
+			redirect('login');
+		}
+		
 
 	}
 	
@@ -756,6 +775,16 @@ class execute extends CI_Controller
 		return password_hash($password, PASSWORD_DEFAULT);
 		
 	}
+
+	public function checkresult($email)
+	{	
+
+		$encoded = urldecode($email);
+		$result = $this->model->CheckResultByEmail($encoded);
+		return $result;
+	}
+
+
 
 	public function dbexport() 
 	{

@@ -19,16 +19,13 @@ class view_student extends CI_Controller
 			'title'			=> 'Examination System',
 			'greetings'		=> 'Howdy,'
 			);
-		$data['count'] = $this->model->CountRegisteredUser();
 		$data['data'] = $this->session->userdata();
-		$data['result'] = $this->model->GetSchoolInformation();
 		$data['url'] = base_url();
 		$data['admin_data'] = $this->model->GetInformation($_SESSION['session_id']);
 		$data['student_info'] = $this->model->GetStudentInfo($id);
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs');
 		$this->load->view('template/pages/admin/student_profile',$data);
-		$this->load->view('template/components/footer',$data);
 
 	}
 

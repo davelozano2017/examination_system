@@ -13,10 +13,6 @@ endforeach;
    <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12 col-xs-12">
-  <?php $errors = $this->session->flashdata('errors'); if($errors){ echo '<div class="alert alert-danger">'.$errors.'</div>';}?>
-          </div>
-
-      <div class="col-md-12 col-xs-12">
 
         <div class="x_panel">
           <div class="x_content">
@@ -42,24 +38,21 @@ endforeach;
 
 
         <!-- start -->
-      <form method="POST" action="<?php echo$url?>execute/finish" data-parsley-validate class="form-horizontal form-label-left input_mask">
-        <input type="hidden" name="email" value="<?php echo$udata['email']?>">
-        <input type="hidden" name="name" value="<?php echo$udata['name']?>">
+      <form method="POST" action="<?= site_url('execute/finish')?>" data-parsley-validate class="form-horizontal">
         <?php $i=1; foreach ($questions as $q): ?>
           <div class="x_panel">
             <div class="x_content">
               
               <h4 class="pull-right">Q #<?php echo $i++?></h4>
-              <h4 class="text-danger"><?php echo $q->question?></h4>
+              <h4 class="text-danger"><?php echo $q['question']?></h4>
               <div class="clearfix"></div>
               
               <div class="form-group">
-                <input type="hidden" name="correct_answer[]" value="<?php echo$q->answer?>">
                 <select name="answer[]" class="form-control" required>
-                  <option value="<?php echo $q->option_a?>" selected><?php echo $q->option_a?></option>
-                  <option value="<?php echo $q->option_b?>"><?php echo $q->option_b?></option>
-                  <option value="<?php echo $q->option_c?>"><?php echo $q->option_c?></option>
-                  <option value="<?php echo $q->option_d?>"><?php echo $q->option_d?></option>
+                  <option value="<?php echo $q['option_a']?>" selected><?php echo $q['option_a']?></option>
+                  <option value="<?php echo $q['option_b']?>"><?php echo $q['option_b']?></option>
+                  <option value="<?php echo $q['option_c']?>"><?php echo $q['option_c']?></option>
+                  <option value="<?php echo $q['option_d']?>"><?php echo $q['option_d']?></option>
                 </select>
               </div>
             
@@ -68,37 +61,19 @@ endforeach;
         <?php endforeach ?>
         <div class="x_panel">
             <div class="x_content">
-            <a href="#" onclick="send()" class="btn btn-dark flat pull-right"> <i class="fa fa-check-circle"></i> Click To Submit </a>
+            <button id="send" class="btn btn-dark flat pull-right"> <i class="fa fa-check-circle"></i> Click To Submit </button>
            </div>
         </div>
       </form>
         <!-- end -->
-
-
-
-
-
         </div>
       </div>
     </div>   
 
+
+<?php $this->load->view('template/components/footer');?>
 <script type="text/javascript">
-  function send()
-  {
-    swal({
-    title: "",
-    text: "<h4>Are you sure you want to finish this examination?</h4>",
-    type: "warning",
-    html:true,
-    showCancelButton: true,
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Yes!",
-    closeOnConfirm: false
-    },
-    function(){
-        $("form").submit();
-    });
-
-  }
+//School information
+   var app = angular.module('app', ['ngMessages']);
+   app.controller('myCtrl',function($scope){});
 </script>
-

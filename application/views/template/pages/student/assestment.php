@@ -34,20 +34,21 @@ endforeach;
               <div class="form-group">
                 <h4>Examination Rules!</h4>
                 <ul>
-                  <?php foreach($instructions as $r): echo '<li>'.$r->instructions.'</li>'; endforeach;?>
+                  <?php foreach($instructions as $r){ echo '<li>'.$r['instructions'].'</li>'; }?>
                 </ul>
               </div>
 
               <div class="form-group">
                 <h4>Possible Questions!</h4>
                 <ul>
-                  <?php foreach($category as $r): echo '<li>'.$r->category.'</li>'; endforeach;?>
+                  <?php foreach($category as $r){ echo '<li>'.$r['category'].'</li>'; }?>
                 </ul>
               </div>
 
                 <p>Please click the button below to begin your assestment.</p>
             </div>
-            <a href="#" onClick="start('<?php echo$url?>exam/begin/')" class="btn btn-dark flat">Begin</a>
+            <button id="begin" onclick="begin('<?php echo urlencode($udata['email'])?>')" class="btn btn-dark flat"> <i class="fa fa-check-circle"></i> Begin </button>
+
 
             <!-- end -->
 
@@ -62,23 +63,9 @@ endforeach;
       </div>
     </div>   
 
-
+<?php $this->load->view('template/components/footer');?>
 <script type="text/javascript">
-  function start($url)
-  {
-    var url = $url;
-    swal({
-    title: "",
-    text: "<h4>Are you sure you want to start your assestment?</h4>",
-    type: "warning",
-    html:true,
-    showCancelButton: true,
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Yes",
-    closeOnConfirm: false
-  },
-    function(){
-      location.href = url;
-    });
-  }
+//School information
+   var app = angular.module('app', ['ngMessages']);
+   app.controller('myCtrl',function($scope){});
 </script>

@@ -51,14 +51,14 @@ endif;
 
               <div class="form-group"> 
                 <b ng-messages="login.username.$error" ng-if="login.username.$dirty" class="pull-left" style="margin-bottom: 3px">
-                  <strong ng-message="required" class="label label-danger">Username is required.</strong>
+                  <strong ng-message="required" class="label label-danger flat">This field is required.</strong>
                 </b>
                 <input type="text" placeholder="Username" class="form-control flat" name="username" id="username" ng-model="username" required >
               </div>
 
               <div class="form-group">
                 <b ng-messages="login.password.$error" ng-if="login.password.$dirty" class="pull-left" style="margin-bottom: 3px">
-                  <strong ng-message="required" class="label label-danger">Password is required.</strong>
+                  <strong ng-message="required" class="label label-danger flat">This field is required.</strong>
                 </b>
                 <input type="password" class="form-control flat" placeholder="••••••••" ng-model="password" name="password" required>
               </div>
@@ -85,10 +85,8 @@ endif;
     <!-- Angular -->
     <script src="<?php echo$url?>assets/angular/1.4.8.angular.min.js"></script>
     <script src="<?php echo$url?>assets/angular/1.4.2.angular.min.js"></script>
-    <script src="<?php echo$url?>assets/build/js/index.js"></script>
     <script src="<?php echo$url?>assets/build/js/overhang.min.js"></script>
     <script src="<?php echo$url?>assets/build/js/jquery-ui.min.js"></script>
-    <script src="<?php echo$url?>assets/build/js/prism.js"></script>
     <script type="text/javascript">
     var app = angular.module('app', ['ngMessages']);
     login()

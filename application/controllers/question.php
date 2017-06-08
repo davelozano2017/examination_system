@@ -17,12 +17,11 @@ class question extends CI_Controller
 		$data['url'] = base_url();
 		$data['admin_data'] = $this->model->GetInformation($_SESSION['session_id']);
 		$data['category'] 	= $this->model->GetAllCategory($id);
+		$data['result'] = $this->model->GetSchoolInformation();
 		$data['questions'] 	= $this->model->GetQuestionsById($id);
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs');
 		$this->load->view('template/pages/admin/modify_question',$data);
-		$this->load->view('template/components/footer',$data);
-
 
 	}
 

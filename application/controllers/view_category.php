@@ -25,8 +25,6 @@ class view_category extends CI_Controller
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/admin/navs/navs',$data);
 		$this->load->view('template/pages/admin/view_category',$data);
-		$this->load->view('template/components/footer',$data);
-
 	}
 
 }

@@ -9,6 +9,7 @@ class exam extends CI_Controller
 
 		parent::__construct();
 		$_SESSION['active'] = 'Active';
+		if(isset($_SESSION['done'])): redirect('done'); endif;
 
 	}
 
@@ -30,7 +31,6 @@ class exam extends CI_Controller
 		$this->load->view('template/components/header',$data);
 		$this->load->view('template/pages/student/navs/navs');
 		$this->load->view('template/pages/student/begin',$data);
-		$this->load->view('template/components/footer',$data);
 
 	}
 

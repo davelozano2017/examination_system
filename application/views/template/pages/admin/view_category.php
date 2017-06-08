@@ -35,7 +35,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Category
                       <b ng-messages="catform.category.$error" ng-if="catform.category.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b>
                       </label>
                       <input type="text" name="category" class="form-control" ng-model='category' required>
@@ -81,3 +81,10 @@
         </div>
       </div>
     </div>   
+<?php $this->load->view('template/components/footer');?>
+ <script type="text/javascript">
+   var app = angular.module('app', ['ngMessages']);
+    app.controller('myCtrl',function($scope){
+   
+    });
+</script>

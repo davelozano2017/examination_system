@@ -34,11 +34,11 @@
                   <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                       <label>Instructions
-                      <b ng-messages="insform.instruction.$error" ng-if="insform.instruction.$dirty">
-                        <strong ng-message="required" class="label label-danger" >This field is required.</strong>
+                      <b ng-messages="insform.instructions.$error" ng-if="insform.instructions.$dirty">
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
                       </b>
                       </label>
-                      <input type="text" name="instructions" class="form-control" ng-model='instruction' required>
+                      <input type="text" name="instructions" class="form-control"  ng-model='instruction' required>
                     </div>
                   </div>
 
@@ -80,3 +80,11 @@
         </div>
       </div>
     </div>   
+
+<?php $this->load->view('template/components/footer');?>
+ <script type="text/javascript">
+   var app = angular.module('app', ['ngMessages']);
+    app.controller('myCtrl',function($scope){
+   
+    });
+</script>

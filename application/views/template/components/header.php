@@ -52,7 +52,7 @@
 }
 </style> -->
 
-  <body class="nav-md" ng-app="app" >
+  <body class="nav-md" ng-app="app" ng-controller='myCtrl'>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">

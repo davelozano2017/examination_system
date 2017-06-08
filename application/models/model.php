@@ -12,10 +12,31 @@ class model extends CI_Model
 
 	}
 
-	public function CountRegisteredUser()
+	public function CountRegisteredUsers()
 	{
 
 		return $this->db->where('role', 1)->count_all_results('es_accounts_tbl');
+
+	}
+
+	public function CountStudentAttended()
+	{
+
+		return $this->db->count_all_results('es_results_tbl');
+
+	}
+
+	public function CountPassingStudents()
+	{
+
+		return $this->db->where(['status'=>'Passed'])->count_all_results('es_results_tbl');
+
+	}
+
+	public function CountFailedStudents()
+	{
+
+		return $this->db->where(['status'=>'Failed'])->count_all_results('es_results_tbl');
 
 	}
 
@@ -35,7 +56,6 @@ class model extends CI_Model
 		}
 
 	}
-
 
 	public function UploadProfile($image,$id)
 	{
@@ -201,6 +221,14 @@ class model extends CI_Model
 		return $result->result_array();
 
 	}
+
+	public function GetQuestionByAnswer()
+	{
+
+		$result = $this->db->select('answer')->from('es_questions_tbl')->get();
+		return $result->result_array();
+
+	}
 	
 	public function GetStudentInfo($id)
 	{
@@ -336,6 +364,62 @@ class model extends CI_Model
 
 		$result = $this->db->where(['role'=>1])->get('es_accounts_tbl');
 		return $result->result();
+
+	}
+
+	public function CalculateResult($data) {
+
+		$result = $this->db->insert('es_temp_tbl',$data);
+		return $result;
+	
+	}
+
+	public function DeleteTempTable($code) {
+
+		$result = $this->db->where(['code'=>$code])->delete('es_temp_tbl');
+		return $result;
+	}
+
+	public function ExaminationResult($data) {
+
+
+		$result = $this->db->insert('es_results_tbl',$data);
+		return $result;
+
+	}
+
+	public function CountScore($code)
+	{
+
+		$check = $this->db->where(['status'=>'correct','code'=>$code])->get('es_temp_tbl');
+		$count = $check->num_rows();
+		return $_SESSION['score'] = $count;
+
+	}
+
+	public function GetResult($email) {
+
+		$result = $this->db->where(['email'=>$email])->get('es_results_tbl');
+		return 	$result->result();
+	}
+
+	public function CheckResultByEmail($email)
+	{
+
+		$check = $this->db->select('email')->from('es_results_tbl')->where(['email' => $email])->get();
+		if($check->num_rows() == 1)
+		{
+
+			echo 'finished';
+			$_SESSION['done'] = 'Active';
+			return $check;
+
+		} else {
+
+			echo 'unfinish';
+			
+		
+		}
 
 	}
 

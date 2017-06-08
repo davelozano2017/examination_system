@@ -1,12 +1,10 @@
 <?php 
-$errors = $this->session->flashdata('errors');
 foreach ($student_info as $r):
   $udata = array(
     'id'     => $r->id,     'image'   => $r->image,
     'email'  => $r->email,  'address' => $r->address,
     'gender' => $r->gender, 'name'    => $r->name,
-    'date'   => $r->date,   'gender'  => $r->gender,
-    'username' => $r->username,
+    'date'   => $r->date, 'username' => $r->username,
     );
 endforeach;
 ?>
@@ -87,27 +85,39 @@ endforeach;
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                    <form method="POST" data-parsley-validate class="form-horizontal" novalidate>
+                    <form method="POST" name="profilestudent" class="form-horizontal" novalidate>
                     
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Name</label>
-                        <input type="hidden" id="id" class="form-control" name="name" value="<?php echo$udata['id']?>" required>
-                        <input type="text" id="name" class="form-control" name="name" value="<?php echo$udata['name']?>" required>
+                        <label>Name
+                        <b ng-messages="profilestudent.name.$error" ng-if="profilestudent.name.$dirty">
+                        <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                        </b>
+                        </label>
+                        <input type="hidden" id="id" class="form-control" name="id" value="<?php echo$udata['id']?>" required>
+                        <input type="text" id="name" class="form-control" name="name" ng-model="studentname" required>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Address</label>
-                        <input type="text" id="address" class="form-control" name="address" value="<?php echo$udata['address']?>" required>
+                        <label>Address
+                        <b ng-messages="profilestudent.address.$error" ng-if="profilestudent.address.$dirty">
+                          <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                        </b>
+                        </label>
+                        <input type="text" id="address" class="form-control" name="address" ng-model="studentaddress" required>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Gender</label>
-                        <select class="select2 form-control" id="gender" name="gender" required style="width:100%">
+                        <label>Gender
+                        <b ng-messages="profilestudent.gender.$error" ng-if="profilestudent.gender.$dirty">
+                          <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                        </b>
+                        </label>
+                        <select class="select2 form-control" id="gender" ng-model="studentgender" name="gender" required style="width:100%">
                           <option value="<?php echo$udata['gender']?>"><?php echo$udata['gender']?></option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
@@ -117,8 +127,13 @@ endforeach;
 
                     <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label>Email</label>
-                        <input type="email" id="email" class="form-control" name="email" value="<?php echo$udata['email']?>" required>
+                        <label>Email
+                        <b ng-messages="profilestudent.email.$error" ng-if="profilestudent.email.$dirty">
+                          <strong ng-message="pattern" class="label label-danger flat" >Please enter a valid email address.</strong>
+                          <strong ng-message="required" class="label label-danger flat" >This field is required.</strong>
+                        </b>
+                      </label>
+                        <input type="email" id="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"  class="form-control" name="email" ng-model="studentemail" required>
                       </div>
                     </div>
 
@@ -131,7 +146,7 @@ endforeach;
                         <i class="fa fa-trash"></i> Delete
                       </button>
 
-                      <button type='submit' id="updatestudentprofile"  class="btn btn-dark pull-right flat">
+                      <button type='submit' id="updatestudentprofile" ng-disabled="!profilestudent.$valid"  class="btn btn-dark pull-right flat">
                         <i class="fa fa-check-circle"></i> Save Changes
                       </button>
                       </div>
@@ -149,3 +164,18 @@ endforeach;
       </div>
     </div>   
 
+<?php $this->load->view('template/components/footer');?>
+<!-- angluar -->
+<script src="<?php echo base_url()?>assets/angular/1.4.8.angular.min.js"></script>
+<script src="<?php echo base_url()?>assets/angular/1.4.2.angular.min.js"></script>
+<script type="text/javascript">
+//School information
+   var app = angular.module('app', ['ngMessages']);
+   app.controller('myCtrl',function($scope){
+      $scope.studentname     = '<?php echo$udata['name']?>';
+      $scope.studentemail    = '<?php echo$udata['email']?>';
+      $scope.studentgender   = '<?php echo$udata['gender']?>';
+      $scope.studentaddress  = '<?php echo$udata['address']?>';
+      $scope.studentemail    = '<?php echo$udata['email']?>';
+    });
+</script>
