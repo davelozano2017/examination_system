@@ -26,6 +26,7 @@ class done extends CI_Controller
 		$data['url'] = base_url();
 		$data['user_data'] 	  = $this->model->GetInformation($_SESSION['session_id']);
 		$data['data']		  = $this->session->userdata();
+		$data['results'] 	  = $this->model->GetResultsByEmail($_SESSION['email']);
 		$data['category'] 	  = $this->model->GetAllCategory();
 		$data['instructions'] = $this->model->GetAllInstructions();
 		$this->load->view('template/components/header',$data);

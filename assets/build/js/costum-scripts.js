@@ -12,15 +12,15 @@ $(document).ready(function(){
 
 
   $('#ShowCategory').dataTable({
-      'ajax':'execute/GetCategory',
+      'ajax':'execute/GetCategory'
   });
 
    $('#ShowInstructions').dataTable({
-      'ajax':'execute/GetInstructions',
+      'ajax':'execute/GetInstructions'
   });
 
   $('#ShowQuestions').dataTable({
-      'ajax':'execute/GetQuestions',
+      'ajax':'execute/GetQuestions'
   });
 
 });
@@ -79,16 +79,16 @@ $('#send').click(function(){
 
 
 
-function showallstudents() {
-  var url = 'http://localhost/examination_system/showallstudents';
-  $.ajax({
-    type:'POST',
-    url : url,
-    cache:false,
-    success:function(data) {
-      $('div#showallstudents').html(data);
-    }
-  });
-}
+// function showallstudents() {
+//   var url = 'http://localhost/examination_system/showallstudents';
+//   $.ajax({
+//     type:'POST',
+//     url : url,
+//     cache:false,
+//     success:function(data) {
+//       $('div#showallstudents').html(data);
+//     }
+//   });
+// }
 
-showallstudents();
+// showallstudents();

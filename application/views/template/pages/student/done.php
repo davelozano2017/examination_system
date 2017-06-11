@@ -1,16 +1,18 @@
 <?php 
-foreach ($user_data as $r):
-  $udata = array(
-    'id'     => $r->id,     'image'   => $r->image,
-    'email'  => $r->email,  'address' => $r->address,
-    'gender' => $r->gender, 'name'    => $r->name,
-    'date'   => $r->date,   'role'    => $r->role
-    );
+foreach ($results as $r):
+    $udata = array(
+      'email'=> $r->email, 'name'=> $r->name, 'gender'=> $r->gender,
+      'status'=> $r->status, 'score' => $r->score, 'percentage' => $r->percentage);
+    $var = ($udata['gender'] == 'Male') ? $gender = 'Mr. ' : $gender = 'Ms. ';
+    $stats = strtoupper($udata['status']);
+    $var = ($stats == 'PASSED') ? 
+    $message = '<blockquote class="text-primary">congratulations and keep going. Thank you.</blockquote>' : 
+    $message = '<blockquote class="text-danger">sorry and better luck next time. Thank you.</blockquote>';
 endforeach;
 ?>
    <div class="right_col" role="main">
     <div class="title_left">
-      <h3><i class="fa fa-exclamation-circle"></i> Assestment Information</h3>
+      <h3><i class="fa fa-exclamation-circle"></i> Result</h3>
     </div>
 
     <div class="row">
@@ -19,7 +21,12 @@ endforeach;
           <div class="x_content">
 
             <!-- start -->
-                <h4>Congratulations <?php echo $udata['name']?></h4>
+                <h4>Dear <?php echo $gender.$udata['name']?>,</h4>
+                <h5>Please be informed that you are <?php echo$stats?> in the Online Examination by Our Lady of Fatima University with the average score of <?php echo $udata['percentage']?>% (<?php echo$udata['score']?> / 20).</h5>
+                <h5>We want to say <?php echo$message?></h5>
+                <br>
+                <h5>Very truly yours,</h5>
+                <h5>Admin Team</h5>
             <!-- end -->
             
           </div>
@@ -31,24 +38,3 @@ endforeach;
         </div>
       </div>
     </div>   
-
-
-<script type="text/javascript">
-  function start($url)
-  {
-    var url = $url;
-    swal({
-    title: "",
-    text: "<h4>Are you sure you want to start your assestment?</h4>",
-    type: "warning",
-    html:true,
-    showCancelButton: true,
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Yes",
-    closeOnConfirm: false
-  },
-    function(){
-      location.href = url;
-    });
-  }
-</script>

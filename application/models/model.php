@@ -198,6 +198,19 @@ class model extends CI_Model
 
 	}
 
+	public function GetResultsByEmail($email) 
+	{
+
+		$result = $this->db->select(
+			'es_accounts_tbl.email, es_accounts_tbl.gender, es_results_tbl.email, 
+			 es_results_tbl.name, es_results_tbl.score, es_results_tbl.status,
+			 es_results_tbl.date,es_results_tbl.percentage')->from('es_accounts_tbl')->join('es_results_tbl','es_accounts_tbl.email = es_results_tbl.email')
+			->where('es_accounts_tbl.email',$email)->get();
+		return $result->result();
+
+	}
+
+
 	public function GetAllCategory()
 	{
 
@@ -211,6 +224,14 @@ class model extends CI_Model
 
 		$result = $this->db->get('es_instructions_tbl');
 		return $result->result_array();
+
+	}
+
+	public function GetAllResults()
+	{
+
+		$result = $this->db->get('es_results_tbl');
+		return $result->result();
 
 	}
 

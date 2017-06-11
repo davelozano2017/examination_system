@@ -92,6 +92,7 @@ class execute extends CI_Controller
 		echo json_encode($result);
 	}
 
+
 	public function InsertUpdate()
 	{	
 		$data = array(
@@ -416,7 +417,8 @@ class execute extends CI_Controller
 			$id 	= $this->model->GetId($username);
 			$user 	= $this->model->GetUserInformation($id);
 			$role 	= $user->role;
-			$newdata = array('session_id' => $id,'role' => $role,'logged_in' => TRUE);
+			$email 	= $user->email;
+			$newdata = array('session_id' => $id,'role' => $role,'logged_in' => TRUE,'email'=>$email);
 			switch ($role) 
 			{
 				case 0:
