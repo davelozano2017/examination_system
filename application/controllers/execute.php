@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 defined('BASEPATH') or exit ('No direct script allowed.');
 date_default_timezone_set('Asia/Manila');
 
-class execute extends CI_Controller 
+class execute extends CI_Controller
 {
 
 	public function __construct()
@@ -15,7 +15,7 @@ class execute extends CI_Controller
 
 	// public function generate_username()
 	// {
-    
+
 	//     return sprintf( 'OES-%04x'.rand(111,999),
 	//         mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
 	//         mt_rand( 0, 0xffff ),
@@ -42,14 +42,14 @@ class execute extends CI_Controller
 
 	}
 
-	public function GetCategory() 
+	public function GetCategory()
 	{
 
 		$result = array('data'=>array());
 		$data 	= $this->model->GetAllCategory();
 		$i = 1;
-		foreach ($data as $key => $value) 
-		{	
+		foreach ($data as $key => $value)
+		{
 			$id = $value['id'];
 			$button = "<a class='btn btn-dark flat' href='http://localhost/examination_system/category/modify/$id'><i class='fa fa-pencil'></i> Modify</a>";
 			$result['data'][$key] = array($i++,$value['category'],$button);
@@ -57,14 +57,14 @@ class execute extends CI_Controller
 		echo json_encode($result);
 	}
 
-	public function GetInstructions() 
+	public function GetInstructions()
 	{
 
 		$result = array('data'=>array());
 		$data 	= $this->model->GetAllInstructions();
 		$i = 1;
-		foreach ($data as $key => $value) 
-		{	
+		foreach ($data as $key => $value)
+		{
 			$id = $value['id'];
 			$button = "<a class='btn btn-dark flat' href='http://localhost/examination_system/instructions/modify/$id'><i class='fa fa-pencil'></i> Modify</a>";
 			$result['data'][$key] = array($i++,$value['instructions'],$button);
@@ -72,14 +72,14 @@ class execute extends CI_Controller
 		echo json_encode($result);
 	}
 
-	public function GetQuestions() 
+	public function GetQuestions()
 	{
 
 		$result = array('data'=>array());
 		$data 	= $this->model->GetAllQuestions();
 		$i = 1;
-		foreach ($data as $key => $value) 
-		{	
+		foreach ($data as $key => $value)
+		{
 			$id = $value['id'];
 			$button = "<a class='btn btn-dark flat' href='http://localhost/examination_system/question/modify/$id'><i class='fa fa-pencil'></i> Modify</a>";
 			$result['data'][$key] = array(
@@ -94,7 +94,7 @@ class execute extends CI_Controller
 
 
 	public function InsertUpdate()
-	{	
+	{
 		$data = array(
 			'normal' => 'trim|required|xss_clean',
 			'email' => 'trim|required|valid_email|xss_clean',
@@ -125,7 +125,7 @@ class execute extends CI_Controller
 			);
 
 		$result = $this->model->InsertOrUpdate($data);
-		
+
 
 	}
 
@@ -205,17 +205,17 @@ class execute extends CI_Controller
 			redirect('myaccount');
 
 		}
-		
+
 
 		$data = array(
 			'name' 		=> $this->post('name'),
 			'address' 	=> $this->post('address'),
-			'gender' 	=> $this->post('gender'), 
+			'gender' 	=> $this->post('gender'),
 			'email' 	=> $this->post('email')
 			);
 
 		$result = $this->model->UpdateAccount($data,$id);
-	
+
 
 	}
 
@@ -242,12 +242,12 @@ class execute extends CI_Controller
 			redirect('view_student/profile/'.$id);
 
 		}
-		
+
 
 		$data = array(
 			'name' 		=> $this->post('name'),
 			'address' 	=> $this->post('address'),
-			'gender' 	=> $this->post('gender'), 
+			'gender' 	=> $this->post('gender'),
 			'email' 	=> $this->post('email')
 			);
 
@@ -255,7 +255,7 @@ class execute extends CI_Controller
 		if($result)
 		{
 
-			
+
 		}
 
 	}
@@ -292,14 +292,14 @@ class execute extends CI_Controller
 			redirect('myaccount');
 
 		}
-		
+
 
 		$data = array(
 			'password' 	=> $this->encrypt($this->post('password'))
 			);
 
 		$result = $this->model->MyAccountUpdatePassword($data,$id);
-		
+
 
 	}
 
@@ -309,7 +309,7 @@ class execute extends CI_Controller
 
 		$data = array('password' => $this->encrypt($this->post('password')));
 		$result = $this->model->MyAccountUpdatePassword($data,$id);
-		
+
 
 	}
 
@@ -334,8 +334,8 @@ class execute extends CI_Controller
 			redirect('myaccount');
 
 		} else {
-			
-			$upload_data = $this->upload->data(); 
+
+			$upload_data = $this->upload->data();
 			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
 			$result = $this->model->UploadProfile($image,$id);
 
@@ -361,8 +361,8 @@ class execute extends CI_Controller
 			redirect('profile');
 
 		} else {
-			
-			$upload_data = $this->upload->data(); 
+
+			$upload_data = $this->upload->data();
 			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
 			$result = $this->model->UploadProfile($image,$id);
 
@@ -375,7 +375,7 @@ class execute extends CI_Controller
 		}
 	}
 
-	
+
 	public function SchoolLogoUpdate($id)
 	{
 		$config['upload_path'] = './assets/uploads/';
@@ -395,8 +395,8 @@ class execute extends CI_Controller
 			echo 'error';
 
 		} else {
-			
-			$upload_data = $this->upload->data(); 
+
+			$upload_data = $this->upload->data();
 			$image = base_url().'assets/uploads/'.$upload_data['file_name'];
 			echo 'success';
 			$result = $this->model->SchoolLogo($image,$id);
@@ -409,17 +409,17 @@ class execute extends CI_Controller
 
 		$username = $this->post('username');
 		$password = $this->post('password');
-		
+
 		$result = $this->model->UserLogin($username, $password);
 
 		if ($result) {
-			
+
 			$id 	= $this->model->GetId($username);
 			$user 	= $this->model->GetUserInformation($id);
 			$role 	= $user->role;
 			$email 	= $user->email;
 			$newdata = array('session_id' => $id,'role' => $role,'logged_in' => TRUE,'email'=>$email);
-			switch ($role) 
+			switch ($role)
 			{
 				case 0:
 				$this->session->set_userdata($newdata);
@@ -433,9 +433,9 @@ class execute extends CI_Controller
 			}
 
 		} else {
-			
+
 		echo 'error';
-			
+
 		}
 
 	}
@@ -448,30 +448,21 @@ class execute extends CI_Controller
 		foreach ($result as $key => $value) {
 			$data['correct'] = $value['answer'];
 			$data['answer'] = $this->post('answer')[$key];
-				if($data['answer'] != $data['correct']) {
-					$status = 'wrong';
-				} elseif($data['answer'] == $data['correct']) {
-					$status = 'correct';
-				}
+			$data['answer'] != $data['correct'] ? $status = 'wrong' : $status = 'correct';
 			$data = array('status' => $status,'code'=> $_SESSION['code']);
 			$result = $this->model->CalculateResult($data);
 		} if($result) {
 			$squery = $this->model->CountScore($_SESSION['code']);
 			$score 	= $_SESSION['score'];
 			$percentage = $score / 20 * 50 + 50;
-			if($percentage < 75) {
-				$stats = 'Failed';
-			} else {
-				$stats = 'Passed';
-			}
+			$percentage < 75 ? $stats = 'Failed' : $stats = 'Passed';
 			$date = date('F j, \ Y h:i A');
 			$user 	= $this->model->GetUserInformation($_SESSION['session_id']);
 			$name 	= $user->name;
 			$email 	= $user->email;
 			$result_data = array(
-				'name'=>$name, 'email'=>$email,
-				'score'=>$score,'percentage'=>$percentage,
-				'status' => $stats,'date'=>$date);
+				'name'=>$name, 'email'=>$email, 'score'=>$score,
+				'percentage'=>$percentage, 'status' => $stats,'date'=>$date);
 			$query = $this->model->ExaminationResult($result_data);
 			if($query) {
 				$this->model->DeleteTempTable($_SESSION['code']);
@@ -480,11 +471,10 @@ class execute extends CI_Controller
 				redirect('done');
 			}
 		}
-
 	}
 
 
-	public function add_question() 
+	public function add_question()
 	{
 
 		$data = array('normal' => 'trim|required|xss_clean');
@@ -519,7 +509,7 @@ class execute extends CI_Controller
 
 	}
 
-	public function add_category() 
+	public function add_category()
 	{
 
 		$this->validate('category','Category','trim|required|xss_clean');
@@ -538,7 +528,7 @@ class execute extends CI_Controller
 
 	}
 
-	public function add_instructions() 
+	public function add_instructions()
 	{
 
 		$this->validate('instructions','Instructions','trim|required|xss_clean');
@@ -584,17 +574,17 @@ class execute extends CI_Controller
 
 		$gender = $this->post('gender');
 
-		switch ($gender) 
+		switch ($gender)
 		{
-			
+
 			case 'Male':
 			$image = base_url().'assets/images/male.jpg';
 			break;
-			
+
 			case 'Female':
 			$image = base_url().'assets/images/female.jpg';
 			break;
-			
+
 		}
 
 		$regdate = date('F j, \ Y h:i A');
@@ -615,7 +605,7 @@ class execute extends CI_Controller
 
         $subject = 'Online Examination';
         $message = '
-        	
+
         	<div style="max-width:92%;border-left:solid 1px #313d49;border-right:solid 1px #313d49;border-top:solid 1px #313d49;border-bottom:solid 1px #313d49;background-color:#f5f5f5;padding:10px;text-align:center">
 
         		<h3 style="color:#000">ONLINE EXAMINATION SYSTEM</h3>
@@ -628,7 +618,7 @@ class execute extends CI_Controller
 
         		<h4>Please be active on this email to be updated to your upcoming online examination.</h4>
         		<h4>Please login with this credentials</h4>
-        		<a href="http://localhost/examination_system/login" 
+        		<a href="http://localhost/examination_system/login"
         		style="float:right;background:#313d49;text-decoration:none;padding:10px;color:#fff;
         		font-weight:bolder">
         		CLICK ME TO LOGIN</a>
@@ -647,20 +637,20 @@ class execute extends CI_Controller
 
         ';
 
-        
-        
-		
+
+
+
 			$this->email->to($email)->from('a@yahoo.com')->subject($subject)->message($message);
-			
+
 			if(!$this->email->send()) {
 				echo 'connection error';
 
 			} else {
-	
+
 			$result = $this->model->AddNewStudents($data);
 			$response = $this->session->userdata('notif');
 			switch ($response) {
-		
+
 			case 'duplicated':
 				echo 'duplicated';
 			break;
@@ -766,20 +756,20 @@ class execute extends CI_Controller
 			unset($_SESSION['name'],$_SESSION['session_id'],$_SESSION['logged_in'],$_SESSION['role'],$_SESSION['done']);
 			redirect('login');
 		}
-		
+
 
 	}
-	
 
-	private function encrypt($password) 
+
+	private function encrypt($password)
 	{
-		
+
 		return password_hash($password, PASSWORD_DEFAULT);
-		
+
 	}
 
 	public function checkresult($email)
-	{	
+	{
 
 		$encoded = urldecode($email);
 		$result = $this->model->CheckResultByEmail($encoded);
@@ -788,9 +778,9 @@ class execute extends CI_Controller
 
 
 
-	public function dbexport() 
+	public function dbexport()
 	{
-		
+
 		$this->load->dbutil();
 		$prefs = array(
 		'format' => 'zip',
